@@ -21,8 +21,8 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             InitializeComponent();
         }
 
-        
-            
+
+
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -33,6 +33,10 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
                 HomePage home = new HomePage();
                 home.Show();
+            }
+            else if (!txtUsuario.Text.Equals(usuario) || txtSenha.Text.Equals(senha))
+            {
+                MessageBox.Show("Usuário ou Senha incorretos!");
             }
         }
     }

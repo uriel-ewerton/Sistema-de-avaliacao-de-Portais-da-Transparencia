@@ -39,7 +39,7 @@
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Lucida Sans", 13.8F);
-            lblUsuario.Location = new Point(48, 70);
+            lblUsuario.Location = new Point(89, 65);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(99, 26);
             lblUsuario.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             lblSenha.AutoSize = true;
             lblSenha.Font = new Font("Lucida Sans", 13.8F);
-            lblSenha.Location = new Point(48, 159);
+            lblSenha.Location = new Point(89, 154);
             lblSenha.Name = "lblSenha";
             lblSenha.Size = new Size(82, 26);
             lblSenha.TabIndex = 1;
@@ -57,21 +57,22 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(207, 72);
+            txtUsuario.Location = new Point(248, 67);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(170, 27);
-            txtUsuario.TabIndex = 2;
+            txtUsuario.TabIndex = 0;
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(207, 158);
+            txtSenha.AcceptsReturn = true;
+            txtSenha.Location = new Point(248, 153);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(170, 27);
-            txtSenha.TabIndex = 3;
+            txtSenha.TabIndex = 1;
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(119, 298);
+            btnLogin.Location = new Point(143, 255);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(226, 64);
             btnLogin.TabIndex = 4;
@@ -83,7 +84,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(484, 449);
+            ClientSize = new Size(496, 381);
             Controls.Add(btnLogin);
             Controls.Add(txtSenha);
             Controls.Add(txtUsuario);
