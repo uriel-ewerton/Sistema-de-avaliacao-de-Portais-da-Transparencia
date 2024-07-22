@@ -27,20 +27,21 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
         private void FazerAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
-            FormAvaliacao formAvaliacao = new()
+            using var selecaoForm = new SelecaoInicial();
+            if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
-                MdiParent = this
-            };
-            formAvaliacao.Show();
+                var fazerAvaliacaoForm = new FormAvaliacao(selecaoForm.Municipio, selecaoForm.Segmento, selecaoForm.TipoAvaliacao);
+                fazerAvaliacaoForm.ShowDialog();
+            }
         }
 
         private void ListarAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
-            FormAvaliacao formAvaliacao = new()
+            ListarAvaliacoes listarAvaliacoes = new()
             {
                 MdiParent = this
             };
-            formAvaliacao.Show();
+            listarAvaliacoes.Show();
         }
     }
 }

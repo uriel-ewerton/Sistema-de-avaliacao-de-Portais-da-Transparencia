@@ -28,22 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
+            municipioLabel = new Label();
+            segmentoLabel = new Label();
+            tipoAvaliacaoLabel = new Label();
             SuspendLayout();
+            // 
+            // municipioLabel
+            // 
+            municipioLabel.AutoSize = true;
+            municipioLabel.Location = new Point(110, 129);
+            municipioLabel.Name = "municipioLabel";
+            municipioLabel.Size = new Size(50, 20);
+            municipioLabel.TabIndex = 0;
+            municipioLabel.Text = "label1";
+            // 
+            // segmentoLabel
+            // 
+            segmentoLabel.AutoSize = true;
+            segmentoLabel.Location = new Point(131, 209);
+            segmentoLabel.Name = "segmentoLabel";
+            segmentoLabel.Size = new Size(50, 20);
+            segmentoLabel.TabIndex = 1;
+            segmentoLabel.Text = "label2";
+            // 
+            // tipoAvaliacaoLabel
+            // 
+            tipoAvaliacaoLabel.AutoSize = true;
+            tipoAvaliacaoLabel.Location = new Point(141, 291);
+            tipoAvaliacaoLabel.Name = "tipoAvaliacaoLabel";
+            tipoAvaliacaoLabel.Size = new Size(50, 20);
+            tipoAvaliacaoLabel.TabIndex = 2;
+            tipoAvaliacaoLabel.Text = "label3";
             // 
             // FormAvaliacao
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoScroll = true;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(861, 501);
+            Controls.Add(tipoAvaliacaoLabel);
+            Controls.Add(segmentoLabel);
+            Controls.Add(municipioLabel);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormAvaliacao";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Formulário de Avaliação";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label municipioLabel;
+        private Label segmentoLabel;
+        private Label tipoAvaliacaoLabel;
     }
 }
