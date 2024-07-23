@@ -30,7 +30,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             using var selecaoForm = new SelecaoInicial();
             if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
-                var fazerAvaliacaoForm = new FormAvaliacao(selecaoForm.Municipio, selecaoForm.Segmento, selecaoForm.TipoAvaliacao);
+                var fazerAvaliacaoForm = new FormAvaliacao();
                 fazerAvaliacaoForm.ShowDialog();
             }
         }
