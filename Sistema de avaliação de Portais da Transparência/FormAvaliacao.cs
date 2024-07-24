@@ -28,6 +28,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 // Adicionar Título
                 Label tituloLabel = new Label
                 {
+                    Name = "tituloLabel",
                     Text = questao.Titulo,
                     //alterar tamanho e fontes
                     Location = new Point(10, y),
@@ -115,31 +116,42 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             // Coletar dados do formulário
             List<string> respostas = new List<string>();
 
+            string tituloAtual = "";
+            string perguntaAtual = "";
+            string respostaAtual = "";
+
             foreach (Control control in panel1.Controls)
             {
-
-                if (control is GroupBox groupBox)
+                if (control is Label label && !string.IsNullOrEmpty(label.Text))
                 {
-                    string pergunta = "";
-                    string resposta = "";
-
+                    // Verifica se é um título pelo nome do controle
+                    if (control.Name.Equals("tituloLabel"))
+                    {
+                        tituloAtual = label.Text;
+                        respostas.Add($"\n{tituloAtual}\n");
+                    }
+                    else
+                    {
+                        perguntaAtual = label.Text;
+                    }
+                }
+                else if (control is GroupBox groupBox)
+                {
                     foreach (Control groupBoxControl in groupBox.Controls)
                     {
                         if (groupBoxControl is RadioButton radioButton && radioButton.Checked)
                         {
-                            resposta = radioButton.Text;
+                            respostaAtual = radioButton.Text;
                         }
                         else if (groupBoxControl is TextBox textBox && textBox.Visible)
                         {
-                            resposta += $" (Link: {textBox.Text})";
+                            respostaAtual += $" (Link: {textBox.Text})";
                         }
                     }
 
-                    // Adiciona a pergunta e a resposta na lista
-                    if (!string.IsNullOrEmpty(pergunta))
-                    {
-                        respostas.Add($"{pergunta}: {resposta}");
-                    }
+                    // Adiciona a pergunta e a resposta na lista, junto com o título
+                    respostas.Add($"\n{perguntaAtual}: {respostaAtual}");
+                    respostaAtual = ""; // Limpa a resposta atual para a próxima pergunta
                 }
             }
 
@@ -147,6 +159,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             string mensagem = string.Join(Environment.NewLine, respostas);
             MessageBox.Show(mensagem, "Respostas do Formulário");
         }
+
 
         private List<Criterio> CarregarCriterios()
         {

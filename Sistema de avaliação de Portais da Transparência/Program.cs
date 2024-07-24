@@ -11,7 +11,8 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormLogin());
+            //Application.Run(new FormLogin());
+            Application.Run(new FormAvaliacao());
         }
     }
 }
