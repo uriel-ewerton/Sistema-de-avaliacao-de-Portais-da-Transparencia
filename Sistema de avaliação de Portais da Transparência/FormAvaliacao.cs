@@ -15,13 +15,12 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         public FormAvaliacao()
         {
             InitializeComponent();
-            //CarregarListas();
             InitializeForm();
         }
 
         private void InitializeForm()
         {
-            var questoes = CarregarListas();
+            var questoes = CarregarCriterios();
             int y = 10;
 
             foreach (var questao in questoes)
@@ -30,7 +29,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 Label tituloLabel = new Label
                 {
                     Text = questao.Titulo,
-                    //alterar tamanho
+                    //alterar tamanho e fontes
                     Location = new Point(10, y),
                     Width = 600
                 };
@@ -118,6 +117,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
             foreach (Control control in panel1.Controls)
             {
+
                 if (control is GroupBox groupBox)
                 {
                     string pergunta = "";
@@ -148,9 +148,10 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             MessageBox.Show(mensagem, "Respostas do Formulário");
         }
 
-        private List<Questao> CarregarListas()
+        private List<Criterio> CarregarCriterios()
         {
-            List<Questao> questoes = new List<Questao>();
+            //carrega de forma organizada em listas o conteúdo de cada critério
+            List<Criterio> criterios = new List<Criterio>();
 
             List<Pergunta> infoPrioritarias = new List<Pergunta>
             {
@@ -160,9 +161,9 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 new Pergunta { Texto = "1.4 O site e o portal de transparência contêm ferramenta de pesquisa de conteúdo que permita o acesso à informação?", Flag = "Obrigatória" }
             };
 
-            questoes.Add(new Questao { Titulo = "1. Informações Prioritárias", Perguntas = infoPrioritarias });
+            criterios.Add(new Criterio { Titulo = "1. Informações Prioritárias", Perguntas = infoPrioritarias });
 
-            return questoes;
+            return criterios;
         }
 
     }
