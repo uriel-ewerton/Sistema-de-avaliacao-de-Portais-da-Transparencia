@@ -45,7 +45,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { GerenciadoresTSMI, AvaliaçõesTSMI });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(945, 28);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(827, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -53,20 +54,20 @@
             // 
             GerenciadoresTSMI.DropDownItems.AddRange(new ToolStripItem[] { GerenciadorDeUsuáriosTSMI, GerenciadorDeFormuláriosTSMI });
             GerenciadoresTSMI.Name = "GerenciadoresTSMI";
-            GerenciadoresTSMI.Size = new Size(122, 24);
+            GerenciadoresTSMI.Size = new Size(97, 20);
             GerenciadoresTSMI.Text = "Gerenciadores ";
             // 
             // GerenciadorDeUsuáriosTSMI
             // 
             GerenciadorDeUsuáriosTSMI.Name = "GerenciadorDeUsuáriosTSMI";
-            GerenciadorDeUsuáriosTSMI.Size = new Size(276, 26);
+            GerenciadorDeUsuáriosTSMI.Size = new Size(220, 22);
             GerenciadorDeUsuáriosTSMI.Text = "Gerenciador de Usuários";
             GerenciadorDeUsuáriosTSMI.Click += GerenciadorDeUsuáriosTSMI_Click;
             // 
             // GerenciadorDeFormuláriosTSMI
             // 
             GerenciadorDeFormuláriosTSMI.Name = "GerenciadorDeFormuláriosTSMI";
-            GerenciadorDeFormuláriosTSMI.Size = new Size(276, 26);
+            GerenciadorDeFormuláriosTSMI.Size = new Size(220, 22);
             GerenciadorDeFormuláriosTSMI.Text = "Gerenciador de Formulários";
             GerenciadorDeFormuláriosTSMI.Click += GerenciadorDeFormuláriosTSMI_Click;
             // 
@@ -74,42 +75,43 @@
             // 
             AvaliaçõesTSMI.DropDownItems.AddRange(new ToolStripItem[] { FazerAvaliaçãoTSMI, ListarAvaliaçãoTSMI });
             AvaliaçõesTSMI.Name = "AvaliaçõesTSMI";
-            AvaliaçõesTSMI.Size = new Size(94, 24);
+            AvaliaçõesTSMI.Size = new Size(75, 20);
             AvaliaçõesTSMI.Text = "Avaliações";
             // 
             // FazerAvaliaçãoTSMI
             // 
             FazerAvaliaçãoTSMI.Name = "FazerAvaliaçãoTSMI";
-            FazerAvaliaçãoTSMI.Size = new Size(224, 26);
+            FazerAvaliaçãoTSMI.Size = new Size(180, 22);
             FazerAvaliaçãoTSMI.Text = "Fazer Avaliação";
             FazerAvaliaçãoTSMI.Click += FazerAvaliaçãoTSMI_Click;
             // 
             // ListarAvaliaçãoTSMI
             // 
             ListarAvaliaçãoTSMI.Name = "ListarAvaliaçãoTSMI";
-            ListarAvaliaçãoTSMI.Size = new Size(224, 26);
+            ListarAvaliaçãoTSMI.Size = new Size(180, 22);
             ListarAvaliaçãoTSMI.Text = "Listar Avaliação";
             ListarAvaliaçãoTSMI.Click += ListarAvaliaçãoTSMI_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(312, 300);
+            label1.Location = new Point(242, 214);
             label1.Name = "label1";
-            label1.Size = new Size(311, 20);
+            label1.Size = new Size(248, 15);
             label1.TabIndex = 4;
             label1.Text = "INFORMAÇÕES GERAIS SOBRE O PROGRAMA";
             label1.Visible = false;
             // 
             // HomePage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 621);
+            ClientSize = new Size(827, 466);
             Controls.Add(label1);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "HomePage";

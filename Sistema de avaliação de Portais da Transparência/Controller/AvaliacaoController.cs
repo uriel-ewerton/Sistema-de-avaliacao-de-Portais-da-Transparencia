@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
 {
-    // Controllers/AvaliacaoController.cs
     public class AvaliacaoController
     {
         public Avaliacao AvaliacaoAtual { get; private set; }
@@ -17,15 +16,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
             AvaliacaoAtual = new Avaliacao();
         }
         /*
-        public void AdicionarPergunta(Pergunta pergunta)
-        {
-            AvaliacaoAtual.Perguntas.Add(pergunta);
-        }
-
-        public List<Pergunta> ObterPerguntas()
-        {
-            return AvaliacaoAtual.Perguntas;
-        }
         
         public bool ValidarAvaliacao(out string mensagemErro)
         {

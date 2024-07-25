@@ -28,24 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            pnlFormulario = new Panel();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.AutoScroll = true;
-            panel1.Location = new Point(57, 16);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(869, 448);
-            panel1.TabIndex = 3;
+            pnlFormulario.AutoScroll = true;
+            pnlFormulario.Location = new Point(33, 12);
+            pnlFormulario.Margin = new Padding(3, 2, 3, 2);
+            pnlFormulario.Name = "panel1";
+            pnlFormulario.Size = new Size(750, 346);
+            pnlFormulario.TabIndex = 3;
             // 
             // FormAvaliacao
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(928, 492);
-            Controls.Add(panel1);
+            ClientSize = new Size(812, 369);
+            Controls.Add(pnlFormulario);
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormAvaliacao";
@@ -55,6 +57,6 @@
         }
 
         #endregion
-        private Panel panel1;
+        private Panel pnlFormulario;
     }
 }

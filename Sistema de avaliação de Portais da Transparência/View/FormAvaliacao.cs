@@ -30,88 +30,76 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             var criterios = _controller.Criterios;
             int y = 10;
 
-            foreach (var questao in criterios)
+            foreach (var criterio in criterios)
             {
-                Label tituloLabel = new Label
+                Label lblTitulo = new()
                 {
-                    Name = "tituloLabel",
-                    Text = questao.Titulo,
+                    Name = "lblTitulo",
+                    Text = criterio.Titulo,
                     //ALTERAR TAMANHO E FONTES
                     Location = new Point(10, y),
                     Width = 600
                 };
-                panel1.Controls.Add(tituloLabel);
+                pnlFormulario.Controls.Add(lblTitulo);
                 y += 30;
 
                 // Adiciona Perguntas e Controles
-                foreach (var pergunta in questao.Perguntas)
+                foreach (var pergunta in criterio.Perguntas)
                 {
-                    Label perguntaLabel = new Label
+                    GroupBox grpPergunta = new()
                     {
                         Text = pergunta.Texto,
                         Location = new Point(10, y),
                         Width = 750,
-                        Height = 50
-                       
-                    };
-                    panel1.Controls.Add(perguntaLabel);
-                    y += 35;
-
-
-                    GroupBox opcoesGroupBox = new GroupBox
-                    {
-                        Location = new Point(10, y),
-                        Width = 750,
-                        Height = 50
+                        Height = 60
                     };
 
-                    TextBox linkTextBox = new TextBox
+                    TextBox txtLink = new()
                     {
                         Location = new Point(250, 20),
                         Width = 300,
-                        Visible = false 
+                        Visible = false ,
+                        PlaceholderText = "Insira o Link de Justificativa. (Obrigatório)"
                     };
-
-                    RadioButton atendeRadioButton = new RadioButton
+                    
+                    RadioButton radAtende = new()
                     {
                         Text = "Atende",
                         Location = new Point(10, 20)
                     };
-                    atendeRadioButton.CheckedChanged += (sender, e) => OnRadioButtonCheckedChanged(sender, e, linkTextBox);
+                    radAtende.CheckedChanged += (sender, e) => OnRadioButtonCheckedChanged(sender, e, txtLink);
 
 
-                    RadioButton naoAtendeRadioButton = new RadioButton
+                    RadioButton radNaoAtende = new()
                     {
                         Text = "Não Atende",
                         Location = new Point(140, 20)
                     };
-                    naoAtendeRadioButton.CheckedChanged += (sender, e) => OnRadioButtonCheckedChanged(sender, e, linkTextBox);
+                    radNaoAtende.CheckedChanged += (sender, e) => OnRadioButtonCheckedChanged(sender, e, txtLink);
 
-                    opcoesGroupBox.Controls.Add(atendeRadioButton);
-                    opcoesGroupBox.Controls.Add(naoAtendeRadioButton);
-                    opcoesGroupBox.Controls.Add(linkTextBox);
+                    grpPergunta.Controls.Add(radAtende);
+                    grpPergunta.Controls.Add(radNaoAtende);
+                    grpPergunta.Controls.Add(txtLink);
 
-                    panel1.Controls.Add(opcoesGroupBox);
+                    pnlFormulario.Controls.Add(grpPergunta);
                     y += 70; 
                 }
 
             }
-            Button enviar = new Button
+            Button btnEnviar = new()
             {
                 Text = "Concluir Formulário",
                 Location = new Point(300, y + 10),
                 Width = 200,
                 Height = 50
             };
-            enviar.Click += EnviarButton_Click;
-            panel1.Controls.Add (enviar);
+            btnEnviar.Click += EnviarButton_Click;
+            pnlFormulario.Controls.Add (btnEnviar);
         }
 
-        private void OnRadioButtonCheckedChanged(object sender, EventArgs e, TextBox linkTextBox)
+        private static void OnRadioButtonCheckedChanged(object sender, EventArgs e, TextBox linkTextBox)
         {
-            RadioButton radioButton = sender as RadioButton;
-
-            if (radioButton != null && radioButton.Checked)
+            if (sender is RadioButton radioButton && radioButton.Checked)
             {
                 linkTextBox.Visible = radioButton.Text == "Atende";
             }
@@ -123,13 +111,13 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         private void EnviarButton_Click(object sender, EventArgs e)
         {
             // Coleta os dados do formulário
-            List<string> respostas = new List<string>();
+            List<string> respostas = [];
 
-            string tituloAtual = "";
+            string tituloAtual;
             string perguntaAtual = "";
             string respostaAtual = "";
 
-            foreach (Control control in panel1.Controls)
+            foreach (Control control in pnlFormulario.Controls)
             {
                 if (control is Label label && !string.IsNullOrEmpty(label.Text))
                 {
