@@ -32,19 +32,18 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
             foreach (var questao in criterios)
             {
-                // Adicionar Título
                 Label tituloLabel = new Label
                 {
                     Name = "tituloLabel",
                     Text = questao.Titulo,
-                    //alterar tamanho e fontes
+                    //ALTERAR TAMANHO E FONTES
                     Location = new Point(10, y),
                     Width = 600
                 };
                 panel1.Controls.Add(tituloLabel);
                 y += 30;
 
-                // Adicionar Perguntas e Controles
+                // Adiciona Perguntas e Controles
                 foreach (var pergunta in questao.Perguntas)
                 {
                     Label perguntaLabel = new Label
@@ -70,7 +69,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                     {
                         Location = new Point(250, 20),
                         Width = 300,
-                        Visible = false // Inicialmente invisível
+                        Visible = false 
                     };
 
                     RadioButton atendeRadioButton = new RadioButton
@@ -93,7 +92,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                     opcoesGroupBox.Controls.Add(linkTextBox);
 
                     panel1.Controls.Add(opcoesGroupBox);
-                    y += 70; // Incrementa para a próxima pergunta
+                    y += 70; 
                 }
 
             }
@@ -118,9 +117,12 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             }
         }
 
+        /*ainda não implementa o model+controller Avaliação. A saída ocorre somente
+            no messageBox
+         */
         private void EnviarButton_Click(object sender, EventArgs e)
         {
-            // Coletar dados do formulário
+            // Coleta os dados do formulário
             List<string> respostas = new List<string>();
 
             string tituloAtual = "";

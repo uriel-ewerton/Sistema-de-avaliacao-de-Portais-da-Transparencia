@@ -4,10 +4,12 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 {
     public partial class HomePage : Form
     {
+        //controladores
         private CriterioController criterioController;
         public HomePage()
         {
             InitializeComponent();
+            //inicialização dos controladores
             criterioController = new CriterioController();
         }
 

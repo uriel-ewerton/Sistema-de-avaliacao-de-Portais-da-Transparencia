@@ -17,15 +17,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Model
         public string Titulo { get; set; } = string.Empty;
         public List<Pergunta> Perguntas { get; set; } = new List<Pergunta>();
 
-        public void AddPergunta(Pergunta pergunta)
-        {
-            Perguntas.Add(pergunta);
-        }
-        public void RemovePergunta(Pergunta pergunta)
-        {
-            Perguntas.Remove(pergunta);
-        }
-
         /*
          * Estrutura geral
          lista de Criterios
