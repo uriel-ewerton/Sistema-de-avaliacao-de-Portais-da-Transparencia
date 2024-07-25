@@ -13,6 +13,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 {
     public partial class FormLogin : Form
     {
+        //reorganizar movendo para Model usuario + controller login
         const string usuario = "admin";
         const string senha = "123";
 

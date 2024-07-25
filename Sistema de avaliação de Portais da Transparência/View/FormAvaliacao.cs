@@ -7,23 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Sistema_de_avaliação_de_Portais_da_Transparência.Controller;
+using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
 
 namespace Sistema_de_avaliação_de_Portais_da_Transparência
 {
     public partial class FormAvaliacao : Form
     {
-        public FormAvaliacao()
+        private readonly CriterioController _controller;
+
+        public FormAvaliacao(CriterioController controller)
         {
             InitializeComponent();
-            InitializeForm();
+            _controller = controller;
+            _controller.CarregaCriterios();//leva o conteúdo às estruturas
+           
+            MontarFormulario();
         }
 
-        private void InitializeForm()
+        private void MontarFormulario()
         {
-            var questoes = CarregarCriterios();
+            var criterios = _controller.Criterios;
             int y = 10;
 
-            foreach (var questao in questoes)
+            foreach (var questao in criterios)
             {
                 // Adicionar Título
                 Label tituloLabel = new Label
@@ -158,25 +165,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             // Exibir dados na MessageBox
             string mensagem = string.Join(Environment.NewLine, respostas);
             MessageBox.Show(mensagem, "Respostas do Formulário");
-        }
-
-
-        private List<Criterio> CarregarCriterios()
-        {
-            //carrega de forma organizada em listas o conteúdo de cada critério
-            List<Criterio> criterios = new List<Criterio>();
-
-            List<Pergunta> infoPrioritarias = new List<Pergunta>
-            {
-                new Pergunta { Texto = "1.1 Possui sítio oficial próprio na internet?", Flag = "essencial" },
-                new Pergunta { Texto = "1.2 Possui portal da transparência próprio ou compartilhado na internet?", Flag = "essencial" },
-                new Pergunta { Texto = "1.3 O acesso ao portal transparência está visível na capa do site?", Flag = "Obrigatória" },
-                new Pergunta { Texto = "1.4 O site e o portal de transparência contêm ferramenta de pesquisa de conteúdo que permita o acesso à informação?", Flag = "Obrigatória" }
-            };
-
-            criterios.Add(new Criterio { Titulo = "1. Informações Prioritárias", Perguntas = infoPrioritarias });
-
-            return criterios;
         }
 
     }
