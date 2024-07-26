@@ -31,13 +31,13 @@
             pnlFormulario = new Panel();
             SuspendLayout();
             // 
-            // panel1
+            // pnlFormulario
             // 
             pnlFormulario.AutoScroll = true;
-            pnlFormulario.Location = new Point(33, 12);
+            pnlFormulario.Location = new Point(35, 33);
             pnlFormulario.Margin = new Padding(3, 2, 3, 2);
-            pnlFormulario.Name = "panel1";
-            pnlFormulario.Size = new Size(750, 346);
+            pnlFormulario.Name = "pnlFormulario";
+            pnlFormulario.Size = new Size(794, 346);
             pnlFormulario.TabIndex = 3;
             // 
             // FormAvaliacao
@@ -45,8 +45,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(812, 369);
+            ClientSize = new Size(841, 390);
             Controls.Add(pnlFormulario);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;

@@ -22,7 +22,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
             //para cara critério adicionam-se as perguntas
             List<Criterio.Pergunta> infoPrioritarias =
             [
-                new Criterio.Pergunta { Texto = "Divulga informações pormenorizadas das renúncias de receita, contendo, no mínimo, identificação dos beneficiários (nome e CNPJ),setor, espécie do benefício, produto (se aplicável), valor, contrapartida e/ou impacto obtido e/ou estimado (quando aplicável) e vigência?", Flag = "essencial" },
+                new Criterio.Pergunta { Texto = "aaaaaaaaaaaaaaaaaaaaaaDivulga informações pormenorizadas das renúncias de receita, contendo, no mínimo, identificação dos beneficiários (nome e CNPJ),setor, espécie do benefício, produto (se aplicável), valor, contrapartida e/ou impacto obtido e/ou estimado (quando aplicável) e vigência?", Flag = "essencial" },
                 new Criterio.Pergunta { Texto = "1.1 Possui sítio oficial próprio na internet?", Flag = "essencial" },
                 new Criterio.Pergunta { Texto = "1.2 Possui portal da transparência próprio ou compartilhado na internet?", Flag = "essencial" },
                 new Criterio.Pergunta { Texto = "1.3 O acesso ao portal transparência está visível na capa do site?", Flag = "Obrigatória" },
