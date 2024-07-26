@@ -15,7 +15,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Model
         }
 
         public string Titulo { get; set; } = string.Empty;
-        public List<Pergunta> Perguntas { get; set; } = new List<Pergunta>();
+        public List<Pergunta> Perguntas { get; set; } = [];
 
         /*
          * Estrutura geral

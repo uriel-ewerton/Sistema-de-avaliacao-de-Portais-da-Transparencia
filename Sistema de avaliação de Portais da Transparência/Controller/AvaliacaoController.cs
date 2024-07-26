@@ -9,11 +9,57 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
 {
     public class AvaliacaoController
     {
-        public Avaliacao AvaliacaoAtual { get; private set; }
+        public List<Avaliacao> Avaliacoes { get; private set; }
 
         public AvaliacaoController()
         {
-            AvaliacaoAtual = new Avaliacao();
+            Avaliacoes = [];
+        }
+
+        public void ValidarAvaliacao(Panel pnlFormulario)
+        {
+            List<string> respostas = [];
+            string tituloAtual = "";
+            string perguntaAtual = "";
+            string respostaAtual = "";
+
+            foreach (Control control in pnlFormulario.Controls)
+            {
+                if (control is Label label && !string.IsNullOrEmpty(label.Text))
+                {
+                    // Verifica se é um título pelo nome do controle
+                    if (control.Name.Equals("lblTitulo"))
+                    {
+                        tituloAtual = label.Text;
+                        respostas.Add($"\n{tituloAtual}\n");
+                    }
+                }
+                else if (control is GroupBox groupBox)
+                {
+                    foreach (Control groupBoxControl in groupBox.Controls)
+                    {
+                        if (groupBoxControl is RadioButton radioButton && radioButton.Checked)
+                        {
+                            respostaAtual = radioButton.Text;
+                            perguntaAtual = groupBox.Text;
+                        }
+                        else if (groupBoxControl is TextBox textBox && textBox.Visible)
+                        {
+                            respostaAtual += $" (Link: {textBox.Text})";
+                        }
+                    }
+
+                    // Adiciona a pergunta e a resposta na lista, junto com o título
+                    if (!string.IsNullOrEmpty(perguntaAtual) && !string.IsNullOrEmpty(respostaAtual) && !string.IsNullOrEmpty(tituloAtual))
+                    {
+                        respostas.Add($"{perguntaAtual}: \n{respostaAtual}\n");
+                    }
+                    respostaAtual = ""; // Limpa a resposta atual para a próxima pergunta
+                }
+            }
+            string mensagem = string.Join(Environment.NewLine, respostas);
+             MessageBox.Show(mensagem, "Respostas do Formulário");
+
         }
         /*
         

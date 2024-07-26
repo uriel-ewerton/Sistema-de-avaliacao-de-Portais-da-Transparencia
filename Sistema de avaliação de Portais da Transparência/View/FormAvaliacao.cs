@@ -14,20 +14,19 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 {
     public partial class FormAvaliacao : Form
     {
-        private readonly CriterioController _controller;
-
-        public FormAvaliacao(CriterioController controller)
+        private readonly CriterioController _criterioController;
+        private readonly AvaliacaoController _avaliacaoController;
+        public FormAvaliacao(CriterioController criterioController, AvaliacaoController avaliacaoController)
         {
             InitializeComponent();
-            _controller = controller;
-            //_controller.CarregaCriterios();//leva o conteúdo às estruturas
-           
+            _criterioController = criterioController;
+            _avaliacaoController = avaliacaoController;
             MontarFormulario();
         }
 
         private void MontarFormulario()
         {
-            var criterios = _controller.Criterios;
+            var criterios = _criterioController.Criterios;
             int y = 10;
 
             foreach (var criterio in criterios)
@@ -116,54 +115,68 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         /*ainda não implementa o model+controller Avaliação. A saída ocorre somente
             no messageBox
          */
+        /* Coleta os dados do formulário. 
+         * Coleta o título de cada critério renderizado, perguntas dos groupBox que tem respostas e suas respectivas respostas.
+         */
         private void EnviarButton_Click(object sender, EventArgs e)
         {
-            // Coleta os dados do formulário
-            List<string> respostas = [];
-
-            string tituloAtual = "";
-            string perguntaAtual = "";
-            string respostaAtual = "";
-
-            foreach (Control control in pnlFormulario.Controls)
-            {
-                if (control is Label label && !string.IsNullOrEmpty(label.Text))
-                {
-                    // Verifica se é um título pelo nome do controle
-                    if (control.Name.Equals("lblTitulo"))
-                    {
-                        tituloAtual = label.Text;
-                        respostas.Add($"\n{tituloAtual}\n");
-                    }
-                 }
-                else if (control is GroupBox groupBox)
-                {
-                    foreach (Control groupBoxControl in groupBox.Controls)
-                    {
-                        if (groupBoxControl is RadioButton radioButton && radioButton.Checked)
-                        {
-                            respostaAtual = radioButton.Text;
-                            perguntaAtual = groupBox.Text;
-                        }
-                        else if (groupBoxControl is TextBox textBox && textBox.Visible)
-                        {
-                            respostaAtual += $" (Link: {textBox.Text})";
-                        }
-                    }
-
-                    // Adiciona a pergunta e a resposta na lista, junto com o título
-                    if (!string.IsNullOrEmpty(perguntaAtual) && !string.IsNullOrEmpty(respostaAtual) && !string.IsNullOrEmpty(tituloAtual))
-                    {
-                        respostas.Add($"\n{perguntaAtual}: {respostaAtual}");
-                    }
-                    respostaAtual = ""; // Limpa a resposta atual para a próxima pergunta
-                }
-            }
-
-            // Exibir dados na MessageBox
-            string mensagem = string.Join(Environment.NewLine, respostas);
-            MessageBox.Show(mensagem, "Respostas do Formulário");
+             
+            //List<string> respostas = [];
+            _avaliacaoController.ValidarAvaliacao(pnlFormulario);
+            
+            //MessageBox.Show(respostas.ToString(), "Respostas do Formulário");
         }
 
     }
+    // VERSÃO FUNCIONAL
+    //    private void EnviarButton_Click(object sender, EventArgs e)
+    //    {
+    //        // Coleta os dados do formulário
+    //        List<string> respostas = [];
+
+    //        string tituloAtual = "";
+    //        string perguntaAtual = "";
+    //        string respostaAtual = "";
+
+    //        foreach (Control control in pnlFormulario.Controls)
+    //        {
+    //            if (control is Label label && !string.IsNullOrEmpty(label.Text))
+    //            {
+    //                // Verifica se é um título pelo nome do controle
+    //                if (control.Name.Equals("lblTitulo"))
+    //                {
+    //                    tituloAtual = label.Text;
+    //                    respostas.Add($"\n{tituloAtual}\n");
+    //                }
+    //             }
+    //            else if (control is GroupBox groupBox)
+    //            {
+    //                foreach (Control groupBoxControl in groupBox.Controls)
+    //                {
+    //                    if (groupBoxControl is RadioButton radioButton && radioButton.Checked)
+    //                    {
+    //                        respostaAtual = radioButton.Text;
+    //                        perguntaAtual = groupBox.Text;
+    //                    }
+    //                    else if (groupBoxControl is TextBox textBox && textBox.Visible)
+    //                    {
+    //                        respostaAtual += $" (Link: {textBox.Text})";
+    //                    }
+    //                }
+
+    //                // Adiciona a pergunta e a resposta na lista, junto com o título
+    //                if (!string.IsNullOrEmpty(perguntaAtual) && !string.IsNullOrEmpty(respostaAtual) && !string.IsNullOrEmpty(tituloAtual))
+    //                {
+    //                    respostas.Add($"{perguntaAtual}: \n{respostaAtual}\n");
+    //                }
+    //                respostaAtual = ""; // Limpa a resposta atual para a próxima pergunta
+    //            }
+    //        }
+
+    //        // Exibir dados na MessageBox
+    //        string mensagem = string.Join(Environment.NewLine, respostas);
+    //        MessageBox.Show(mensagem, "Respostas do Formulário");
+    //    }
+
+    //}
 }

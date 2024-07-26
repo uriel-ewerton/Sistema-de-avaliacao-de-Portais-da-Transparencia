@@ -5,13 +5,15 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
     public partial class HomePage : Form
     {
         //controladores
-        private CriterioController criterioController;
+        private readonly CriterioController criterioController;
+        private readonly AvaliacaoController avaliacaoController;
         public HomePage()
         {
             InitializeComponent();
             //inicialização dos controladores
             criterioController = new CriterioController();
             criterioController.CarregaCriterios();
+            avaliacaoController = new AvaliacaoController();
         }
 
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             using var selecaoForm = new SelecaoInicial();
             if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
-                var fazerAvaliacaoForm = new FormAvaliacao(criterioController);
+                var fazerAvaliacaoForm = new FormAvaliacao(criterioController, avaliacaoController);
                 fazerAvaliacaoForm.ShowDialog();
             }
         }
