@@ -36,7 +36,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                     {
                         tituloAtual = label.Text;
                         avaliacaoAtual.Criterios.Add(new Criterio { Titulo = tituloAtual });
-                        //respostas.Add($"\n{tituloAtual}\n");
                     }
                 }
                 else if (control is GroupBox grp)
@@ -90,37 +89,40 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                 }
             }
 
-            //avaliacaoAtual.Criterios.RemoveAll(List<Pergunta> perguntaAtual = [])
-            //avaliacaoAtual.Criterios.Reverse();
             Avaliacoes.Add(avaliacaoAtual);
             return "Validado";
 
         }
 
-
-        /*
-        
-        public bool ValidarAvaliacao(out string mensagemErro)
+        public string UltimaAvaliacaoString()
         {
-            mensagemErro = string.Empty;
-
-            foreach (var pergunta in AvaliacaoAtual.Perguntas)
+            List<string> avaliacao = new();
+            try
             {
-                if (pergunta.Flag == "obrigatório" && string.IsNullOrEmpty(pergunta.Resposta))
+                foreach (Criterio criterio in Avaliacoes.Last().Criterios)
                 {
-                    mensagemErro = $"A pergunta '{pergunta.Texto}' é obrigatória e precisa ser respondida.";
-                    return false;
-                }
-                if (pergunta.Resposta == "Atende" && string.IsNullOrEmpty(pergunta.Link))
-                {
-                    mensagemErro = $"A pergunta '{pergunta.Texto}' requer um link.";
-                    return false;
+                    avaliacao.Add($"\n{criterio.Titulo}\n");
+                    foreach (Criterio.Pergunta pergunta in criterio.Perguntas)
+                    {
+                        avaliacao.Add($"{pergunta.Texto}");
+                        avaliacao.Add($"{pergunta.Resposta}");
+                        avaliacao.Add($"Link: {pergunta.Link}");
+                    }
                 }
             }
-
-            return true;
+            catch (Exception erro)
+            {
+                Console.WriteLine(erro);
+            };
+            string avaliacaoString = string.Join(Environment.NewLine, avaliacao);
+            return avaliacaoString;
         }
-        */
+
+        public void RemoverUltimaAvaliacao()
+        {
+            Avaliacoes.Remove(Avaliacoes.Last());
+        }
+        
     }
 
 }
