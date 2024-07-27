@@ -16,13 +16,17 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
             Avaliacoes = [];
         }
 
-        public void ValidarAvaliacao(Panel pnlFormulario)
+        public string ValidarAvaliacao(Panel pnlFormulario)
         {
-            List<string> respostas = [];
+
+            Avaliacao avaliacaoAtual = new();
             string tituloAtual = "";
             string perguntaAtual = "";
             string respostaAtual = "";
+            string linkAtual = "";
+            string flagAtual = "";
 
+            //extrai as informações dos controls no Panel
             foreach (Control control in pnlFormulario.Controls)
             {
                 if (control is Label label && !string.IsNullOrEmpty(label.Text))
@@ -31,36 +35,69 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                     if (control.Name.Equals("lblTitulo"))
                     {
                         tituloAtual = label.Text;
-                        respostas.Add($"\n{tituloAtual}\n");
+                        avaliacaoAtual.Criterios.Add(new Criterio { Titulo = tituloAtual });
+                        //respostas.Add($"\n{tituloAtual}\n");
                     }
                 }
-                else if (control is GroupBox groupBox)
+                else if (control is GroupBox grp)
                 {
-                    foreach (Control groupBoxControl in groupBox.Controls)
+                    foreach (Control groupBoxControl in grp.Controls)
                     {
-                        if (groupBoxControl is RadioButton radioButton && radioButton.Checked)
+                        if (groupBoxControl is RadioButton rad && rad.Checked)
                         {
-                            respostaAtual = radioButton.Text;
-                            perguntaAtual = groupBox.Text;
+                            perguntaAtual = grp.Text;
+                            respostaAtual = rad.Text;
                         }
-                        else if (groupBoxControl is TextBox textBox && textBox.Visible)
+                        else if (groupBoxControl is TextBox txt && txt.Visible)
                         {
-                            respostaAtual += $" (Link: {textBox.Text})";
+                            linkAtual = txt.Text;
                         }
+                        else if(groupBoxControl is Label flag) {
+                            flagAtual = flag.Text;  
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(respostaAtual) && flagAtual.Equals("Obrigatória"))
+                    {
+                        return "Pergunta obrigatória sem resposta";
+                    }
+
+                    if (!string.IsNullOrEmpty(respostaAtual) && string.IsNullOrEmpty(linkAtual))
+                    {
+                        return "Campo de link vazio";
                     }
 
                     // Adiciona a pergunta e a resposta na lista, junto com o título
-                    if (!string.IsNullOrEmpty(perguntaAtual) && !string.IsNullOrEmpty(respostaAtual) && !string.IsNullOrEmpty(tituloAtual))
+                    if (!string.IsNullOrEmpty(perguntaAtual)
+                            && !string.IsNullOrEmpty(respostaAtual)
+                            && !string.IsNullOrEmpty(tituloAtual))
                     {
-                        respostas.Add($"{perguntaAtual}: \n{respostaAtual}\n");
+                        avaliacaoAtual.Criterios.Last().Perguntas.Add(
+                        new Criterio.Pergunta
+                        {
+                            Texto = perguntaAtual,
+                            Resposta = respostaAtual,
+                            Flag = flagAtual,
+                            Link = linkAtual
+                        });
                     }
+                    //else 
+                    //{ 
+                    //    return "Formulário vazio"; 
+                    //};
+
                     respostaAtual = ""; // Limpa a resposta atual para a próxima pergunta
                 }
             }
-            string mensagem = string.Join(Environment.NewLine, respostas);
-             MessageBox.Show(mensagem, "Respostas do Formulário");
+
+            //avaliacaoAtual.Criterios.RemoveAll(List<Pergunta> perguntaAtual = [])
+            //avaliacaoAtual.Criterios.Reverse();
+            Avaliacoes.Add(avaliacaoAtual);
+            return "Validado";
 
         }
+
+
         /*
         
         public bool ValidarAvaliacao(out string mensagemErro)

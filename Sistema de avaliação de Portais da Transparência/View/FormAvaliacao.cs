@@ -74,7 +74,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                         Location = new Point(140, 20)
                     };
                     radNaoAtende.CheckedChanged += (sender, e) => OnRadioButtonCheckedChanged(sender, e, txtLink);
-
+                    //LEMBRAR DE TESTAR SE O AUTO-SIZE NO GRP RESOLVE ISSO
                     //regula os tamanhos caso o critério exceda 2 linhas
                     if (pergunta.Texto.Length >= 250)
                     {
@@ -84,9 +84,16 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                         txtLink.Location = new Point(250, 45);
                         y += 10;
                     }
+                    Label lblFlag = new()
+                    {
+                        Name = "lblFlag",
+                        Text = pergunta.Flag,
+                        Location = new Point(560, 20)
+                    };
                     grpPergunta.Controls.Add(radAtende);
                     grpPergunta.Controls.Add(radNaoAtende);
                     grpPergunta.Controls.Add(txtLink);
+                    grpPergunta.Controls.Add(lblFlag);
 
                     pnlFormulario.Controls.Add(grpPergunta);
                     y += 70; 
@@ -120,11 +127,26 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
          */
         private void EnviarButton_Click(object sender, EventArgs e)
         {
-             
-            //List<string> respostas = [];
-            _avaliacaoController.ValidarAvaliacao(pnlFormulario);
             
-            //MessageBox.Show(respostas.ToString(), "Respostas do Formulário");
+            string xablau = _avaliacaoController.ValidarAvaliacao(pnlFormulario);
+            //retornando ok, o validador vai salvar os dados na lista de avaliacoes
+            //aqui chamaremos _avaliacaoController.ObterUltimaAvaliacao()
+            //o controller retornará a avaliacao feita e aqui printaremos.
+            MessageBox.Show(xablau, "Respostas do Formulário",MessageBoxButtons.OKCancel);
+            List<string> avaliacao = new();
+            foreach (Criterio criterio in _avaliacaoController.Avaliacoes.Last().Criterios)
+            {
+                avaliacao.Add($"\n{criterio.Titulo}\n");
+                foreach (Criterio.Pergunta pergunta in criterio.Perguntas)
+                {
+                    avaliacao.Add($"{pergunta.Texto}\n");
+                    avaliacao.Add($"{pergunta.Resposta}\n");
+                    avaliacao.Add($"Link: {pergunta.Link}\n");
+                }
+            }
+            string mensagem = string.Join(Environment.NewLine, avaliacao);
+            MessageBox.Show(mensagem, "Respostas do Formulário");
+            //se não ok, excluíremos a ultima avaliação da lista
         }
 
     }
