@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Sistema_de_avaliação_de_Portais_da_Transparência.Model.Criterio;
 
 namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
 {
@@ -16,7 +17,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
             Avaliacoes = [];
         }
 
-        public string ValidarAvaliacao(Panel pnlFormulario)
+        public string ValidarAvaliacao(Panel pnlFormulario, List<string> selecoesIniciais)
         {
 
             Avaliacao avaliacaoAtual = new();
@@ -61,7 +62,8 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                         return "Pergunta obrigatória sem resposta";
                     }
 
-                    if (!string.IsNullOrEmpty(respostaAtual) && string.IsNullOrEmpty(linkAtual))
+                    if (!string.IsNullOrEmpty(respostaAtual) && string.IsNullOrEmpty(linkAtual) 
+                        && respostaAtual.Equals("Atende"))
                     {
                         return "Campo de link vazio";
                     }
@@ -79,6 +81,9 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                             Flag = flagAtual,
                             Link = linkAtual
                         });
+                        avaliacaoAtual.Municipio = selecoesIniciais[0];
+                        avaliacaoAtual.Segmento = selecoesIniciais[1];
+                        avaliacaoAtual.TipoAvaliacao = selecoesIniciais[2];
                     }
                     //else 
                     //{ 
@@ -96,10 +101,17 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
 
         public string UltimaAvaliacaoString()
         {
-            List<string> avaliacao = new();
+            List<string> avaliacao = [];
             try
             {
-                foreach (Criterio criterio in Avaliacoes.Last().Criterios)
+                Avaliacao ultimaAvaliacao = Avaliacoes.Last();
+                avaliacao.Add($"Avaliação {Avaliacoes.Count}");
+                avaliacao.Add($"Município: {ultimaAvaliacao.Municipio}");
+                avaliacao.Add($"Segmento: {ultimaAvaliacao.Segmento}");
+                avaliacao.Add($"Tipo de avaliação: {ultimaAvaliacao.TipoAvaliacao}");
+                avaliacao.Add($"Data da avaliação: {ultimaAvaliacao.Timestamp}");
+
+                foreach (Criterio criterio in ultimaAvaliacao.Criterios)
                 {
                     avaliacao.Add($"\n{criterio.Titulo}\n");
                     foreach (Criterio.Pergunta pergunta in criterio.Perguntas)

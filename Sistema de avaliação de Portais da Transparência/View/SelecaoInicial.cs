@@ -15,6 +15,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         public string Municipio { get; private set; } = string.Empty;
         public string Segmento { get; private set; } = string.Empty;
         public string TipoAvaliacao { get; private set; } = string.Empty;
+        public List<string> SelecoesIniciais { get; private set; } = [];
         public SelecaoInicial()
         {
             InitializeComponent();
@@ -30,12 +31,16 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 && !string.IsNullOrEmpty(Segmento)
                 && !string.IsNullOrEmpty(TipoAvaliacao))
             {
+                SelecoesIniciais.Add(Municipio);
+                SelecoesIniciais.Add(Segmento);
+                SelecoesIniciais.Add(TipoAvaliacao);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Por favor, selecione todas as opções antes de confirmar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, selecione todas as opções antes de confirmar.", "Aviso", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

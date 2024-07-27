@@ -16,15 +16,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Model
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
         public List<Criterio> Criterios { get; set; } = [];
 
-        public override string ToString()
-        {
-            return $"{{{nameof(Municipio)}={Municipio}, " +
-                $"{nameof(Segmento)}={Segmento}, " +
-                $"{nameof(TipoAvaliacao)}={TipoAvaliacao}, " +
-                $"{nameof(Usuario)}={Usuario}, " +
-                $"{nameof(Timestamp)}={Timestamp.ToString()}, " +
-                $"{nameof(Criterios)}={Criterios.ToString()}}}";
-        }
+        
         //public Dictionary<Criterio, string> Respostas { get; set; } = [];
 
         //usuário - data - respostas

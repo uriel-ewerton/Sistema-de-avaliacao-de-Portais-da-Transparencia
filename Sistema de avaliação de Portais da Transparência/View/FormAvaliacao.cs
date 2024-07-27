@@ -16,14 +16,19 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
     {
         private readonly CriterioController _criterioController;
         private readonly AvaliacaoController _avaliacaoController;
-        public FormAvaliacao(CriterioController criterioController, AvaliacaoController avaliacaoController)
+        private List<string> _selecoesIniciais = [];
+        public FormAvaliacao(CriterioController criterioController, AvaliacaoController avaliacaoController, List<string> selecoesIniciais)
         {
             InitializeComponent();
             _criterioController = criterioController;
             _avaliacaoController = avaliacaoController;
+            _selecoesIniciais = selecoesIniciais;
             MontarFormulario();
         }
 
+        /*
+         * Recebe base de critérios e monta controles respectivos em um Panel.
+         */
         private void MontarFormulario()
         {
             var criterios = _criterioController.Criterios;
@@ -124,15 +129,13 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             }
         }
 
-
         /* 
          *  Comunica com o controller para validar e gerar o formulário.
          *  Provoca a exibição de resposta de validação ou resultado da avaliação.
          */
         private void EnviarButton_Click(object sender, EventArgs e)
         {
-
-            string respostaValidacao = _avaliacaoController.ValidarAvaliacao(pnlFormulario);
+            string respostaValidacao = _avaliacaoController.ValidarAvaliacao(pnlFormulario,_selecoesIniciais);
 
             if (!respostaValidacao.Equals("Validado"))
             {
