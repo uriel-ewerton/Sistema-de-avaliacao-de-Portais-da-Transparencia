@@ -14,20 +14,24 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 {
     public partial class FormAvaliacao : Form
     {
-        private readonly CriterioController _controller;
-
-        public FormAvaliacao(CriterioController controller)
+        private readonly CriterioController _criterioController;
+        private readonly AvaliacaoController _avaliacaoController;
+        private List<string> _selecoesIniciais = [];
+        public FormAvaliacao(CriterioController criterioController, AvaliacaoController avaliacaoController, List<string> selecoesIniciais)
         {
             InitializeComponent();
-            _controller = controller;
-            //_controller.CarregaCriterios();//leva o conteúdo às estruturas
-           
+            _criterioController = criterioController;
+            _avaliacaoController = avaliacaoController;
+            _selecoesIniciais = selecoesIniciais;
             MontarFormulario();
         }
 
+        /*
+         * Recebe base de critérios e monta controles respectivos em um Panel.
+         */
         private void MontarFormulario()
         {
-            var criterios = _controller.Criterios;
+            var criterios = _criterioController.Criterios;
             int y = 10;
 
             foreach (var criterio in criterios)
@@ -36,7 +40,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 {
                     Name = "lblTitulo",
                     Text = criterio.Titulo,
-                    //ALTERAR TAMANHO E FONTES
+                    Font = new Font("Arial", 12),
                     Location = new Point(10, y),
                     Width = 600
                 };
@@ -75,6 +79,13 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                         Location = new Point(140, 20)
                     };
                     radNaoAtende.CheckedChanged += (sender, e) => OnRadioButtonCheckedChanged(sender, e, txtLink);
+                    
+                    Label lblFlag = new()
+                    {
+                        Name = "lblFlag",
+                        Text = pergunta.Flag,
+                        Location = new Point(600, 20)
+                    };
 
                     //regula os tamanhos caso o critério exceda 2 linhas
                     if (pergunta.Texto.Length >= 250)
@@ -83,11 +94,13 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                         radAtende.Location = new Point(10, 45);
                         radNaoAtende.Location = new Point(140, 45);
                         txtLink.Location = new Point(250, 45);
+                        lblFlag.Location = new Point(600, 45);
                         y += 10;
                     }
                     grpPergunta.Controls.Add(radAtende);
                     grpPergunta.Controls.Add(radNaoAtende);
                     grpPergunta.Controls.Add(txtLink);
+                    grpPergunta.Controls.Add(lblFlag);
 
                     pnlFormulario.Controls.Add(grpPergunta);
                     y += 70; 
@@ -105,6 +118,9 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             pnlFormulario.Controls.Add (btnEnviar);
         }
 
+        /*
+         *  Controla a exibição do campo para link
+         */
         private static void OnRadioButtonCheckedChanged(object sender, EventArgs e, TextBox linkTextBox)
         {
             if (sender is RadioButton radioButton && radioButton.Checked)
@@ -113,57 +129,35 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             }
         }
 
-        /*ainda não implementa o model+controller Avaliação. A saída ocorre somente
-            no messageBox
+        /* 
+         *  Comunica com o controller para validar e gerar o formulário.
+         *  Provoca a exibição de resposta de validação ou resultado da avaliação.
          */
         private void EnviarButton_Click(object sender, EventArgs e)
         {
-            // Coleta os dados do formulário
-            List<string> respostas = [];
+            string respostaValidacao = _avaliacaoController.ValidarAvaliacao(pnlFormulario,_selecoesIniciais);
 
-            string tituloAtual = "";
-            string perguntaAtual = "";
-            string respostaAtual = "";
-
-            foreach (Control control in pnlFormulario.Controls)
+            if (!respostaValidacao.Equals("Validado"))
             {
-                if (control is Label label && !string.IsNullOrEmpty(label.Text))
+                MessageBox.Show(respostaValidacao, "Respostas do Formulário",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (respostaValidacao.Equals("Validado"))
+            {
+                string avaliacao = _avaliacaoController.UltimaAvaliacaoString();
+                var confirmacaoUsuario = MessageBox.Show(avaliacao, "Respostas do Formulário", 
+                    MessageBoxButtons.OKCancel);
+                if (confirmacaoUsuario == DialogResult.OK)
                 {
-                    // Verifica se é um título pelo nome do controle
-                    if (control.Name.Equals("lblTitulo"))
-                    {
-                        tituloAtual = label.Text;
-                        respostas.Add($"\n{tituloAtual}\n");
-                    }
-                 }
-                else if (control is GroupBox groupBox)
+                    this.Close();
+                }
+                else if(confirmacaoUsuario == DialogResult.Cancel)
                 {
-                    foreach (Control groupBoxControl in groupBox.Controls)
-                    {
-                        if (groupBoxControl is RadioButton radioButton && radioButton.Checked)
-                        {
-                            respostaAtual = radioButton.Text;
-                            perguntaAtual = groupBox.Text;
-                        }
-                        else if (groupBoxControl is TextBox textBox && textBox.Visible)
-                        {
-                            respostaAtual += $" (Link: {textBox.Text})";
-                        }
-                    }
-
-                    // Adiciona a pergunta e a resposta na lista, junto com o título
-                    if (!string.IsNullOrEmpty(perguntaAtual) && !string.IsNullOrEmpty(respostaAtual) && !string.IsNullOrEmpty(tituloAtual))
-                    {
-                        respostas.Add($"\n{perguntaAtual}: {respostaAtual}");
-                    }
-                    respostaAtual = ""; // Limpa a resposta atual para a próxima pergunta
+                    _avaliacaoController.RemoverUltimaAvaliacao();
                 }
             }
-
-            // Exibir dados na MessageBox
-            string mensagem = string.Join(Environment.NewLine, respostas);
-            MessageBox.Show(mensagem, "Respostas do Formulário");
         }
 
     }
+    
 }
