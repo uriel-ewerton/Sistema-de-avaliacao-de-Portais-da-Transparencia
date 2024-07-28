@@ -35,7 +35,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 HomePage home = new HomePage();
                 home.Show();
             }
-            else if (!txtUsuario.Text.Equals(usuario) || txtSenha.Text.Equals(senha))
+            else if (!txtUsuario.Text.Equals(usuario) || !txtSenha.Text.Equals(senha))
             {
                 MessageBox.Show("Usuário ou Senha incorretos!");
             }
