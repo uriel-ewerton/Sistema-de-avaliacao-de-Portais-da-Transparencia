@@ -1,4 +1,5 @@
 using Sistema_de_avaliação_de_Portais_da_Transparência.Controller;
+using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
 
 namespace Sistema_de_avaliação_de_Portais_da_Transparência
 {
@@ -18,10 +19,17 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
         {
-            GerenciadorUsuarios gerenciadorUsuarios = new()
-            {
-                MdiParent = this
-            };
+            // Criação do repositório e do controlador
+            var funcionarioRepository = new FuncionarioRepositorio();
+            var gerenciadorUsuarios = new GerenciadorUsuarios();
+            var controller = new FuncionarioController(funcionarioRepository, gerenciadorUsuarios);
+
+            // Configura o formulário para usar o controlador
+            gerenciadorUsuarios.SetController(controller);
+
+            // Carrega os funcionários e exibe o formulário
+            controller.carregarFuncionarios();
+            gerenciadorUsuarios.MdiParent = this;
             gerenciadorUsuarios.Show();
         }
 
