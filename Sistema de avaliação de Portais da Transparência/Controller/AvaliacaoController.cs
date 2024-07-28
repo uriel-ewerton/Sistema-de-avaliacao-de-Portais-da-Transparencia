@@ -52,8 +52,9 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                         {
                             linkAtual = txt.Text;
                         }
-                        else if(groupBoxControl is Label flag) {
-                            flagAtual = flag.Text;  
+                        else if (groupBoxControl is Label flag)
+                        {
+                            flagAtual = flag.Text;
                         }
                     }
 
@@ -62,7 +63,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                         return "Pergunta obrigatória sem resposta";
                     }
 
-                    if (!string.IsNullOrEmpty(respostaAtual) && string.IsNullOrEmpty(linkAtual) 
+                    if (!string.IsNullOrEmpty(respostaAtual) && string.IsNullOrEmpty(linkAtual)
                         && respostaAtual.Equals("Atende"))
                     {
                         return "Campo de link vazio";
@@ -118,7 +119,11 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                     {
                         avaliacao.Add($"{pergunta.Texto}");
                         avaliacao.Add($"{pergunta.Resposta}");
-                        avaliacao.Add($"Link: {pergunta.Link}");
+                        if (!string.IsNullOrEmpty(pergunta.Link))
+                        {
+                            avaliacao.Add($"Link: {pergunta.Link}");
+                        }
+
                     }
                 }
             }
@@ -134,7 +139,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
         {
             Avaliacoes.Remove(Avaliacoes.Last());
         }
-        
+
     }
 
 }

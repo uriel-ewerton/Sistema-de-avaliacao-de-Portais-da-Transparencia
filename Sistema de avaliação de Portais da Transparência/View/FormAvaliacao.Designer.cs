@@ -34,10 +34,10 @@
             // pnlFormulario
             // 
             pnlFormulario.AutoScroll = true;
-            pnlFormulario.Location = new Point(35, 33);
+            pnlFormulario.Location = new Point(35, 1);
             pnlFormulario.Margin = new Padding(3, 2, 3, 2);
             pnlFormulario.Name = "pnlFormulario";
-            pnlFormulario.Size = new Size(794, 346);
+            pnlFormulario.Size = new Size(794, 378);
             pnlFormulario.TabIndex = 3;
             // 
             // FormAvaliacao

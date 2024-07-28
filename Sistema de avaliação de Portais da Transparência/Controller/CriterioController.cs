@@ -56,7 +56,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                 new Criterio.Pergunta { Texto = "2.9 Inclui botão do Radar da Transparência Pública no site institucional?",
                 Flag = "Recomendada" },
                 ];
-            Criterios.Add(new Criterio { Titulo = "2. Informações Institucionais", Perguntas = infoInstitucionais });
+            //Criterios.Add(new Criterio { Titulo = "2. Informações Institucionais", Perguntas = infoInstitucionais });
         }
 
 
