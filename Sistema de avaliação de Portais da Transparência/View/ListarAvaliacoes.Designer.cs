@@ -28,18 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            pnlAvaliacoes = new Panel();
             SuspendLayout();
+            // 
+            // pnlAvaliacoes
+            // 
+            pnlAvaliacoes.AutoScroll = true;
+            pnlAvaliacoes.AutoSize = true;
+            pnlAvaliacoes.Location = new Point(31, 38);
+            pnlAvaliacoes.Name = "pnlAvaliacoes";
+            pnlAvaliacoes.Size = new Size(668, 301);
+            pnlAvaliacoes.TabIndex = 0;
             // 
             // ListarAvaliacoes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 380);
+            Controls.Add(pnlAvaliacoes);
+            MinimizeBox = false;
             Name = "ListarAvaliacoes";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Lista de Avaliações";
+            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Panel pnlAvaliacoes;
     }
 }

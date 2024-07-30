@@ -89,7 +89,7 @@
             // 
             ListarAvaliaçãoTSMI.Name = "ListarAvaliaçãoTSMI";
             ListarAvaliaçãoTSMI.Size = new Size(180, 22);
-            ListarAvaliaçãoTSMI.Text = "Listar Avaliação";
+            ListarAvaliaçãoTSMI.Text = "Listar Avaliações";
             ListarAvaliaçãoTSMI.Click += ListarAvaliaçãoTSMI_Click;
             // 
             // label1

@@ -109,7 +109,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 }
             }
         }
-
+        
         private void tsbExcluir_Click(object sender, EventArgs e)
         {
             var selectedRow = dataGridViewFuncionarios.SelectedRows[0];

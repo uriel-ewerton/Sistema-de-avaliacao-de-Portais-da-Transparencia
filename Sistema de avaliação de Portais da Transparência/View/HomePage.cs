@@ -54,7 +54,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
         private void ListarAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
-            ListarAvaliacoes listarAvaliacoes = new()
+            ListarAvaliacoes listarAvaliacoes = new(avaliacaoController)
             {
                 MdiParent = this
             };

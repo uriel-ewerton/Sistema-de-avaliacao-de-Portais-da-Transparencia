@@ -52,8 +52,9 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                         {
                             linkAtual = txt.Text;
                         }
-                        else if(groupBoxControl is Label flag) {
-                            flagAtual = flag.Text;  
+                        else if (groupBoxControl is Label flag)
+                        {
+                            flagAtual = flag.Text;
                         }
                     }
 
@@ -62,7 +63,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                         return "Pergunta obrigatória sem resposta";
                     }
 
-                    if (!string.IsNullOrEmpty(respostaAtual) && string.IsNullOrEmpty(linkAtual) 
+                    if (!string.IsNullOrEmpty(respostaAtual) && string.IsNullOrEmpty(linkAtual)
                         && respostaAtual.Equals("Atende"))
                     {
                         return "Campo de link vazio";
@@ -84,6 +85,15 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
                         avaliacaoAtual.Municipio = selecoesIniciais[0];
                         avaliacaoAtual.Segmento = selecoesIniciais[1];
                         avaliacaoAtual.TipoAvaliacao = selecoesIniciais[2];
+                        if(Avaliacoes.Count > 0)
+                        {
+                            avaliacaoAtual.Id = Avaliacoes.Last().Id + 1;
+                        }
+                        else if(Avaliacoes.Count == 0)
+                        {
+                            avaliacaoAtual.Id = 1;
+                        }
+                        
                     }
                     //else 
                     //{ 
@@ -98,27 +108,35 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
             return "Validado";
 
         }
-
         public string UltimaAvaliacaoString()
         {
-            List<string> avaliacao = [];
+            string ultimaAvaliacao = AvaliacaoToString(Avaliacoes.Last());
+            return ultimaAvaliacao;
+        }
+        public string AvaliacaoToString(Avaliacao avaliacaoSelecionada)
+        {
+            List<string> avaliacaoString = [];
             try
             {
-                Avaliacao ultimaAvaliacao = Avaliacoes.Last();
-                avaliacao.Add($"Avaliação {Avaliacoes.Count}");
-                avaliacao.Add($"Município: {ultimaAvaliacao.Municipio}");
-                avaliacao.Add($"Segmento: {ultimaAvaliacao.Segmento}");
-                avaliacao.Add($"Tipo de avaliação: {ultimaAvaliacao.TipoAvaliacao}");
-                avaliacao.Add($"Data da avaliação: {ultimaAvaliacao.Timestamp}");
+                Avaliacao avaliacao = avaliacaoSelecionada;
+                avaliacaoString.Add($"Avaliação {avaliacao.Id}");
+                avaliacaoString.Add($"Município: {avaliacao.Municipio}");
+                avaliacaoString.Add($"Segmento: {avaliacao.Segmento}");
+                avaliacaoString.Add($"Tipo de avaliação: {avaliacao.TipoAvaliacao}");
+                avaliacaoString.Add($"Data da avaliação: {avaliacao.Timestamp}");
 
-                foreach (Criterio criterio in ultimaAvaliacao.Criterios)
+                foreach (Criterio criterio in avaliacao.Criterios)
                 {
-                    avaliacao.Add($"\n{criterio.Titulo}\n");
+                    avaliacaoString.Add($"\n{criterio.Titulo}\n");
                     foreach (Criterio.Pergunta pergunta in criterio.Perguntas)
                     {
-                        avaliacao.Add($"{pergunta.Texto}");
-                        avaliacao.Add($"{pergunta.Resposta}");
-                        avaliacao.Add($"Link: {pergunta.Link}");
+                        avaliacaoString.Add($"{pergunta.Texto}");
+                        avaliacaoString.Add($"{pergunta.Resposta}");
+                        if (!string.IsNullOrEmpty(pergunta.Link))
+                        {
+                            avaliacaoString.Add($"Link: {pergunta.Link}");
+                        }
+
                     }
                 }
             }
@@ -126,15 +144,15 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
             {
                 Console.WriteLine(erro);
             };
-            string avaliacaoString = string.Join(Environment.NewLine, avaliacao);
-            return avaliacaoString;
+            string avaliacaoConcatenada = string.Join(Environment.NewLine, avaliacaoString);
+            return avaliacaoConcatenada;
         }
 
         public void RemoverUltimaAvaliacao()
         {
             Avaliacoes.Remove(Avaliacoes.Last());
         }
-        
+
     }
 
 }
