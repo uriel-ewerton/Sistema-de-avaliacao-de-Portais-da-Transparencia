@@ -72,6 +72,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                     };
                     controller.AddFuncionario(funcionario);
                     controller.carregarFuncionarios(); // Atualize a lista após adicionar
+                    dataGridViewFuncionarios.CurrentCell = null;
                 }
             }
         }
@@ -102,6 +103,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                         controller.UpdateFuncionario(funcionario);
                         controller.carregarFuncionarios();
                         tsbEditarFuncionario.Enabled = false;
+                        tsbExcluir.Enabled = false;
                         dataGridViewFuncionarios.CurrentCell = null;
                     }
                 }
@@ -125,6 +127,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                     controller.DeleteFuncionario(funcionario.Id);
                     controller.carregarFuncionarios();
                     tsbExcluir.Enabled = false;
+                    tsbEditarFuncionario.Enabled = false;
                     dataGridViewFuncionarios.CurrentCell = null;
                 }
             }

@@ -43,11 +43,20 @@
             // 
             // dataGridViewFuncionarios
             // 
+            dataGridViewFuncionarios.AllowUserToResizeColumns = false;
+            dataGridViewFuncionarios.AllowUserToResizeRows = false;
             dataGridViewFuncionarios.BackgroundColor = SystemColors.ButtonFace;
             dataGridViewFuncionarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewFuncionarios.Cursor = Cursors.Hand;
+            dataGridViewFuncionarios.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridViewFuncionarios.Location = new Point(34, 64);
+            dataGridViewFuncionarios.MultiSelect = false;
             dataGridViewFuncionarios.Name = "dataGridViewFuncionarios";
+            dataGridViewFuncionarios.ReadOnly = true;
+            dataGridViewFuncionarios.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewFuncionarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewFuncionarios.Size = new Size(750, 271);
+            dataGridViewFuncionarios.StandardTab = true;
             dataGridViewFuncionarios.TabIndex = 0;
             dataGridViewFuncionarios.CellContentClick += dataGridViewFuncionarios_CellContentClick;
             // 
