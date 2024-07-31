@@ -17,72 +17,72 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             avaliacaoController = new AvaliacaoController();
             ShowIcon = false;
         }
-        private void setInfoControlsInvisible()
-        {
-            grpbCriterios.Visible = false;
-            grpbFuncoes.Visible = false;
-            grpbSobre.Visible = false;
-            lblTitulo.Visible = false;  
-        }
-        private void setInfoControlsVisible()
-        {
-            grpbCriterios.Visible = true;
-            grpbFuncoes.Visible = true;
-            grpbSobre.Visible = true;
-            lblTitulo.Visible = true;
-        }
-
+        
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
         {
-            setInfoControlsInvisible();
-            // Criação do repositório e do controlador
+            ToggleInfoControlsVisibility(false);
             var funcionarioRepository = new FuncionarioRepositorio();
             var gerenciadorUsuarios = new GerenciadorUsuarios();
             var controller = new FuncionarioController(funcionarioRepository, gerenciadorUsuarios);
 
-            // Configura o formulário para usar o controlador
             gerenciadorUsuarios.SetController(controller);
-
-            // Carrega os funcionários e exibe o formulário
             controller.carregarFuncionarios();
             gerenciadorUsuarios.MdiParent = this;
+
+            // Adiciona o evento FormClosing para restaurar a visibilidade dos controles
+            gerenciadorUsuarios.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
             gerenciadorUsuarios.Show();
         }
 
         private void GerenciadorDeFormuláriosTSMI_Click(object sender, EventArgs e)
         {
-            setInfoControlsInvisible();
+            ToggleInfoControlsVisibility(false);
             GerenciadorFormularios gerenciadorForm = new()
             {
                 MdiParent = this
             };
+            gerenciadorForm.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
             gerenciadorForm.Show();
         }
 
         private void FazerAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
-            setInfoControlsInvisible();
+            ToggleInfoControlsVisibility(false);
             using var selecaoForm = new SelecaoInicial();
             if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
-                var fazerAvaliacaoForm = new FormAvaliacao(criterioController, avaliacaoController, selecaoForm.SelecoesIniciais);
+                var fazerAvaliacaoForm = new FormAvaliacao(criterioController, avaliacaoController, selecaoForm.SelecoesIniciais)
+                {
+                    MdiParent = this
+                };
+                fazerAvaliacaoForm.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
                 fazerAvaliacaoForm.ShowDialog();
+            }
+            else
+            {
+                ToggleInfoControlsVisibility(true);
             }
         }
 
         private void ListarAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
-            setInfoControlsInvisible();
+            ToggleInfoControlsVisibility(false);
             ListarAvaliacoes listarAvaliacoes = new(avaliacaoController)
             {
                 MdiParent = this
             };
+            listarAvaliacoes.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
             listarAvaliacoes.Show();
         }
 
-        private void lblTitulo_Click(object sender, EventArgs e)
-        {
 
+        private void ToggleInfoControlsVisibility(bool isVisible)
+        {
+            grpbCriterios.Visible = isVisible;
+            grpbFuncoes.Visible = isVisible;
+            grpbSobre.Visible = isVisible;
+            lblTitulo.Visible = isVisible;
         }
+
     }
 }

@@ -113,7 +113,6 @@
             lblTitulo.Size = new Size(550, 27);
             lblTitulo.TabIndex = 6;
             lblTitulo.Text = "Sistema de avaliações de portais da transparência";
-            lblTitulo.Click += lblTitulo_Click;
             // 
             // grpbSobre
             // 
