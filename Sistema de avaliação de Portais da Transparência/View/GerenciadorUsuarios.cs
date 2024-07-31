@@ -21,6 +21,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             dataGridViewFuncionarios.CellClick += dataGridViewFuncionarios_CellContentClick;
             tsbExcluir.Enabled = false;
             tsbEditarFuncionario.Enabled = false;
+            ShowIcon = false;
         }
 
         public void SetController(FuncionarioController controller)
@@ -118,16 +119,20 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             "Id: " + funcionario.Id + "\n" +
             "Nome: " + funcionario.Nome + "\n" +
             "Cargo: " + funcionario.Cargo + "\n" +
-            "Salário: " + funcionario.Salario,"ATENÇÃO",MessageBoxButtons.YesNo);
+            "Salário: " + funcionario.Salario,"ATENÇÃO",MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if(resultado == DialogResult.Yes)
             {
-                DialogResult resultadoDef = MessageBox.Show("Tem Certeza?", "ATENÇÃO", MessageBoxButtons.YesNo);
+                DialogResult resultadoDef = MessageBox.Show("Tem Certeza?", "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultadoDef == DialogResult.Yes)
                 {
                     controller.DeleteFuncionario(funcionario.Id);
                     controller.carregarFuncionarios();
                     tsbExcluir.Enabled = false;
                     tsbEditarFuncionario.Enabled = false;
+                    dataGridViewFuncionarios.CurrentCell = null;
+                }
+                else
+                {
                     dataGridViewFuncionarios.CurrentCell = null;
                 }
             }

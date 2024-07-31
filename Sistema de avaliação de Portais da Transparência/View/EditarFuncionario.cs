@@ -21,6 +21,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
+            ShowIcon = false;
         }
 
         public void adicionarInformacoes(Funcionario funcionario)
@@ -32,21 +33,28 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
 
         private void btnConfirmarEdicao_Click(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtSalario.Text, out decimal salario))
+            if(!String.IsNullOrEmpty(txtNome.Text) && !String.IsNullOrEmpty(txtCargo.Text))
             {
-                FuncionarioNome = txtNome.Text;
-                FuncionarioCargo = txtCargo.Text;
-                FuncionarioSalario = salario;
-                DialogResult resultado = MessageBox.Show("Funcionário alterado\n"
-                    + "Nome: " + FuncionarioNome + "\n"
-                    + "Cargo: " + FuncionarioCargo + "\n"
-                    + "Salário: " + FuncionarioSalario,"ATENÇÃO",MessageBoxButtons.OKCancel);
-                if (resultado == DialogResult.OK)
+                if (decimal.TryParse(txtSalario.Text, out decimal salario))
                 {
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
+                    FuncionarioNome = txtNome.Text;
+                    FuncionarioCargo = txtCargo.Text;
+                    FuncionarioSalario = salario;
+                    DialogResult resultado = MessageBox.Show("Funcionário alterado\n"
+                        + "Nome: " + FuncionarioNome + "\n"
+                        + "Cargo: " + FuncionarioCargo + "\n"
+                        + "Salário: " + FuncionarioSalario, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    if (resultado == DialogResult.OK)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
 
+                }
+                else
+                {
+                    MessageBox.Show("O campo de salário aceita apenas números e não pode estar vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

@@ -19,6 +19,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         public SelecaoInicial()
         {
             InitializeComponent();
+            ShowIcon = false;
         }
 
         private void BtnConfirmarSelecoes_Click(object sender, EventArgs e)

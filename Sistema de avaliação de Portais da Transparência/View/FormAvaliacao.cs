@@ -24,6 +24,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             _avaliacaoController = avaliacaoController;
             _selecoesIniciais = selecoesIniciais;
             MontarFormulario();
+            ShowIcon = false;
         }
 
         /*

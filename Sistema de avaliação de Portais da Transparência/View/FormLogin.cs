@@ -20,6 +20,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         public FormLogin()
         {
             InitializeComponent();
+            ShowIcon = false;
         }
 
 
@@ -29,7 +30,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         {
             if (txtUsuario.Text.Equals(usuario) && txtSenha.Text.Equals(senha))
             {
-                MessageBox.Show("Login efetuado com sucesso");
+                MessageBox.Show("Login efetuado com sucesso","Sucesso");
                 this.Hide();
 
                 HomePage home = new HomePage();

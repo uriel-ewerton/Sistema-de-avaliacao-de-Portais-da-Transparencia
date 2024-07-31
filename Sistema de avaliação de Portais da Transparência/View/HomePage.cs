@@ -15,6 +15,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             criterioController = new CriterioController();
             criterioController.CarregaCriterios();
             avaliacaoController = new AvaliacaoController();
+            ShowIcon = false;
         }
 
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)

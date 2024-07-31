@@ -129,7 +129,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "novoFuncionario";
-            Text = "novoFuncionario";
+            Text = "Novo funcionario";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -20,6 +20,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             InitializeComponent();
             _avaliacaoController = avaliacaoController;
             MontarFormulario();
+            ShowIcon = false;
         }
 
         private void MontarFormulario()

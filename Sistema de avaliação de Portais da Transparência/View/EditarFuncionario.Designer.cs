@@ -128,7 +128,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "EditarFuncionario";
-            Text = "EditarFuncionario";
+            Text = "Editar funcionario";
             ResumeLayout(false);
             PerformLayout();
         }
