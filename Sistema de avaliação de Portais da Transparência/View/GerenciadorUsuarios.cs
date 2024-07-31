@@ -110,7 +110,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 }
             }
         }
-        
+
         private void tsbExcluir_Click(object sender, EventArgs e)
         {
             var selectedRow = dataGridViewFuncionarios.SelectedRows[0];
@@ -119,8 +119,8 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             "Id: " + funcionario.Id + "\n" +
             "Nome: " + funcionario.Nome + "\n" +
             "Cargo: " + funcionario.Cargo + "\n" +
-            "Salário: " + funcionario.Salario,"ATENÇÃO",MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if(resultado == DialogResult.Yes)
+            "Salário: " + funcionario.Salario, "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (resultado == DialogResult.Yes)
             {
                 DialogResult resultadoDef = MessageBox.Show("Tem Certeza?", "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultadoDef == DialogResult.Yes)
@@ -139,5 +139,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
 
         }
+
     }
 }

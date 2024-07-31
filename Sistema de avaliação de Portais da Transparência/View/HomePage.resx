@@ -120,4 +120,15 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="rtbSobre.Text" xml:space="preserve">
+    <value>Esta aplicação foi desenvolvida para auxiliar na avaliação dos portais de transparência das prefeituras e câmaras de municípios do estado do Maranhão. 
+A aplicação permite a geração de relatórios digitais em formato PDF, que documentam os resultados das avaliações.</value>
+  </data>
+  <data name="rtbCriterios.Text" xml:space="preserve">
+    <value>A avaliação é realizada com base nos critérios estabelecidos pela Associação dos Membros do Tribunal de Contas do Brasil (Atricon), com o objetivo de garantir a transparência e a prestação de contas dessas entidades públicas.
+</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
 </root>
