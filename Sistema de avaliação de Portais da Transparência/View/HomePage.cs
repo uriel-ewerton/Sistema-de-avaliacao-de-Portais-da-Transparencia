@@ -20,6 +20,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
         {
+            setInfoControlsInvisible();
             // Criação do repositório e do controlador
             var funcionarioRepository = new FuncionarioRepositorio();
             var gerenciadorUsuarios = new GerenciadorUsuarios();
@@ -60,6 +61,13 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 MdiParent = this
             };
             listarAvaliacoes.Show();
+        }
+
+        private void setInfoControlsInvisible()
+        {
+            label1.Visible = false;
+            label1.Visible = false;
+            label1.Visible = false;
         }
     }
 }

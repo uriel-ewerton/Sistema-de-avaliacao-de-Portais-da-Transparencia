@@ -81,14 +81,14 @@
             // FazerAvaliaçãoTSMI
             // 
             FazerAvaliaçãoTSMI.Name = "FazerAvaliaçãoTSMI";
-            FazerAvaliaçãoTSMI.Size = new Size(180, 22);
+            FazerAvaliaçãoTSMI.Size = new Size(161, 22);
             FazerAvaliaçãoTSMI.Text = "Fazer Avaliação";
             FazerAvaliaçãoTSMI.Click += FazerAvaliaçãoTSMI_Click;
             // 
             // ListarAvaliaçãoTSMI
             // 
             ListarAvaliaçãoTSMI.Name = "ListarAvaliaçãoTSMI";
-            ListarAvaliaçãoTSMI.Size = new Size(180, 22);
+            ListarAvaliaçãoTSMI.Size = new Size(161, 22);
             ListarAvaliaçãoTSMI.Text = "Listar Avaliações";
             ListarAvaliaçãoTSMI.Click += ListarAvaliaçãoTSMI_Click;
             // 
@@ -100,7 +100,6 @@
             label1.Size = new Size(248, 15);
             label1.TabIndex = 4;
             label1.Text = "INFORMAÇÕES GERAIS SOBRE O PROGRAMA";
-            label1.Visible = false;
             // 
             // HomePage
             // 
