@@ -150,6 +150,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                     MessageBoxButtons.OKCancel);
                 if (confirmacaoUsuario == DialogResult.OK)
                 {
+                    MessageBox.Show("Avaliação Salva.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 else if(confirmacaoUsuario == DialogResult.Cancel)

@@ -23,9 +23,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             ShowIcon = false;
         }
 
-
-
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (txtUsuario.Text.Equals(usuario) && txtSenha.Text.Equals(senha))
@@ -38,7 +35,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             }
             else if (!txtUsuario.Text.Equals(usuario) || !txtSenha.Text.Equals(senha))
             {
-                MessageBox.Show("Usuário ou Senha incorretos!");
+                MessageBox.Show("Usuário ou Senha incorretos!","Erro no login", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

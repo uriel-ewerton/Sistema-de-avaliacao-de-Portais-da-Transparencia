@@ -16,6 +16,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             criterioController.CarregaCriterios();
             avaliacaoController = new AvaliacaoController();
             ShowIcon = false;
+            this.Paint += new PaintEventHandler(HomePage_Paint);
         }
         
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
@@ -51,12 +52,9 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             using var selecaoForm = new SelecaoInicial();
             if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
-                var fazerAvaliacaoForm = new FormAvaliacao(criterioController, avaliacaoController, selecaoForm.SelecoesIniciais)
-                {
-                    MdiParent = this
-                };
+                var fazerAvaliacaoForm = new FormAvaliacao(criterioController, avaliacaoController, selecaoForm.SelecoesIniciais);
                 fazerAvaliacaoForm.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
-                fazerAvaliacaoForm.ShowDialog();
+                fazerAvaliacaoForm.Show();
             }
             else
             {
@@ -83,6 +81,10 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             grpbSobre.Visible = isVisible;
             lblTitulo.Visible = isVisible;
         }
-
+        private void HomePage_Paint(object sender, PaintEventArgs e)
+        {
+            // Define a cor de fundo para o formulário MDI pai
+            e.Graphics.Clear(Color.White); // Ou qualquer outra cor desejada
+        }
     }
 }

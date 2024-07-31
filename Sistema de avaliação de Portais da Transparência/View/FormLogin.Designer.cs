@@ -69,6 +69,7 @@
             txtSenha.Location = new Point(217, 115);
             txtSenha.Margin = new Padding(3, 2, 3, 2);
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '*';
             txtSenha.Size = new Size(149, 23);
             txtSenha.TabIndex = 1;
             // 
