@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             menuStrip1 = new MenuStrip();
             GerenciadoresTSMI = new ToolStripMenuItem();
             GerenciadorDeUsuáriosTSMI = new ToolStripMenuItem();
@@ -35,8 +36,17 @@
             AvaliaçõesTSMI = new ToolStripMenuItem();
             FazerAvaliaçãoTSMI = new ToolStripMenuItem();
             ListarAvaliaçãoTSMI = new ToolStripMenuItem();
-            label1 = new Label();
+            lblTitulo = new Label();
+            grpbSobre = new GroupBox();
+            rtbSobre = new RichTextBox();
+            grpbFuncoes = new GroupBox();
+            rtbFuncoes = new RichTextBox();
+            grpbCriterios = new GroupBox();
+            rtbCriterios = new RichTextBox();
             menuStrip1.SuspendLayout();
+            grpbSobre.SuspendLayout();
+            grpbFuncoes.SuspendLayout();
+            grpbCriterios.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -81,33 +91,112 @@
             // FazerAvaliaçãoTSMI
             // 
             FazerAvaliaçãoTSMI.Name = "FazerAvaliaçãoTSMI";
-            FazerAvaliaçãoTSMI.Size = new Size(180, 22);
+            FazerAvaliaçãoTSMI.Size = new Size(161, 22);
             FazerAvaliaçãoTSMI.Text = "Fazer Avaliação";
             FazerAvaliaçãoTSMI.Click += FazerAvaliaçãoTSMI_Click;
             // 
             // ListarAvaliaçãoTSMI
             // 
             ListarAvaliaçãoTSMI.Name = "ListarAvaliaçãoTSMI";
-            ListarAvaliaçãoTSMI.Size = new Size(180, 22);
+            ListarAvaliaçãoTSMI.Size = new Size(161, 22);
             ListarAvaliaçãoTSMI.Text = "Listar Avaliações";
             ListarAvaliaçãoTSMI.Click += ListarAvaliaçãoTSMI_Click;
             // 
-            // label1
+            // lblTitulo
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(242, 214);
-            label1.Name = "label1";
-            label1.Size = new Size(248, 15);
-            label1.TabIndex = 4;
-            label1.Text = "INFORMAÇÕES GERAIS SOBRE O PROGRAMA";
-            label1.Visible = false;
+            lblTitulo.AutoSize = true;
+            lblTitulo.BackColor = SystemColors.AppWorkspace;
+            lblTitulo.Font = new Font("Arial", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = SystemColors.WindowText;
+            lblTitulo.Location = new Point(121, 49);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(550, 27);
+            lblTitulo.TabIndex = 6;
+            lblTitulo.Text = "Sistema de avaliações de portais da transparência";
+            lblTitulo.Click += lblTitulo_Click;
+            // 
+            // grpbSobre
+            // 
+            grpbSobre.BackColor = SystemColors.ActiveBorder;
+            grpbSobre.Controls.Add(rtbSobre);
+            grpbSobre.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grpbSobre.Location = new Point(12, 106);
+            grpbSobre.Name = "grpbSobre";
+            grpbSobre.Size = new Size(543, 114);
+            grpbSobre.TabIndex = 8;
+            grpbSobre.TabStop = false;
+            grpbSobre.Text = "Sobre a aplicação";
+            // 
+            // rtbSobre
+            // 
+            rtbSobre.BackColor = SystemColors.ActiveBorder;
+            rtbSobre.BorderStyle = BorderStyle.None;
+            rtbSobre.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rtbSobre.Location = new Point(6, 18);
+            rtbSobre.Name = "rtbSobre";
+            rtbSobre.ReadOnly = true;
+            rtbSobre.ScrollBars = RichTextBoxScrollBars.None;
+            rtbSobre.Size = new Size(531, 90);
+            rtbSobre.TabIndex = 0;
+            rtbSobre.Text = resources.GetString("rtbSobre.Text");
+            // 
+            // grpbFuncoes
+            // 
+            grpbFuncoes.BackColor = SystemColors.ActiveBorder;
+            grpbFuncoes.Controls.Add(rtbFuncoes);
+            grpbFuncoes.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grpbFuncoes.Location = new Point(577, 106);
+            grpbFuncoes.Name = "grpbFuncoes";
+            grpbFuncoes.Size = new Size(238, 240);
+            grpbFuncoes.TabIndex = 10;
+            grpbFuncoes.TabStop = false;
+            grpbFuncoes.Text = "Funções do sistema";
+            // 
+            // rtbFuncoes
+            // 
+            rtbFuncoes.BackColor = SystemColors.ActiveBorder;
+            rtbFuncoes.BorderStyle = BorderStyle.None;
+            rtbFuncoes.Location = new Point(6, 18);
+            rtbFuncoes.Name = "rtbFuncoes";
+            rtbFuncoes.ReadOnly = true;
+            rtbFuncoes.ScrollBars = RichTextBoxScrollBars.None;
+            rtbFuncoes.Size = new Size(214, 65);
+            rtbFuncoes.TabIndex = 0;
+            rtbFuncoes.Text = "Avaliação;\nListagem de Avaliações;\nGerenciador de funcionários;\nGerenciador de critérios avaliativos.\n";
+            // 
+            // grpbCriterios
+            // 
+            grpbCriterios.BackColor = SystemColors.ActiveBorder;
+            grpbCriterios.Controls.Add(rtbCriterios);
+            grpbCriterios.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grpbCriterios.Location = new Point(12, 257);
+            grpbCriterios.Name = "grpbCriterios";
+            grpbCriterios.Size = new Size(543, 89);
+            grpbCriterios.TabIndex = 11;
+            grpbCriterios.TabStop = false;
+            grpbCriterios.Text = "Sobre os critérios avaliativos";
+            // 
+            // rtbCriterios
+            // 
+            rtbCriterios.BackColor = SystemColors.ActiveBorder;
+            rtbCriterios.BorderStyle = BorderStyle.None;
+            rtbCriterios.Location = new Point(6, 18);
+            rtbCriterios.Name = "rtbCriterios";
+            rtbCriterios.ReadOnly = true;
+            rtbCriterios.ScrollBars = RichTextBoxScrollBars.None;
+            rtbCriterios.Size = new Size(531, 65);
+            rtbCriterios.TabIndex = 0;
+            rtbCriterios.Text = resources.GetString("rtbCriterios.Text");
             // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(827, 466);
-            Controls.Add(label1);
+            Controls.Add(grpbCriterios);
+            Controls.Add(grpbFuncoes);
+            Controls.Add(grpbSobre);
+            Controls.Add(lblTitulo);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -119,6 +208,9 @@
             Text = "Home - Sistema de Avaliações";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            grpbSobre.ResumeLayout(false);
+            grpbFuncoes.ResumeLayout(false);
+            grpbCriterios.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,5 +225,17 @@
         private ToolStripMenuItem FazerAvaliaçãoTSMI;
         private ToolStripMenuItem ListarAvaliaçãoTSMI;
         private Label label1;
+        private Label label2;
+        private Label lblTitulo;
+        private GroupBox groupBox1;
+        private GroupBox grpbSobre;
+        private RichTextBox rtbSobre;
+        private GroupBox grpbFuncionalidade;
+        private RichTextBox richTextBox1;
+        private RichTextBox rtbFuncionalidade;
+        private GroupBox grpbFuncoes;
+        private RichTextBox rtbFuncoes;
+        private GroupBox grpbCriterios;
+        private RichTextBox rtbCriterios;
     }
 }

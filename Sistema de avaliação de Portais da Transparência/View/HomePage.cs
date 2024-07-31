@@ -17,9 +17,24 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             avaliacaoController = new AvaliacaoController();
             ShowIcon = false;
         }
+        private void setInfoControlsInvisible()
+        {
+            grpbCriterios.Visible = false;
+            grpbFuncoes.Visible = false;
+            grpbSobre.Visible = false;
+            lblTitulo.Visible = false;  
+        }
+        private void setInfoControlsVisible()
+        {
+            grpbCriterios.Visible = true;
+            grpbFuncoes.Visible = true;
+            grpbSobre.Visible = true;
+            lblTitulo.Visible = true;
+        }
 
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
         {
+            setInfoControlsInvisible();
             // Criação do repositório e do controlador
             var funcionarioRepository = new FuncionarioRepositorio();
             var gerenciadorUsuarios = new GerenciadorUsuarios();
@@ -36,6 +51,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
         private void GerenciadorDeFormuláriosTSMI_Click(object sender, EventArgs e)
         {
+            setInfoControlsInvisible();
             GerenciadorFormularios gerenciadorForm = new()
             {
                 MdiParent = this
@@ -45,6 +61,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
         private void FazerAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
+            setInfoControlsInvisible();
             using var selecaoForm = new SelecaoInicial();
             if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
@@ -55,11 +72,17 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
         private void ListarAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
+            setInfoControlsInvisible();
             ListarAvaliacoes listarAvaliacoes = new(avaliacaoController)
             {
                 MdiParent = this
             };
             listarAvaliacoes.Show();
+        }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
