@@ -91,21 +91,21 @@
             // FazerAvaliaçãoTSMI
             // 
             FazerAvaliaçãoTSMI.Name = "FazerAvaliaçãoTSMI";
-            FazerAvaliaçãoTSMI.Size = new Size(180, 22);
+            FazerAvaliaçãoTSMI.Size = new Size(161, 22);
             FazerAvaliaçãoTSMI.Text = "Fazer Avaliação";
             FazerAvaliaçãoTSMI.Click += FazerAvaliaçãoTSMI_Click;
             // 
             // ListarAvaliaçãoTSMI
             // 
             ListarAvaliaçãoTSMI.Name = "ListarAvaliaçãoTSMI";
-            ListarAvaliaçãoTSMI.Size = new Size(180, 22);
+            ListarAvaliaçãoTSMI.Size = new Size(161, 22);
             ListarAvaliaçãoTSMI.Text = "Listar Avaliações";
             ListarAvaliaçãoTSMI.Click += ListarAvaliaçãoTSMI_Click;
             // 
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.BackColor = SystemColors.AppWorkspace;
+            lblTitulo.BackColor = Color.White;
             lblTitulo.Font = new Font("Arial", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitulo.ForeColor = SystemColors.WindowText;
             lblTitulo.Location = new Point(121, 49);
@@ -116,9 +116,9 @@
             // 
             // grpbSobre
             // 
-            grpbSobre.BackColor = SystemColors.ActiveBorder;
+            grpbSobre.BackColor = Color.White;
             grpbSobre.Controls.Add(rtbSobre);
-            grpbSobre.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grpbSobre.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
             grpbSobre.Location = new Point(12, 106);
             grpbSobre.Name = "grpbSobre";
             grpbSobre.Size = new Size(543, 114);
@@ -128,7 +128,7 @@
             // 
             // rtbSobre
             // 
-            rtbSobre.BackColor = SystemColors.ActiveBorder;
+            rtbSobre.BackColor = Color.White;
             rtbSobre.BorderStyle = BorderStyle.None;
             rtbSobre.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             rtbSobre.Location = new Point(6, 18);
@@ -141,9 +141,9 @@
             // 
             // grpbFuncoes
             // 
-            grpbFuncoes.BackColor = SystemColors.ActiveBorder;
+            grpbFuncoes.BackColor = Color.White;
             grpbFuncoes.Controls.Add(rtbFuncoes);
-            grpbFuncoes.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grpbFuncoes.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
             grpbFuncoes.Location = new Point(577, 106);
             grpbFuncoes.Name = "grpbFuncoes";
             grpbFuncoes.Size = new Size(238, 240);
@@ -153,8 +153,9 @@
             // 
             // rtbFuncoes
             // 
-            rtbFuncoes.BackColor = SystemColors.ActiveBorder;
+            rtbFuncoes.BackColor = Color.White;
             rtbFuncoes.BorderStyle = BorderStyle.None;
+            rtbFuncoes.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             rtbFuncoes.Location = new Point(6, 18);
             rtbFuncoes.Name = "rtbFuncoes";
             rtbFuncoes.ReadOnly = true;
@@ -165,9 +166,9 @@
             // 
             // grpbCriterios
             // 
-            grpbCriterios.BackColor = SystemColors.ActiveBorder;
+            grpbCriterios.BackColor = Color.White;
             grpbCriterios.Controls.Add(rtbCriterios);
-            grpbCriterios.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grpbCriterios.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
             grpbCriterios.Location = new Point(12, 257);
             grpbCriterios.Name = "grpbCriterios";
             grpbCriterios.Size = new Size(543, 89);
@@ -177,8 +178,9 @@
             // 
             // rtbCriterios
             // 
-            rtbCriterios.BackColor = SystemColors.ActiveBorder;
+            rtbCriterios.BackColor = Color.White;
             rtbCriterios.BorderStyle = BorderStyle.None;
+            rtbCriterios.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             rtbCriterios.Location = new Point(6, 18);
             rtbCriterios.Name = "rtbCriterios";
             rtbCriterios.ReadOnly = true;

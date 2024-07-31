@@ -16,7 +16,12 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             criterioController.CarregaCriterios();
             avaliacaoController = new AvaliacaoController();
             ShowIcon = false;
-            this.Paint += new PaintEventHandler(HomePage_Paint);
+
+            //resolve cor cinza da home
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.BackColor = Color.White; 
+            }
         }
         
         private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
@@ -81,10 +86,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             grpbSobre.Visible = isVisible;
             lblTitulo.Visible = isVisible;
         }
-        private void HomePage_Paint(object sender, PaintEventArgs e)
-        {
-            // Define a cor de fundo para o formulário MDI pai
-            e.Graphics.Clear(Color.White); // Ou qualquer outra cor desejada
-        }
+        
     }
 }
