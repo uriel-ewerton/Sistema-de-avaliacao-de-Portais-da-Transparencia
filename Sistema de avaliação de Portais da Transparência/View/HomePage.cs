@@ -29,6 +29,8 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             {
                 ctrl.BackColor = Color.White;
             }
+            //para fechar o programa ao fechar a home
+            this.FormClosed += HomePage_FormClosed;
         }
 
         private void GerenciadorDeFormuláriosTSMI_Click(object sender, EventArgs e)
@@ -97,6 +99,10 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             // Adiciona o evento FormClosing para restaurar a visibilidade dos controles
             gerenciadorUsuarios.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
             gerenciadorUsuarios.Show();
+        }
+        private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); 
         }
     }
 }
