@@ -36,11 +36,13 @@
             lblNome = new Label();
             lblFuncionarioExistente = new Label();
             btnConfirmarEdicao = new Button();
+            txtSenha = new TextBox();
+            lblSenha = new Label();
             SuspendLayout();
             // 
             // txtSalario
             // 
-            txtSalario.Location = new Point(93, 179);
+            txtSalario.Location = new Point(93, 196);
             txtSalario.Name = "txtSalario";
             txtSalario.Size = new Size(126, 23);
             txtSalario.TabIndex = 14;
@@ -49,7 +51,7 @@
             // 
             lblSalario.AutoSize = true;
             lblSalario.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSalario.Location = new Point(26, 182);
+            lblSalario.Location = new Point(26, 199);
             lblSalario.Name = "lblSalario";
             lblSalario.Size = new Size(48, 17);
             lblSalario.TabIndex = 13;
@@ -58,7 +60,7 @@
             // 
             // txtCargo
             // 
-            txtCargo.Location = new Point(93, 135);
+            txtCargo.Location = new Point(93, 114);
             txtCargo.Name = "txtCargo";
             txtCargo.Size = new Size(447, 23);
             txtCargo.TabIndex = 12;
@@ -67,7 +69,7 @@
             // 
             lblCargo.AutoSize = true;
             lblCargo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCargo.Location = new Point(26, 138);
+            lblCargo.Location = new Point(26, 117);
             lblCargo.Name = "lblCargo";
             lblCargo.Size = new Size(44, 17);
             lblCargo.TabIndex = 11;
@@ -76,7 +78,7 @@
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(93, 83);
+            txtNome.Location = new Point(93, 69);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(447, 23);
             txtNome.TabIndex = 10;
@@ -85,7 +87,7 @@
             // 
             lblNome.AutoSize = true;
             lblNome.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNome.Location = new Point(26, 86);
+            lblNome.Location = new Point(26, 72);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(44, 17);
             lblNome.TabIndex = 9;
@@ -104,7 +106,7 @@
             // 
             // btnConfirmarEdicao
             // 
-            btnConfirmarEdicao.Location = new Point(465, 176);
+            btnConfirmarEdicao.Location = new Point(465, 193);
             btnConfirmarEdicao.Name = "btnConfirmarEdicao";
             btnConfirmarEdicao.Size = new Size(75, 23);
             btnConfirmarEdicao.TabIndex = 15;
@@ -112,11 +114,31 @@
             btnConfirmarEdicao.UseVisualStyleBackColor = true;
             btnConfirmarEdicao.Click += btnConfirmarEdicao_Click;
             // 
+            // txtSenha
+            // 
+            txtSenha.Location = new Point(93, 155);
+            txtSenha.Name = "txtSenha";
+            txtSenha.Size = new Size(447, 23);
+            txtSenha.TabIndex = 17;
+            // 
+            // lblSenha
+            // 
+            lblSenha.AutoSize = true;
+            lblSenha.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSenha.Location = new Point(26, 158);
+            lblSenha.Name = "lblSenha";
+            lblSenha.Size = new Size(43, 17);
+            lblSenha.TabIndex = 16;
+            lblSenha.Tag = "";
+            lblSenha.Text = "Senha";
+            // 
             // EditarFuncionario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(655, 259);
+            Controls.Add(txtSenha);
+            Controls.Add(lblSenha);
             Controls.Add(btnConfirmarEdicao);
             Controls.Add(txtSalario);
             Controls.Add(lblSalario);
@@ -144,5 +166,7 @@
         private Label lblNome;
         private Label lblFuncionarioExistente;
         private Button btnConfirmarEdicao;
+        private TextBox txtSenha;
+        private Label lblSenha;
     }
 }

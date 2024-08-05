@@ -16,6 +16,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
         public string FuncionarioNome { get; private set; }
         public string FuncionarioCargo { get; private set; }
         public decimal FuncionarioSalario { get; private set; }
+        public string FuncionarioSenha {  get; private set; }
 
         public novoFuncionario()
         {
@@ -27,17 +28,20 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
 
-            if (!String.IsNullOrEmpty(txtNome.Text) && !String.IsNullOrEmpty(txtCargo.Text))
+            if (!String.IsNullOrEmpty(txtNome.Text) && !String.IsNullOrEmpty(txtCargo.Text) && !String.IsNullOrEmpty(txtSenha.Text))
             {
-                if(decimal.TryParse(txtSalario.Text, out decimal salario))
+                if (decimal.TryParse(txtSalario.Text, out decimal salario))
                 {
                     FuncionarioNome = txtNome.Text;
                     FuncionarioCargo = txtCargo.Text;
                     FuncionarioSalario = salario;
+                    FuncionarioSenha = txtSenha.Text;
+
                     DialogResult resultado = MessageBox.Show("Funcionario novo\n" +
                         "Nome: " + FuncionarioNome + "\n" +
                         "Cargo: " + FuncionarioCargo + "\n" +
-                        "Salário: R$" + FuncionarioSalario, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        "Salário: R$" + FuncionarioSalario + "\n" +
+                        "Senha: " + FuncionarioSenha, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
                     if (resultado == DialogResult.OK)
                     {
@@ -55,6 +59,11 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
             {
                 MessageBox.Show("Preencha todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void lblCargo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

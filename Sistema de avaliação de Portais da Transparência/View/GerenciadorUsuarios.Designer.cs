@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GerenciadorUsuarios));
             dataGridViewFuncionarios = new DataGridView();
             lblnoDataMessage = new Label();
@@ -37,6 +38,7 @@
             tsbEditarFuncionario = new ToolStripButton();
             toolStripSeparator3 = new ToolStripSeparator();
             tsbExcluir = new ToolStripButton();
+            contextMenuStrip1 = new ContextMenuStrip(components);
             ((System.ComponentModel.ISupportInitialize)dataGridViewFuncionarios).BeginInit();
             tsFuncionario.SuspendLayout();
             SuspendLayout();
@@ -120,6 +122,11 @@
             tsbExcluir.Text = "Excluir Funcionário";
             tsbExcluir.Click += tsbExcluir_Click;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // GerenciadorUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 16F);
@@ -137,6 +144,7 @@
             Name = "GerenciadorUsuarios";
             RightToLeft = RightToLeft.No;
             Text = "Gerenciador de Usuários";
+            Load += GerenciadorUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewFuncionarios).EndInit();
             tsFuncionario.ResumeLayout(false);
             tsFuncionario.PerformLayout();
@@ -171,5 +179,6 @@
         private ToolStripButton tsbAdicionar;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripButton tsbEditarFuncionario;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

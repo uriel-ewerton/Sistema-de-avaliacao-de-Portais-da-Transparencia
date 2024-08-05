@@ -36,6 +36,8 @@
             txtSalario = new TextBox();
             lblSalario = new Label();
             btnAdicionar = new Button();
+            txtSenha = new TextBox();
+            lblSenha = new Label();
             SuspendLayout();
             // 
             // lblNovoFuncionario
@@ -68,25 +70,25 @@
             // 
             // txtCargo
             // 
-            txtCargo.Location = new Point(93, 125);
+            txtCargo.Location = new Point(93, 119);
             txtCargo.Name = "txtCargo";
             txtCargo.Size = new Size(447, 25);
             txtCargo.TabIndex = 4;
-            // 
             // lblCargo
             // 
             lblCargo.AutoSize = true;
             lblCargo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCargo.Location = new Point(26, 128);
+            lblCargo.Location = new Point(26, 122);
             lblCargo.Name = "lblCargo";
             lblCargo.Size = new Size(44, 17);
             lblCargo.TabIndex = 3;
             lblCargo.Tag = "";
             lblCargo.Text = "Cargo";
+            lblCargo.Click += lblCargo_Click;
             // 
             // txtSalario
             // 
-            txtSalario.Location = new Point(93, 169);
+            txtSalario.Location = new Point(93, 204);
             txtSalario.Name = "txtSalario";
             txtSalario.Size = new Size(126, 25);
             txtSalario.TabIndex = 6;
@@ -95,7 +97,7 @@
             // 
             lblSalario.AutoSize = true;
             lblSalario.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSalario.Location = new Point(26, 172);
+            lblSalario.Location = new Point(26, 207);
             lblSalario.Name = "lblSalario";
             lblSalario.Size = new Size(48, 17);
             lblSalario.TabIndex = 5;
@@ -104,7 +106,7 @@
             // 
             // btnAdicionar
             // 
-            btnAdicionar.Location = new Point(465, 166);
+            btnAdicionar.Location = new Point(465, 201);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(75, 28);
             btnAdicionar.TabIndex = 7;
@@ -112,11 +114,31 @@
             btnAdicionar.UseVisualStyleBackColor = true;
             btnAdicionar.Click += btnAdicionar_Click;
             // 
+            // txtSenha
+            // 
+            txtSenha.Location = new Point(93, 162);
+            txtSenha.Name = "txtSenha";
+            txtSenha.Size = new Size(447, 25);
+            txtSenha.TabIndex = 9;
+            // 
+            // lblSenha
+            // 
+            lblSenha.AutoSize = true;
+            lblSenha.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSenha.Location = new Point(26, 165);
+            lblSenha.Name = "lblSenha";
+            lblSenha.Size = new Size(43, 17);
+            lblSenha.TabIndex = 8;
+            lblSenha.Tag = "";
+            lblSenha.Text = "Senha";
+            // 
             // novoFuncionario
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(645, 258);
+            Controls.Add(txtSenha);
+            Controls.Add(lblSenha);
             Controls.Add(btnAdicionar);
             Controls.Add(txtSalario);
             Controls.Add(lblSalario);
@@ -144,5 +166,7 @@
         private TextBox txtSalario;
         private Label lblSalario;
         private Button btnAdicionar;
+        private TextBox txtSenha;
+        private Label lblSenha;
     }
 }
