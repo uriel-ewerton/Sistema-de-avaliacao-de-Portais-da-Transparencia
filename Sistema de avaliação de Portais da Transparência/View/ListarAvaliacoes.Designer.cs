@@ -35,6 +35,7 @@
             // 
             pnlAvaliacoes.AutoScroll = true;
             pnlAvaliacoes.AutoSize = true;
+            pnlAvaliacoes.BackColor = SystemColors.Control;
             pnlAvaliacoes.Location = new Point(31, 38);
             pnlAvaliacoes.Name = "pnlAvaliacoes";
             pnlAvaliacoes.Size = new Size(668, 301);

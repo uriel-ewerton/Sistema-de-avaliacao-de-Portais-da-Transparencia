@@ -34,6 +34,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 Label lblNomeAvaliacao = new()
                 {
                     Name = "lblNomeAvaliacao",
+                    BackColor = Color.FromArgb(165, 231, 250),
                     Text = $"Avaliação {avaliacao.Id}",
                     Font = new Font("Quicksand SemiBold", 12F, FontStyle.Bold),
                     Location = new Point(40, y),
@@ -43,20 +44,22 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
 
                 Label lblResumoAvaliacao = new()
                 {
-                    BackColor = SystemColors.Info,
+                    BackColor = Color.FromArgb(165, 231, 250),
                     Font = new Font("Quicksand SemiBold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                     Location = new Point(40, y + 25),
+                    BorderStyle = BorderStyle.FixedSingle,
                     Name = "lblResumoAvaliacao",
-                    Size = new Size(650, 70),
+                    Size = new Size(700, 70),
                     Text = $"Data: {avaliacao.Timestamp}\r\nMunicípio: {avaliacao.Municipio}\r\nSegmento: {avaliacao.Segmento}",
                 };
 
                 Button btnMostrarAvaliacao = new()
                 {
                     Name = "btnMostarAvaliacao",
+                    BackColor = Color.White,
                     Text = "Mostrar Avaliação",
                     Font = new Font("Quicksand SemiBold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
-                    Location = new Point(500, y + 40),
+                    Location = new Point(530, y + 40),
                     Size = new Size(140, 38),
                     Tag = avaliacao
                 };
