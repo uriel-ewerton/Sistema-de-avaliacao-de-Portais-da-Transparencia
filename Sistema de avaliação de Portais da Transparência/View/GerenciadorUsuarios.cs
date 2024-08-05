@@ -18,6 +18,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             this.WindowState = FormWindowState.Maximized;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, 0);
+            //Adiciona o evento de click em uma célula específica
             dataGridViewFuncionarios.CellClick += dataGridViewFuncionarios_CellContentClick;
             tsbExcluir.Enabled = false;
             tsbEditarFuncionario.Enabled = false;
@@ -42,6 +43,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                 lblnoDataMessage.Visible = false;
                 dataGridViewFuncionarios.DataSource = null;
                 dataGridViewFuncionarios.DataSource = funcionarios;
+                dataGridViewFuncionarios.CurrentCell = null;
                 AjustarColunasDataGridView(); // método para ajustar as colunas após definir a fonte de dados
             }
         }
@@ -69,11 +71,10 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                     {
                         Nome = addFuncionarioForm.FuncionarioNome,
                         Cargo = addFuncionarioForm.FuncionarioCargo,
-                        Salario = addFuncionarioForm.FuncionarioSalario
+                        Salario = addFuncionarioForm.FuncionarioSalario,
+                        Senha = addFuncionarioForm.FuncionarioSenha
                     };
                     controller.AddFuncionario(funcionario);
-                    controller.carregarFuncionarios(); // Atualize a lista após adicionar
-                    dataGridViewFuncionarios.CurrentCell = null;
                 }
             }
         }
@@ -105,7 +106,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                         controller.carregarFuncionarios();
                         tsbEditarFuncionario.Enabled = false;
                         tsbExcluir.Enabled = false;
-                        dataGridViewFuncionarios.CurrentCell = null;
                     }
                 }
             }
@@ -129,16 +129,15 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
                     controller.carregarFuncionarios();
                     tsbExcluir.Enabled = false;
                     tsbEditarFuncionario.Enabled = false;
-                    dataGridViewFuncionarios.CurrentCell = null;
-                }
-                else
-                {
-                    dataGridViewFuncionarios.CurrentCell = null;
                 }
             }
 
 
         }
 
+        private void GerenciadorUsuarios_Load(object sender, EventArgs e)
+        {
+            dataGridViewFuncionarios.CurrentCell = null;
+        }
     }
 }

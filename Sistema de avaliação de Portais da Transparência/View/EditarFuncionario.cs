@@ -17,6 +17,8 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
         public string FuncionarioNome { get; private set; }
         public string FuncionarioCargo { get; private set; }
         public decimal FuncionarioSalario { get; private set; }
+
+        public string FuncionarioSenha { get; private set; }
         public EditarFuncionario()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
             txtNome.Text = funcionario.Nome;
             txtCargo.Text = funcionario.Cargo;
             txtSalario.Text = funcionario.Salario.ToString();
+            txtSenha.Text = funcionario.Senha.ToString();
         }
 
         private void btnConfirmarEdicao_Click(object sender, EventArgs e)
@@ -40,10 +43,12 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
                     FuncionarioNome = txtNome.Text;
                     FuncionarioCargo = txtCargo.Text;
                     FuncionarioSalario = salario;
-                    DialogResult resultado = MessageBox.Show("Funcionário alterado\n"
-                        + "Nome: " + FuncionarioNome + "\n"
-                        + "Cargo: " + FuncionarioCargo + "\n"
-                        + "Salário: " + FuncionarioSalario, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    FuncionarioSenha = txtSenha.Text;
+                    DialogResult resultado = MessageBox.Show("Funcionario Alterado\n" +
+                        "Nome: " + FuncionarioNome + "\n" +
+                        "Cargo: " + FuncionarioCargo + "\n" +
+                        "Salário: R$" + FuncionarioSalario + "\n" +
+                        "Senha: " + FuncionarioSenha, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (resultado == DialogResult.OK)
                     {
                         this.DialogResult = DialogResult.OK;

@@ -8,9 +8,16 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
         //controladores
         private readonly CriterioController criterioController;
         private readonly AvaliacaoController avaliacaoController;
-        public HomePage()
+
+        //Repositório de funcionários
+        private FuncionarioRepositorio funcionarioRepository = new FuncionarioRepositorio();
+          
+        public HomePage(FuncionarioRepositorio funcionarioRepository)
         {
             InitializeComponent();
+            //Lista de funcionários
+            this.funcionarioRepository = funcionarioRepository;
+
             //inicialização dos controladores
             criterioController = new CriterioController();
             criterioController.CarregaCriterios();
@@ -20,24 +27,8 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             //resolve cor cinza da home
             foreach (Control ctrl in this.Controls)
             {
-                ctrl.BackColor = Color.White; 
+                ctrl.BackColor = Color.White;
             }
-        }
-        
-        private void GerenciadorDeUsuáriosTSMI_Click(object sender, EventArgs e)
-        {
-            ToggleInfoControlsVisibility(false);
-            var funcionarioRepository = new FuncionarioRepositorio();
-            var gerenciadorUsuarios = new GerenciadorUsuarios();
-            var controller = new FuncionarioController(funcionarioRepository, gerenciadorUsuarios);
-
-            gerenciadorUsuarios.SetController(controller);
-            controller.carregarFuncionarios();
-            gerenciadorUsuarios.MdiParent = this;
-
-            // Adiciona o evento FormClosing para restaurar a visibilidade dos controles
-            gerenciadorUsuarios.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
-            gerenciadorUsuarios.Show();
         }
 
         private void GerenciadorDeFormuláriosTSMI_Click(object sender, EventArgs e)
@@ -86,6 +77,26 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência
             grpbSobre.Visible = isVisible;
             lblTitulo.Visible = isVisible;
         }
-        
+
+        private void HomePage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GerenciadorDeUsuáriosTSMI_Click_1(object sender, EventArgs e)
+        {
+            ToggleInfoControlsVisibility(false);
+
+            // Inicializa o gerenciador de usuários
+            var gerenciadorUsuarios = new GerenciadorUsuarios();
+            var controller = new FuncionarioController(funcionarioRepository, gerenciadorUsuarios);
+            gerenciadorUsuarios.SetController(controller);
+            controller.carregarFuncionarios();
+            gerenciadorUsuarios.MdiParent = this;
+
+            // Adiciona o evento FormClosing para restaurar a visibilidade dos controles
+            gerenciadorUsuarios.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
+            gerenciadorUsuarios.Show();
+        }
     }
 }

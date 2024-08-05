@@ -12,5 +12,6 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Model
         public string Nome { get; set; } = string.Empty;
         public string Cargo { get; set; } = string.Empty;
         public decimal Salario { get; set; }
+        public string Senha { get; set; } = string.Empty;
     }
 }

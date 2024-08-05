@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             menuStrip1 = new MenuStrip();
             GerenciadoresTSMI = new ToolStripMenuItem();
-            GerenciadorDeUsuáriosTSMI = new ToolStripMenuItem();
             GerenciadorDeFormuláriosTSMI = new ToolStripMenuItem();
             AvaliaçõesTSMI = new ToolStripMenuItem();
             FazerAvaliaçãoTSMI = new ToolStripMenuItem();
@@ -43,6 +42,7 @@
             rtbFuncoes = new RichTextBox();
             grpbCriterios = new GroupBox();
             rtbCriterios = new RichTextBox();
+            GerenciadorDeUsuáriosTSMI = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             grpbSobre.SuspendLayout();
             grpbFuncoes.SuspendLayout();
@@ -66,13 +66,6 @@
             GerenciadoresTSMI.Name = "GerenciadoresTSMI";
             GerenciadoresTSMI.Size = new Size(97, 20);
             GerenciadoresTSMI.Text = "Gerenciadores ";
-            // 
-            // GerenciadorDeUsuáriosTSMI
-            // 
-            GerenciadorDeUsuáriosTSMI.Name = "GerenciadorDeUsuáriosTSMI";
-            GerenciadorDeUsuáriosTSMI.Size = new Size(220, 22);
-            GerenciadorDeUsuáriosTSMI.Text = "Gerenciador de Usuários";
-            GerenciadorDeUsuáriosTSMI.Click += GerenciadorDeUsuáriosTSMI_Click;
             // 
             // GerenciadorDeFormuláriosTSMI
             // 
@@ -189,6 +182,13 @@
             rtbCriterios.TabIndex = 0;
             rtbCriterios.Text = resources.GetString("rtbCriterios.Text");
             // 
+            // GerenciadorDeUsuáriosTSMI
+            // 
+            GerenciadorDeUsuáriosTSMI.Name = "GerenciadorDeUsuáriosTSMI";
+            GerenciadorDeUsuáriosTSMI.Size = new Size(220, 22);
+            GerenciadorDeUsuáriosTSMI.Text = "Gerenciador de usuários";
+            GerenciadorDeUsuáriosTSMI.Click += GerenciadorDeUsuáriosTSMI_Click_1;
+            // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -208,6 +208,7 @@
             Name = "HomePage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home - Sistema de Avaliações";
+            Load += HomePage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             grpbSobre.ResumeLayout(false);
@@ -221,7 +222,6 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem GerenciadoresTSMI;
-        private ToolStripMenuItem GerenciadorDeUsuáriosTSMI;
         private ToolStripMenuItem GerenciadorDeFormuláriosTSMI;
         private ToolStripMenuItem AvaliaçõesTSMI;
         private ToolStripMenuItem FazerAvaliaçãoTSMI;
@@ -239,5 +239,6 @@
         private RichTextBox rtbFuncoes;
         private GroupBox grpbCriterios;
         private RichTextBox rtbCriterios;
+        private ToolStripMenuItem GerenciadorDeUsuáriosTSMI;
     }
 }
