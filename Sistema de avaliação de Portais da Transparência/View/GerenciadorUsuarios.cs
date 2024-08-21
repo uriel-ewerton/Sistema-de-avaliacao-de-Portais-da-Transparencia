@@ -1,11 +1,11 @@
-﻿using Sistema_de_avaliação_de_Portais_da_Transparência.Controller;
-using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
-using Sistema_de_avaliação_de_Portais_da_Transparência.View;
+﻿using SAPT.Controller;
+using SAPT.Model;
+using SAPT.View;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência
+namespace SAPT
 {
     public partial class GerenciadorUsuarios : Form, IFuncionarioView
     {

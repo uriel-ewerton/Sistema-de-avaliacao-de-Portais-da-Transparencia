@@ -1,4 +1,4 @@
-﻿namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
+﻿namespace SAPT.View
 {
     partial class novoFuncionario
     {

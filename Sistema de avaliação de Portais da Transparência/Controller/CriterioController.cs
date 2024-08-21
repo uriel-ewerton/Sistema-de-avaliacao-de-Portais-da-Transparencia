@@ -1,15 +1,15 @@
-﻿using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
+﻿using SAPT.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using static Sistema_de_avaliação_de_Portais_da_Transparência.Model.Criterio;
+using static SAPT.Model.Criterio;
 using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
+namespace SAPT.Controller
 {
     public class CriterioController
     {

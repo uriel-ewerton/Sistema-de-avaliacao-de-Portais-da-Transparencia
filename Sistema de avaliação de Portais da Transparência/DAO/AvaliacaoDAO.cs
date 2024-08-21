@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência.Model
+namespace SAPT.DAO
 {
-    public class Avaliacao
+    public class AvaliacaoDAO
     {
         public int Id { get; set; }
         public string Municipio { get; set; } = string.Empty;

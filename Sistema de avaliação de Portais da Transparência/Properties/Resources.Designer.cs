@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência.Properties {
+namespace SAPT.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Sistema_de_avaliação_de_Portais_da_Transparência.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sistema_de_avaliação_de_Portais_da_Transparência.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SAPT.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

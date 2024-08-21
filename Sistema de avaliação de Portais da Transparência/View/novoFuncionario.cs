@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
+namespace SAPT.View
 {
 
     public partial class novoFuncionario : Form

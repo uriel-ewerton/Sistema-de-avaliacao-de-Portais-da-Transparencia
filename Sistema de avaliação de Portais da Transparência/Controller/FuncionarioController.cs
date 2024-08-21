@@ -1,12 +1,12 @@
-﻿using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
+﻿using SAPT.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sistema_de_avaliação_de_Portais_da_Transparência.View;
+using SAPT.View;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência.Controller
+namespace SAPT.Controller
 {
     public class FuncionarioController
     {

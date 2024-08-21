@@ -1,5 +1,5 @@
-﻿using Sistema_de_avaliação_de_Portais_da_Transparência.Controller;
-using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
+﻿using SAPT.Controller;
+using SAPT.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência
+namespace SAPT
 {
     public partial class FormLogin : Form
     {

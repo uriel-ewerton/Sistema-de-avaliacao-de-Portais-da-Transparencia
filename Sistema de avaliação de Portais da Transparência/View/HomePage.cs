@@ -1,7 +1,7 @@
-using Sistema_de_avaliação_de_Portais_da_Transparência.Controller;
-using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
+using SAPT.Controller;
+using SAPT.Model;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência
+namespace SAPT
 {
     public partial class HomePage : Form
     {

@@ -1,5 +1,5 @@
-﻿using Sistema_de_avaliação_de_Portais_da_Transparência.Controller;
-using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
+﻿using SAPT.Controller;
+using SAPT.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência
+namespace SAPT
 {
     public partial class ListarAvaliacoes : Form
     {

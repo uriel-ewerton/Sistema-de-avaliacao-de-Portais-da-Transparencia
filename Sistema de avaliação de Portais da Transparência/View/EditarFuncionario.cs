@@ -1,4 +1,4 @@
-﻿using Sistema_de_avaliação_de_Portais_da_Transparência.Model;
+﻿using SAPT.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace Sistema_de_avaliação_de_Portais_da_Transparência.View
+namespace SAPT.View
 {
     public partial class EditarFuncionario : Form
     {
