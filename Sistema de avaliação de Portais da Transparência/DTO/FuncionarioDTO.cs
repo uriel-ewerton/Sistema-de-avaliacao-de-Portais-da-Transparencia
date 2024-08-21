@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAPT.DAO
+namespace SAPT.DTO
 {
-    public class FuncionarioDAO
+    public class FuncionarioDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;

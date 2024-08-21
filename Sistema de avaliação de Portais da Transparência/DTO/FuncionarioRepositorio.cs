@@ -4,25 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAPT.DAO
+namespace SAPT.DTO
 {
     public class FuncionarioRepositorio : IFuncionarioRepositorio
     {
-        private List<FuncionarioDAO> funcionarios = new List<FuncionarioDAO> ();
+        private List<FuncionarioDTO> funcionarios = new List<FuncionarioDTO>();
 
-        public List<FuncionarioDAO> obterTodos()
+        public List<FuncionarioDTO> obterTodos()
         {
             return funcionarios;
         }
 
-        public void Add(FuncionarioDAO funcionario)
+        public void Add(FuncionarioDTO funcionario)
         {
             //O trecho de código abaixo garante que todo funcionário terá um identificador(ID) único
             funcionario.Id = funcionarios.Count > 0 ? funcionarios.Max(f => f.Id) + 1 : 1;
             funcionarios.Add(funcionario);
         }
 
-        public void Update(FuncionarioDAO funcionario)
+        public void Update(FuncionarioDTO funcionario)
         {
             //A linha abaixo verifica se o funcionário existe na lista de funcionários
             var existingFuncionario = funcionarios.FirstOrDefault(f => f.Id == funcionario.Id);

@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAPT.DAO
+namespace SAPT.DTO
 {
-    public class AvaliacaoDAO
+    public class AvaliacaoDTO
     {
         public int Id { get; set; }
         public string Municipio { get; set; } = string.Empty;
         public string Segmento { get; set; } = string.Empty;
         public string TipoAvaliacao { get; set; } = string.Empty;
-        //public string Usuario { get; set; } = string.Empty; //talvez utilizar o model usuário. não sei se piora muito a coesão. Ou só um id
+        public string Usuario { get; set; } = string.Empty;
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
-        public List<Criterio> Criterios { get; set; } = [];
+        public List<CriterioDTO> Criterios { get; set; } = [];
     }
 }

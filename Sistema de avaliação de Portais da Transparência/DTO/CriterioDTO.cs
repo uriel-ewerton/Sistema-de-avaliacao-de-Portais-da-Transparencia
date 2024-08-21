@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SAPT.DAO
+namespace SAPT.DTO
 {
-    public class CriterioDAO
+    public class CriterioDTO
     {
         public class Pergunta
         {
             public string Texto { get; set; } = string.Empty;
             public string Flag { get; set; } = string.Empty;
-            public string Resposta {  get; set; } = string.Empty;//para uso no formulário
+            public string Resposta { get; set; } = string.Empty;//para uso no formulário
             public string Link { get; set; } = string.Empty;
-            
+
         }
 
         public string Titulo { get; set; } = string.Empty;
         public List<Pergunta> Perguntas { get; set; } = [];
 
-        
+
 
         /*
          
