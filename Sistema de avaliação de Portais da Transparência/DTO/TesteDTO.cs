@@ -20,5 +20,10 @@ namespace SAPT.DTO
             Senha = senha;
             NivelAcesso = nivelAcesso;
         }
+
+        public override string ToString()
+        {
+            return $"ID: {ID} \n Login: {Login}";
+        }
     }
 }
