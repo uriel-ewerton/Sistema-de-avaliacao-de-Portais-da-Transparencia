@@ -14,14 +14,11 @@ namespace SAPT
 {
     public partial class FormAvaliacao : Form
     {
-        private readonly CriterioController _criterioController;
-        private readonly AvaliacaoController _avaliacaoController;
+        
         private List<string> _selecoesIniciais = [];
-        public FormAvaliacao(CriterioController criterioController, AvaliacaoController avaliacaoController, List<string> selecoesIniciais)
+        public FormAvaliacao(List<string> selecoesIniciais)
         {
             InitializeComponent();
-            _criterioController = criterioController;
-            _avaliacaoController = avaliacaoController;
             _selecoesIniciais = selecoesIniciais;
             MontarFormulario();
             ShowIcon = false;

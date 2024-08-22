@@ -5,10 +5,6 @@ namespace SAPT
 {
     public partial class HomePage : Form
     {
-        //controladores
-        private readonly CriterioController criterioController;
-        private readonly AvaliacaoController avaliacaoController;
-
         //Repositório de funcionários
         private FuncionarioRepositorio funcionarioRepository = new FuncionarioRepositorio();
           
@@ -18,10 +14,6 @@ namespace SAPT
             //Lista de funcionários
             this.funcionarioRepository = funcionarioRepository;
 
-            //inicialização dos controladores
-            criterioController = new CriterioController();
-            criterioController.CarregaCriterios();
-            avaliacaoController = new AvaliacaoController();
             ShowIcon = false;
 
             //resolve cor cinza da home
@@ -50,7 +42,7 @@ namespace SAPT
             using var selecaoForm = new SelecaoInicial();
             if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
-                var fazerAvaliacaoForm = new FormAvaliacao(criterioController, avaliacaoController, selecaoForm.SelecoesIniciais);
+                var fazerAvaliacaoForm = new FormAvaliacao(selecaoForm.SelecoesIniciais);
                 fazerAvaliacaoForm.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
                 fazerAvaliacaoForm.Show();
             }
@@ -63,26 +55,12 @@ namespace SAPT
         private void ListarAvaliaçãoTSMI_Click(object sender, EventArgs e)
         {
             ToggleInfoControlsVisibility(false);
-            ListarAvaliacoes listarAvaliacoes = new(avaliacaoController)
+            ListarAvaliacoes listarAvaliacoes = new()
             {
                 MdiParent = this
             };
             listarAvaliacoes.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
             listarAvaliacoes.Show();
-        }
-
-
-        private void ToggleInfoControlsVisibility(bool isVisible)
-        {
-            grpbCriterios.Visible = isVisible;
-            grpbFuncoes.Visible = isVisible;
-            grpbSobre.Visible = isVisible;
-            lblTitulo.Visible = isVisible;
-        }
-
-        private void HomePage_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void GerenciadorDeUsuáriosTSMI_Click_1(object sender, EventArgs e)
@@ -100,6 +78,17 @@ namespace SAPT
             gerenciadorUsuarios.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
             gerenciadorUsuarios.Show();
         }
+
+        // Oculta os componentes da home
+        private void ToggleInfoControlsVisibility(bool isVisible)
+        {
+            grpbCriterios.Visible = isVisible;
+            grpbFuncoes.Visible = isVisible;
+            grpbSobre.Visible = isVisible;
+            lblTitulo.Visible = isVisible;
+        }
+
+        // Fecha a aplicação ao fechar a home
         private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit(); 

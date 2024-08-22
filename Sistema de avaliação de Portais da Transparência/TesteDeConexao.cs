@@ -21,13 +21,19 @@ namespace SAPT
         }
         public void MostraUser()
         {
-            TesteDAO testeDAO = new TesteDAO();
-            List<TesteDTO> testeDTOList = testeDAO.ListarTodos();
-            foreach (TesteDTO x in testeDTOList) {
-                
+            //TesteDAO testeDAO = new TesteDAO();
+            //List<TesteDTO> testeDTOList = testeDAO.ListarTodos();
+            //foreach (TesteDTO x in testeDTOList) {
+
+            //   richTextBox1.Text += $"{x.ToString()}\n";
+            // }
+            CriterioDAO testeDAO = new ();
+            List<CriterioDTO> testeDTOList = testeDAO.ListarTodos();
+            foreach (CriterioDTO x in testeDTOList)
+            {
                 richTextBox1.Text += $"{x.ToString()}\n";
              }
         }
-        
+
     }
 }

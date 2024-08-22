@@ -208,7 +208,6 @@
             Name = "HomePage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home - Sistema de Avaliações";
-            Load += HomePage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             grpbSobre.ResumeLayout(false);

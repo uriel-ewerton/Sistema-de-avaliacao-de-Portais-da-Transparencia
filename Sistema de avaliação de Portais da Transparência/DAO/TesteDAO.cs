@@ -12,14 +12,14 @@ namespace SAPT.DAO
     public class TesteDAO
     {
         private MySqlConnection con;
-        private string? comandosql;
+        private string? comandoSql;
         private MySqlCommand? envelope;
         private MySqlDataReader? cursor;
 
         public TesteDAO()
         {
-            ConexaoBD conexaobd = new ConexaoBD();
-            con = conexaobd.RetornaConexao();
+            ConexaoBD conexaoBd = new ConexaoBD();
+            con = conexaoBd.RetornaConexao();
         }
 
         public List<TesteDTO> ListarTodos()
@@ -27,9 +27,9 @@ namespace SAPT.DAO
             List<TesteDTO> listateste = new List<TesteDTO>();
 
             con.Open();
-            comandosql = "select * from usuarios";
+            comandoSql = "select * from usuarios";
             envelope = new MySqlCommand();
-            envelope.CommandText = comandosql;
+            envelope.CommandText = comandoSql;
             envelope.Connection = con;
             cursor = envelope.ExecuteReader();
             while (cursor.Read())
