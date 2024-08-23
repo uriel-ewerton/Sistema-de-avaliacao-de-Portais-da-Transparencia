@@ -6,13 +6,31 @@ using System.Threading.Tasks;
 
 namespace SAPT.DTO
 {
-    public class RespostaDTO(CriterioDTO criterioDTO, AvaliacaoDTO avaliacaoDTO, bool resposta, string link)
+    public class RespostaDTO
     {
-        //Chaves primárias
-        public readonly CriterioDTO criterioDTO = criterioDTO ?? throw new ArgumentNullException(nameof(criterioDTO));
-        public readonly AvaliacaoDTO avaliacaoDTO = avaliacaoDTO ?? throw new ArgumentNullException(nameof(avaliacaoDTO));
+        // Chaves primárias
+        //public readonly CriterioDTO criterioDTO;
+        //public readonly AvaliacaoDTO avaliacaoDTO;
+        public int CriterioId { get; set; }
+        public int AvaliacaoId { get; set; }
+        public bool Resposta { get; set; }
+        public string Link { get; set; }
 
-        public bool Resposta { get; set; } = resposta;
-        public string Link { get; set; } = link ?? throw new ArgumentNullException(nameof(link));
+        public RespostaDTO(int criterioId, int avaliacaoId, bool resposta, string link)
+        {
+            CriterioId = criterioId;
+            AvaliacaoId = avaliacaoId;
+            Resposta = resposta;
+            Link = link ?? throw new ArgumentNullException(nameof(link));
+        }
+
+        //public RespostaDTO(CriterioDTO criterioDTO, AvaliacaoDTO avaliacaoDTO, bool resposta, string link)
+        //{
+        //    this.criterioDTO = criterioDTO ?? throw new ArgumentNullException(nameof(criterioDTO));
+        //    this.avaliacaoDTO = avaliacaoDTO ?? throw new ArgumentNullException(nameof(avaliacaoDTO));
+        //    Resposta = resposta;
+        //    Link = link;
+        //}
+
     }
 }

@@ -22,22 +22,35 @@ namespace SAPT.DAO
             con = conexaoBd.RetornaConexao();
         }
 
-        public int Salvar(CriterioDTO criterioDTO)
+        public bool Salvar(CriterioDTO criterioDTO)
         {
             con.Open();
-            comandoSql = "insert into criterios (matriz, dimensao, pergunta, classificacao) " 
-                + "values (@matriz, @dimensao, @pergunta, @classificacao)";
+            using MySqlTransaction tran = con.BeginTransaction();
+            try
+            {
+                comandoSql = "insert into criterios (matriz, dimensao, pergunta, classificacao) "
+                    + "values (@matriz, @dimensao, @pergunta, @classificacao)";
 
-            envelope = new MySqlCommand(comandoSql, con);
-            envelope.Parameters.AddWithValue("@matriz", criterioDTO.Matriz);
-            envelope.Parameters.AddWithValue("@dimensao", criterioDTO.Dimensao);
-            envelope.Parameters.AddWithValue("@pergunta", criterioDTO.Pergunta);
-            envelope.Parameters.AddWithValue("@classificacao", criterioDTO.Classificacao);
-            envelope.Prepare();
-            int retorno = envelope.ExecuteNonQuery();
-            con.Close();
+                envelope = new MySqlCommand(comandoSql, con, tran);
+                envelope.Parameters.AddWithValue("@matriz", criterioDTO.Matriz);
+                envelope.Parameters.AddWithValue("@dimensao", criterioDTO.Dimensao);
+                envelope.Parameters.AddWithValue("@pergunta", criterioDTO.Pergunta);
+                envelope.Parameters.AddWithValue("@classificacao", criterioDTO.Classificacao);
+                envelope.ExecuteNonQuery();
 
-            return retorno;
+                tran.Commit();
+                return true;
+            }
+            catch
+            {
+                tran.Rollback();
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+            
         }
 
         public List<CriterioDTO> ListarTodos()

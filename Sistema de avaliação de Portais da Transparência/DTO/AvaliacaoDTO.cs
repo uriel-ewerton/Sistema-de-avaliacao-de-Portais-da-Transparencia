@@ -17,11 +17,20 @@ namespace SAPT.DTO
         public int IdUsuario { get; set; }
 
         // Lista de respostas associadas à avaliação
-        public List<RespostaDTO> Respostas { get; set; }
+        public List<RespostaDTO> Respostas { get; set; } = [];
 
-        public AvaliacaoDTO(int id, DateTime dataAvaliacao, string tipoAvaliacao, string segmento, string municipio, int idUsuario, List<RespostaDTO> respostas)
+        public AvaliacaoDTO(int id, DateTime dataAvaliacao, string tipoAvaliacao, string segmento, string municipio, int idUsuario)
         {
             Id = id;
+            DataAvaliacao = dataAvaliacao;
+            TipoAvaliacao = tipoAvaliacao ?? throw new ArgumentNullException(nameof(tipoAvaliacao));
+            Segmento = segmento ?? throw new ArgumentNullException(nameof(segmento));
+            Municipio = municipio ?? throw new ArgumentNullException(nameof(municipio));
+            IdUsuario = idUsuario;
+        }
+
+        public AvaliacaoDTO(DateTime dataAvaliacao, string tipoAvaliacao, string segmento, string municipio, int idUsuario, List<RespostaDTO> respostas)
+        {
             DataAvaliacao = dataAvaliacao;
             TipoAvaliacao = tipoAvaliacao ?? throw new ArgumentNullException(nameof(tipoAvaliacao));
             Segmento = segmento ?? throw new ArgumentNullException(nameof(segmento));
