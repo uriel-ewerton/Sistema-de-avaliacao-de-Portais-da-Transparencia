@@ -11,13 +11,17 @@ namespace SAPT.DTO
     {
         public int Id { get; set; }
         public DateTime DataAvaliacao { get; set; }
-        public string TipoAvaliacao { get; set; }
-        public string Segmento { get; set; }
-        public string Municipio { get; set; }
+        public string TipoAvaliacao { get; set; } = string.Empty;
+        public string Segmento { get; set; } = string.Empty;
+        public string Municipio { get; set; } = string.Empty;
         public int IdUsuario { get; set; }
 
         // Lista de respostas associadas à avaliação
         public List<RespostaDTO> Respostas { get; set; } = [];
+
+        public AvaliacaoDTO()
+        {
+        }
 
         public AvaliacaoDTO(int id, DateTime dataAvaliacao, string tipoAvaliacao, string segmento, string municipio, int idUsuario)
         {

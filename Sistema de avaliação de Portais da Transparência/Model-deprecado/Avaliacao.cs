@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SAPT.Model
 {
-    public class Avaliacao
+    public class AvaliacaoDTO
     {
         public int Id { get; set; }
         public string Municipio { get; set; } = string.Empty;

@@ -12,14 +12,14 @@ namespace SAPT.DAO
 {
     public class AvaliacaoDAO
     {
-        private MySqlConnection con;
+        private readonly MySqlConnection con;
         private string? comandoSql;
         private MySqlCommand? envelope;
         private MySqlDataReader? cursor;
 
         public AvaliacaoDAO()
         {
-            ConexaoBD conexaoBD = new ConexaoBD();
+            ConexaoBD conexaoBD = new();
             con = conexaoBD.RetornaConexao();
         }
 

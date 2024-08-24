@@ -1,6 +1,5 @@
 ﻿using SAPT.DAO;
 using SAPT.DTO;
-using SAPT.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +28,12 @@ namespace SAPT.Controller
             return criterios;
         }
 
+        // Retorna lista de critérios que foram respondidos em determinada avaliação
+        public List<CriterioDTO> ListarCriteriosJoinRespostas(AvaliacaoDTO avaliacao)
+        {
+            CriterioDAO criterioDAO = new();
+            List<CriterioDTO> criterios = criterioDAO.ListarPorIDs(avaliacao);
+            return criterios;
+        }
     }
 }

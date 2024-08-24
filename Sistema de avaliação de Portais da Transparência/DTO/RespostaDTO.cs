@@ -21,8 +21,16 @@ namespace SAPT.DTO
             CriterioId = criterioId;
             AvaliacaoId = avaliacaoId;
             Resposta = resposta;
-            Link = link ?? throw new ArgumentNullException(nameof(link));
+            Link = link;
         }
+
+        public RespostaDTO(int criterioId, bool resposta, string link)
+        {
+            CriterioId = criterioId;
+            Resposta = resposta;
+            Link = link;
+        }
+
 
         //public RespostaDTO(CriterioDTO criterioDTO, AvaliacaoDTO avaliacaoDTO, bool resposta, string link)
         //{

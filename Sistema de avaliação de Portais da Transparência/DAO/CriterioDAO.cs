@@ -18,7 +18,7 @@ namespace SAPT.DAO
 
         public CriterioDAO()
         {
-            ConexaoBD conexaoBd = new ConexaoBD();
+            ConexaoBD conexaoBd = new();
             con = conexaoBd.RetornaConexao();
         }
 
@@ -50,7 +50,7 @@ namespace SAPT.DAO
             {
                 con.Close();
             }
-            
+
         }
 
         public List<CriterioDTO> ListarTodos()
@@ -58,14 +58,17 @@ namespace SAPT.DAO
             List<CriterioDTO> listaCriterios = new List<CriterioDTO>();
             con.Open();
             comandoSql = "select * from criterios";
-            envelope = new MySqlCommand( comandoSql, con);
+            envelope = new MySqlCommand(comandoSql, con);
             cursor = envelope.ExecuteReader();
             while (cursor.Read())
             {
+                // Dimensao aceita null, logo, precisamos tratar
+                string dimensao = cursor["dimensao"] != DBNull.Value ? cursor.GetString("dimensao") : string.Empty;
+                
                 CriterioDTO criterioDTO = new(
                     cursor.GetInt32("id"),
                     cursor.GetString("matriz"),
-                    cursor.GetString("dimensao"),
+                    dimensao,
                     cursor.GetString("pergunta"),
                     cursor.GetString("classificacao"));
                 listaCriterios.Add(criterioDTO);
@@ -73,5 +76,40 @@ namespace SAPT.DAO
             con.Close();
             return listaCriterios;
         }
+
+        public List<CriterioDTO> ListarPorIDs(AvaliacaoDTO avaliacao)
+        {
+            List<CriterioDTO> listaCriterios = [];
+
+            // Extrai os IDs de Criterio das Respostas
+            var ids = avaliacao.Respostas.Select(r => r.CriterioId).ToList();
+
+            con.Open();
+
+            // Cria a string de consulta SQL com parâmetros
+            string idsString = string.Join(",", ids);
+            comandoSql = $"SELECT * FROM criterios WHERE id IN ({idsString})";
+
+            envelope = new MySqlCommand(comandoSql, con);
+            cursor = envelope.ExecuteReader();
+
+            while (cursor.Read())
+            {
+                // Dimensao aceita null, logo, precisamos tratar
+                string dimensao = cursor["dimensao"] != DBNull.Value ? cursor.GetString("dimensao") : string.Empty;
+
+                CriterioDTO criterioDTO = new(
+                    cursor.GetInt32("id"),
+                    cursor.GetString("matriz"),
+                    dimensao,
+                    cursor.GetString("pergunta"),
+                    cursor.GetString("classificacao"));
+                listaCriterios.Add(criterioDTO);
+            }
+
+            con.Close();
+            return listaCriterios;
+        }
+
     }
 }
