@@ -35,16 +35,18 @@ namespace SAPT.Controller
                             }
                         }
                         // guarda o texto do link
-                        else if (grpControl is TextBox txt && txt.Visible)
+                        else if (grpControl is TextBox txt)
                         {
                             link = txt.Text;
                         }
 
                     }
 
-                    if (resposta.Equals("true"))
+                    if (control.Controls[2] is TextBox box && resposta.Equals("true"))
                     {
-                        return "Campo de link vazio";
+                        if (string.IsNullOrEmpty(box.Text)){
+                            return "Campo de link obrigatório vazio";
+                        }
                     }
 
                     // Adiciona a pergunta e a resposta na lista, junto com o título
@@ -68,66 +70,116 @@ namespace SAPT.Controller
 
         }
 
-        //public string UltimaAvaliacaoString()
-        //{
-        //    string ultimaAvaliacao = "";// AvaliacaoToString(Avaliacoes.Last());
-        //    return ultimaAvaliacao;
-        //}
-
         // provavelmente é um service
-        //public string AvaliacaoToString(AvaliacaoDTO avaliacao)
-        //{
-        //    try
-        //    {
-        //        List<string> avaliacaoString = [];
-        //        CriterioController criterioController = new();
-        //        List<CriterioDTO> criterios = criterioController.ListarCriteriosJoinRespostas(avaliacao);
-                
-        //        // extrai as matrizes para filtrar quais conjuntos de critérios gerar
-        //        List<string> matrizes = [];
-        //        foreach (var c in criterios)
-        //        {
-        //            if (!matrizes.Contains(c.Matriz))
-        //            {
-        //                matrizes.Add(c.Matriz);
-        //            }
-        //        }
-        //        // guarda as dimensões já lidas. (sera lido no segundo foreach abaixo)
-        //        List<string> dimensoes = [];
-
-        //        avaliacaoString.Add($"Avaliação {avaliacao.Id}");
-        //        avaliacaoString.Add($"Município: {avaliacao.Municipio}");
-        //        avaliacaoString.Add($"Segmento: {avaliacao.Segmento}");
-        //        avaliacaoString.Add($"Tipo de avaliação: {avaliacao.TipoAvaliacao}");
-        //        avaliacaoString.Add($"Data da avaliação: {avaliacao.DataAvaliacao}");
-
-        //        foreach (CriterioDTO criterio in criterios)
-        //        {
-        //            avaliacaoString.Add($"\n{criterio.Matriz}\n");
-        //            foreach (Criterio.Pergunta pergunta in criterio.Perguntas)
-        //            {
-        //                avaliacaoString.Add($"{pergunta.Texto}");
-        //                avaliacaoString.Add($"{pergunta.Resposta}");
-        //                if (!string.IsNullOrEmpty(pergunta.Link))
-        //                {
-        //                    avaliacaoString.Add($"Link: {pergunta.Link}");
-        //                }
-
-        //            }
-        //        }
-        //        string avaliacaoConcatenada = string.Join(Environment.NewLine, avaliacaoString);
-        //        return avaliacaoConcatenada;
-        //    }
-        //    catch (Exception erro)
-        //    {
-        //        Console.WriteLine(erro);
-        //    };
-            
-        //}
-
-        public void RemoverUltimaAvaliacao()
+        // Monta uma string com cabeçalho, perguntas e respostas da ultima avaliação validada
+        public string AvaliacaoToString()
         {
-            //Avaliacoes.Remove(Avaliacoes.Last());
+            try
+            {
+                // string onde serão colocados os dados da avaliação
+                List<string> avaliacaoString = [];
+
+                // recupera os criterios respondidos na avaliação
+                CriterioController criterioController = new();
+                if (AvaliacaoCache == null)
+                {
+                    return "Erro";
+                }
+                List<CriterioDTO> criterios = criterioController.ListarCriteriosJoinRespostas(AvaliacaoCache);
+
+                // Usa HashSet para verificar presença de matrizes e dimensões de maneira mais eficiente
+                HashSet<string> matrizes = [];
+                HashSet<string> dimensoes = [];
+
+                // prepara o cabeçalho
+                avaliacaoString.Add($"Avaliação {AvaliacaoCache.Id + 1}");
+                avaliacaoString.Add($"Município: {AvaliacaoCache.Municipio}");
+                avaliacaoString.Add($"Segmento: {AvaliacaoCache.Segmento}");
+                avaliacaoString.Add($"Tipo de avaliação: {AvaliacaoCache.TipoAvaliacao}");
+                avaliacaoString.Add($"Data da avaliação: {AvaliacaoCache.DataAvaliacao}");
+                int index = 0;
+
+                // prepara perguntas e respostas
+                foreach (CriterioDTO criterio in criterios)
+                {
+                    // Verifica se a matriz já foi adicionada
+                    if (matrizes.Add(criterio.Matriz))
+                    {
+                        avaliacaoString.Add($"\n{criterio.Matriz}\n");
+                    }
+
+                    // Adiciona a dimensão, caso haja, e evita que o mesmo tópico se repita
+                    if (!string.IsNullOrEmpty(criterio.Dimensao) && dimensoes.Add(criterio.Dimensao))
+                    {
+                        avaliacaoString.Add($"{criterio.Dimensao}");
+                    }
+                    // Add pergunta
+                    avaliacaoString.Add($"{criterio.Pergunta}");
+
+                    // Add resposta, que existe no DTO como bool
+                    if (AvaliacaoCache.Respostas[index].Resposta)
+                    {
+                        avaliacaoString.Add($"Atende");
+                    }
+                    else
+                    {
+                        avaliacaoString.Add($"Não atende");
+                    }
+
+                    // Add link, se houver
+                    if (!string.IsNullOrEmpty(AvaliacaoCache.Respostas[index].Link))
+                    {
+                        avaliacaoString.Add($"Link ou justificativa: {AvaliacaoCache.Respostas[index].Link}\n");
+                    }
+
+                    // Add espaçador caso o link esteja vazio
+                    else
+                    {
+                        avaliacaoString.Add($"\n"); 
+                    }
+                    index++;
+                }
+
+                string avaliacaoConcatenada = string.Join(Environment.NewLine, avaliacaoString);
+                return avaliacaoConcatenada;
+            }
+            catch (Exception erro)
+            {
+                Console.WriteLine(erro);
+                return "";
+            };
+        }
+
+        public string AvaliacaoToStringPorId(int id)
+        {
+            AvaliacaoDAO avaliacaoDAO = new();
+            AvaliacaoCache = avaliacaoDAO.BuscarPorId(id);
+            string avaliacao = AvaliacaoToString();
+            AvaliacaoCache = null;
+            return avaliacao;
+        }
+        // Retorna lista com todas as avaliações registradas no banco. 
+        // Obs: Somente propriedades de AvaliacaoDTO
+        public List<AvaliacaoDTO> ListarAvaliacoes()
+        {
+            AvaliacaoDAO avaliacaoDAO = new();
+            List<AvaliacaoDTO> avaliacoes = avaliacaoDAO.ListarTodas();
+            return avaliacoes;
+        }
+
+        public bool SalvarAvaliacao()
+        {
+            AvaliacaoDAO avaliacaoDAO = new();
+            if (AvaliacaoCache != null)
+            {
+                return avaliacaoDAO.Salvar(AvaliacaoCache);
+            }
+            return false;
+
+        }
+        public void LimparCacheAvaliacao()
+        {
+            AvaliacaoCache = null;
         }
 
     }

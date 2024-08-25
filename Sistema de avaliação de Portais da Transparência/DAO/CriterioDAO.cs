@@ -55,7 +55,7 @@ namespace SAPT.DAO
 
         public List<CriterioDTO> ListarTodos()
         {
-            List<CriterioDTO> listaCriterios = new List<CriterioDTO>();
+            List<CriterioDTO> listaCriterios = [];
             con.Open();
             comandoSql = "select * from criterios";
             envelope = new MySqlCommand(comandoSql, con);

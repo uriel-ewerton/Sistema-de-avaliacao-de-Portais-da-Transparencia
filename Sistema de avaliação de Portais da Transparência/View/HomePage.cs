@@ -6,7 +6,7 @@ namespace SAPT
     public partial class HomePage : Form
     {
         //Repositório de funcionários
-        private FuncionarioRepositorio funcionarioRepository = new FuncionarioRepositorio();
+        private FuncionarioRepositorio funcionarioRepository = new();
           
         public HomePage(FuncionarioRepositorio funcionarioRepository)
         {

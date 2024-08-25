@@ -23,7 +23,7 @@ namespace SAPT.DAO
             con = conexaoBD.RetornaConexao();
         }
 
-        public void Salvar(AvaliacaoDTO avaliacaoDTO)
+        public bool Salvar(AvaliacaoDTO avaliacaoDTO)
         {
             con.Open();
             using MySqlTransaction tran = con.BeginTransaction();
@@ -33,18 +33,18 @@ namespace SAPT.DAO
                 comandoSql = "insert into Avaliacoes (data_avaliacao, tipo_avaliacao, segmento, municipio, Usuarios_id) "
                     + "values (@data_avaliacao, @tipo_avaliacao, @segmento, @municipio, @Usuarios_id)";
                 envelope = new MySqlCommand(comandoSql, con, tran);
-                envelope.Parameters.AddWithValue("@data_avaliacao", DateTime.Now);
+                envelope.Parameters.AddWithValue("@data_avaliacao", avaliacaoDTO.DataAvaliacao);
                 envelope.Parameters.AddWithValue("@tipo_avaliacao", avaliacaoDTO.TipoAvaliacao);
                 envelope.Parameters.AddWithValue("@segmento", avaliacaoDTO.Segmento);
                 envelope.Parameters.AddWithValue("@municipio", avaliacaoDTO.Municipio);
-                envelope.Parameters.AddWithValue("@Usuarios_id", "user"); //alterar quando o crud de usuário estiver pronto
+                envelope.Parameters.AddWithValue("@Usuarios_id", 1); //alterar quando o crud de usuário estiver pronto
                 envelope.ExecuteNonQuery();
 
                 // Retorna id (auto-increment) da avaliação
                 comandoSql = "SELECT LAST_INSERT_ID();";
                 envelope = new MySqlCommand(comandoSql, con, tran);
                 avaliacaoDTO.Id = Convert.ToInt32(envelope.ExecuteScalar());
-                
+
                 // Salva respostas
                 comandoSql = "insert into Respostas (Avaliacoes_id, resposta, link, Criterios_id) "
                     + "values (@Avaliacoes_id, @resposta, @link, @Criterios_id)";
@@ -68,6 +68,7 @@ namespace SAPT.DAO
                     envelope.ExecuteNonQuery();
                 }
                 tran.Commit();
+                return true;
             }
             catch
             {
@@ -90,7 +91,7 @@ namespace SAPT.DAO
             while (cursor.Read())
             {
                 AvaliacaoDTO avaliacao = new(
-                    cursor.GetInt32("id"),
+                    cursor.GetInt32("id"), 
                     cursor.GetDateTime("data_avaliacao"),
                     cursor.GetString("tipo_avaliacao"),
                     cursor.GetString("segmento"),
@@ -101,6 +102,31 @@ namespace SAPT.DAO
             }
             con.Close();
             return listaAvaliacoes;
+        }
+
+        public AvaliacaoDTO BuscarPorId(int id)
+        {
+            AvaliacaoDTO avaliacao = new();
+            con.Open();
+            comandoSql = "select * from Avaliacoes where id = @id";
+            envelope = new MySqlCommand(comandoSql, con);
+            envelope.Parameters.AddWithValue("@id", id);
+
+            cursor = envelope.ExecuteReader();
+            while (cursor.Read())
+            {
+                avaliacao = new(
+                    cursor.GetInt32("id"),
+                    cursor.GetDateTime("data_avaliacao"),
+                    cursor.GetString("tipo_avaliacao"),
+                    cursor.GetString("segmento"),
+                    cursor.GetString("municipio"),
+                    cursor.GetInt32("Usuarios_id")
+                    );
+            }
+            con.Close();
+            return avaliacao;
+
         }
     }
 }
