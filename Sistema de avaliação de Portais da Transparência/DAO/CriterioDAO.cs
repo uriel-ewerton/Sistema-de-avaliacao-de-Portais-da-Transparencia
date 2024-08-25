@@ -82,7 +82,7 @@ namespace SAPT.DAO
             List<CriterioDTO> listaCriterios = [];
 
             // Extrai os IDs de Criterio das Respostas
-            var ids = avaliacao.Respostas.Select(r => r.CriterioId).ToList();
+            List<int> ids = avaliacao.Respostas.Select(r => r.CriterioId).ToList();
 
             con.Open();
 
@@ -91,6 +91,7 @@ namespace SAPT.DAO
             comandoSql = $"SELECT * FROM criterios WHERE id IN ({idsString})";
 
             envelope = new MySqlCommand(comandoSql, con);
+            envelope.Prepare();
             cursor = envelope.ExecuteReader();
 
             while (cursor.Read())

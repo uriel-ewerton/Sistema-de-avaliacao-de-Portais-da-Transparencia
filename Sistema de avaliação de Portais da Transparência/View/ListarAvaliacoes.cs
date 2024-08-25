@@ -33,7 +33,7 @@ namespace SAPT
                 {
                     Name = "lblNomeAvaliacao",
                     BackColor = Color.FromArgb(165, 231, 250),
-                    Text = $"Avaliação {avaliacao.Id + 1}",
+                    Text = $"Avaliação {avaliacao.Id}",
                     Font = new Font("Quicksand SemiBold", 12F, FontStyle.Bold),
                     Location = new Point(40, y),
                     BorderStyle = BorderStyle.FixedSingle,
@@ -47,9 +47,9 @@ namespace SAPT
                     Location = new Point(40, y + 25),
                     BorderStyle = BorderStyle.FixedSingle,
                     Name = "lblResumoAvaliacao",
-                    Size = new Size(700, 70),
+                    Size = new Size(700, 105),
                     Text = $"Data: {avaliacao.DataAvaliacao}\r\n" +
-                           $"Tipo de avaliação: {avaliacao.TipoAvaliacao}" +
+                           $"Tipo de avaliação: {avaliacao.TipoAvaliacao}\r\n" +
                            $"Segmento: {avaliacao.Segmento}\r\n" +
                            $"Município: {avaliacao.Municipio}\r\n" +
                            $"Usuário: x", //SUBSTITUIR QUANDO HOUVER CONTROLER DE USUÁRIOS
@@ -61,7 +61,7 @@ namespace SAPT
                     BackColor = Color.White,
                     Text = "Mostrar Avaliação",
                     Font = new Font("Quicksand SemiBold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
-                    Location = new Point(530, y + 40),
+                    Location = new Point(557, y + 60),
                     Size = new Size(140, 38),
                     Tag = avaliacao.Id
                 };
@@ -74,7 +74,7 @@ namespace SAPT
 
                 btnMostrarAvaliacao.BringToFront();
 
-                y += 100;
+                y += 150;
             }
 
         }

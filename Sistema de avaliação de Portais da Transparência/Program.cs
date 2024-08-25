@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace SAPT
 {
     internal static class Program

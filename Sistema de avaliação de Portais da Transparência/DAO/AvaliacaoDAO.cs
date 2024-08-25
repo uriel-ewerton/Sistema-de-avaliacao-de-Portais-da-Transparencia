@@ -3,6 +3,7 @@ using SAPT.DTO;
 using SAPT.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,7 +92,7 @@ namespace SAPT.DAO
             while (cursor.Read())
             {
                 AvaliacaoDTO avaliacao = new(
-                    cursor.GetInt32("id"), 
+                    cursor.GetInt32("id"),
                     cursor.GetDateTime("data_avaliacao"),
                     cursor.GetString("tipo_avaliacao"),
                     cursor.GetString("segmento"),
@@ -107,26 +108,61 @@ namespace SAPT.DAO
         public AvaliacaoDTO BuscarPorId(int id)
         {
             AvaliacaoDTO avaliacao = new();
+
+            // Abre a conexão
             con.Open();
-            comandoSql = "select * from Avaliacoes where id = @id";
+
+            // Comando SQL para buscar a avaliação
+            string comandoSql = "SELECT * FROM Avaliacoes WHERE id = @id";
             envelope = new MySqlCommand(comandoSql, con);
             envelope.Parameters.AddWithValue("@id", id);
-
             cursor = envelope.ExecuteReader();
-            while (cursor.Read())
+
+            // Se encontrar a avaliação, popula o objeto AvaliacaoDTO
+            if (cursor.Read())
             {
-                avaliacao = new(
+                avaliacao = new AvaliacaoDTO(
                     cursor.GetInt32("id"),
                     cursor.GetDateTime("data_avaliacao"),
                     cursor.GetString("tipo_avaliacao"),
                     cursor.GetString("segmento"),
                     cursor.GetString("municipio"),
                     cursor.GetInt32("Usuarios_id")
-                    );
+                );
             }
-            con.Close();
-            return avaliacao;
 
+            // Fecha o DataReader da consulta anterior
+            cursor.Close();
+
+            // Comando SQL para buscar as respostas associadas à avaliação
+            comandoSql = "SELECT * FROM Respostas WHERE Avaliacoes_id = @id";
+            envelope = new MySqlCommand(comandoSql, con);
+            envelope.Parameters.AddWithValue("@id", id);
+            cursor = envelope.ExecuteReader();
+
+            // Lista para armazenar as respostas
+            List<RespostaDTO> respostas = new List<RespostaDTO>();
+
+            // Adiciona as respostas à lista de respostas da avaliação
+            while (cursor.Read())
+            {
+                RespostaDTO resposta = new RespostaDTO(
+                    cursor.GetInt32("Criterios_id"),
+                    cursor.GetInt32("Avaliacoes_id"),
+                    cursor.GetBoolean("resposta"),
+                    cursor.GetString("link")
+                );
+
+                respostas.Add(resposta);
+            }
+
+            // Atribui as respostas à avaliação
+            avaliacao.Respostas = respostas;
+
+            // Fecha a conexão
+            con.Close();
+
+            return avaliacao;
         }
     }
 }

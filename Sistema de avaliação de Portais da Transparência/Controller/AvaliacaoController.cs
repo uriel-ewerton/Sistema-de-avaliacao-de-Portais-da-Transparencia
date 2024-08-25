@@ -83,7 +83,7 @@ namespace SAPT.Controller
                 CriterioController criterioController = new();
                 if (AvaliacaoCache == null)
                 {
-                    return "Erro";
+                    return "Erro: avaliação vazia.";
                 }
                 List<CriterioDTO> criterios = criterioController.ListarCriteriosJoinRespostas(AvaliacaoCache);
 
@@ -92,7 +92,14 @@ namespace SAPT.Controller
                 HashSet<string> dimensoes = [];
 
                 // prepara o cabeçalho
-                avaliacaoString.Add($"Avaliação {AvaliacaoCache.Id + 1}");
+                if(AvaliacaoCache.Id == 0)// Em Avaliações novas o id costuma ser 0 pois o auto-increment ainda nao foi retornado
+                {
+                    avaliacaoString.Add($"Avaliação Nova");
+                }
+                else
+                {
+                    avaliacaoString.Add($"Avaliação {AvaliacaoCache.Id}");
+                }
                 avaliacaoString.Add($"Município: {AvaliacaoCache.Municipio}");
                 avaliacaoString.Add($"Segmento: {AvaliacaoCache.Segmento}");
                 avaliacaoString.Add($"Tipo de avaliação: {AvaliacaoCache.TipoAvaliacao}");

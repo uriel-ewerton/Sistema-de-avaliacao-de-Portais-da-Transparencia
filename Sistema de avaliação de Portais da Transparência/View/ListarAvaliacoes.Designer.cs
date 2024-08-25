@@ -33,7 +33,7 @@
             // 
             // pnlAvaliacoes
             // 
-            pnlAvaliacoes.AutoScroll = true;
+            pnlAvaliacoes.AutoScrollMargin = new Size(0, 290);
             pnlAvaliacoes.AutoSize = true;
             pnlAvaliacoes.BackColor = SystemColors.Control;
             pnlAvaliacoes.Location = new Point(31, 38);
@@ -45,6 +45,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             ClientSize = new Size(700, 380);
             Controls.Add(pnlAvaliacoes);
             MinimizeBox = false;
