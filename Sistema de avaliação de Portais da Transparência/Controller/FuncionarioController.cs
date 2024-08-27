@@ -5,47 +5,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SAPT.View;
+using SAPT.DTO;
+using SAPT.DAO;
 
 namespace SAPT.Controller
 {
     public class FuncionarioController
     {
-        //readonly garante que o repositório será atribuido uma vez somente durante o tempo de vida útil
-        //do programa
-        private readonly IFuncionarioRepositorio repositorio;
-        private readonly IFuncionarioView view;
-
-        public FuncionarioController(IFuncionarioRepositorio repositorio, IFuncionarioView view)
+        public List<FuncionarioDTO> carregarFuncionarios()
         {
-            this.repositorio = repositorio;
-            this.view = view;
-            this.view.SetController(this);
+            FuncionarioDAO funcionario = new FuncionarioDAO();
+            List<FuncionarioDTO> funcionarios = funcionario.ListarTodos();
+            return funcionarios;
+        }
+        public int AddFuncionario(string login, string senha, int nivelAcesso)
+        {
+            //Criando um DTO funcionário com as informações recebidas 
+            FuncionarioDTO funcionario = new FuncionarioDTO(login, senha, nivelAcesso);
+            //Criando um funcionario DAO para persistir as informações
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+            int retorno = funcionarioDAO.Salvar(funcionario);
+            return retorno;
         }
 
-        public void carregarFuncionarios()
+        public int UpdateFuncionario(int id,string login, string senha, int nivelAcesso)
         {
-            //Carrega os funcionários sempre que uma alteração acontecer na lista
-            var funcionarios = repositorio.obterTodos();
-            view.DisplayFuncionarios(funcionarios);
-  
+            FuncionarioDTO funcionario = new FuncionarioDTO(id,login,senha,nivelAcesso);
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+            int retorno = funcionarioDAO.Atualizar(funcionario);
+            return retorno;
         }
 
-        public void AddFuncionario(Funcionario funcionario)
+        public int DeleteFuncionario(int id)
         {
-            repositorio.Add(funcionario);
-            carregarFuncionarios();
-        }
-
-        public void UpdateFuncionario(Funcionario funcionario)
-        {
-            repositorio.Update(funcionario);
-            carregarFuncionarios();
-        }
-
-        public void DeleteFuncionario(int id)
-        {
-            repositorio.Delete(id);
-            carregarFuncionarios();
+            FuncionarioDAO funcionario = new FuncionarioDAO();
+            int retorno = funcionario.Excluir(id);
+            return retorno;
         }
     }
 }

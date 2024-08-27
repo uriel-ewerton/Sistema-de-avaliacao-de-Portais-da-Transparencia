@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             lblNovoFuncionario = new Label();
-            lblNome = new Label();
-            txtNome = new TextBox();
-            txtCargo = new TextBox();
-            lblCargo = new Label();
-            txtSalario = new TextBox();
-            lblSalario = new Label();
+            lblLogin = new Label();
+            txtLogin = new TextBox();
+            txtNivelAcesso = new TextBox();
+            lblNivelAcesso = new Label();
             btnAdicionar = new Button();
             txtSenha = new TextBox();
             lblSenha = new Label();
@@ -50,59 +48,42 @@
             lblNovoFuncionario.TabIndex = 0;
             lblNovoFuncionario.Text = "Novo Funcionário";
             // 
-            // lblNome
+            // lblLogin
             // 
-            lblNome.AutoSize = true;
-            lblNome.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNome.Location = new Point(26, 76);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(44, 17);
-            lblNome.TabIndex = 1;
-            lblNome.Tag = "";
-            lblNome.Text = "Nome";
+            lblLogin.AutoSize = true;
+            lblLogin.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblLogin.Location = new Point(26, 76);
+            lblLogin.Name = "lblLogin";
+            lblLogin.Size = new Size(40, 17);
+            lblLogin.TabIndex = 1;
+            lblLogin.Tag = "";
+            lblLogin.Text = "Login";
             // 
-            // txtNome
+            // txtLogin
             // 
-            txtNome.Location = new Point(93, 73);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(447, 25);
-            txtNome.TabIndex = 2;
+            txtLogin.Location = new Point(93, 73);
+            txtLogin.Name = "txtLogin";
+            txtLogin.Size = new Size(447, 25);
+            txtLogin.TabIndex = 2;
             // 
-            // txtCargo
+            // txtNivelAcesso
             // 
-            txtCargo.Location = new Point(93, 119);
-            txtCargo.Name = "txtCargo";
-            txtCargo.Size = new Size(447, 25);
-            txtCargo.TabIndex = 4;
-            // lblCargo
+            txtNivelAcesso.Location = new Point(432, 158);
+            txtNivelAcesso.Name = "txtNivelAcesso";
+            txtNivelAcesso.Size = new Size(108, 25);
+            txtNivelAcesso.TabIndex = 4;
             // 
-            lblCargo.AutoSize = true;
-            lblCargo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCargo.Location = new Point(26, 122);
-            lblCargo.Name = "lblCargo";
-            lblCargo.Size = new Size(44, 17);
-            lblCargo.TabIndex = 3;
-            lblCargo.Tag = "";
-            lblCargo.Text = "Cargo";
-            lblCargo.Click += lblCargo_Click;
+            // lblNivelAcesso
             // 
-            // txtSalario
-            // 
-            txtSalario.Location = new Point(93, 204);
-            txtSalario.Name = "txtSalario";
-            txtSalario.Size = new Size(126, 25);
-            txtSalario.TabIndex = 6;
-            // 
-            // lblSalario
-            // 
-            lblSalario.AutoSize = true;
-            lblSalario.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSalario.Location = new Point(26, 207);
-            lblSalario.Name = "lblSalario";
-            lblSalario.Size = new Size(48, 17);
-            lblSalario.TabIndex = 5;
-            lblSalario.Tag = "";
-            lblSalario.Text = "Salário";
+            lblNivelAcesso.AutoSize = true;
+            lblNivelAcesso.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNivelAcesso.Location = new Point(326, 161);
+            lblNivelAcesso.Name = "lblNivelAcesso";
+            lblNivelAcesso.Size = new Size(100, 17);
+            lblNivelAcesso.TabIndex = 3;
+            lblNivelAcesso.Tag = "";
+            lblNivelAcesso.Text = "Nivel de acesso";
+            lblNivelAcesso.Click += lblCargo_Click;
             // 
             // btnAdicionar
             // 
@@ -116,7 +97,7 @@
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(93, 162);
+            txtSenha.Location = new Point(93, 118);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(447, 25);
             txtSenha.TabIndex = 9;
@@ -125,7 +106,7 @@
             // 
             lblSenha.AutoSize = true;
             lblSenha.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSenha.Location = new Point(26, 165);
+            lblSenha.Location = new Point(26, 121);
             lblSenha.Name = "lblSenha";
             lblSenha.Size = new Size(43, 17);
             lblSenha.TabIndex = 8;
@@ -140,12 +121,10 @@
             Controls.Add(txtSenha);
             Controls.Add(lblSenha);
             Controls.Add(btnAdicionar);
-            Controls.Add(txtSalario);
-            Controls.Add(lblSalario);
-            Controls.Add(txtCargo);
-            Controls.Add(lblCargo);
-            Controls.Add(txtNome);
-            Controls.Add(lblNome);
+            Controls.Add(txtNivelAcesso);
+            Controls.Add(lblNivelAcesso);
+            Controls.Add(txtLogin);
+            Controls.Add(lblLogin);
             Controls.Add(lblNovoFuncionario);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             MaximizeBox = false;
@@ -159,12 +138,10 @@
         #endregion
 
         private Label lblNovoFuncionario;
-        private Label lblNome;
-        private TextBox txtNome;
-        private TextBox txtCargo;
-        private Label lblCargo;
-        private TextBox txtSalario;
-        private Label lblSalario;
+        private Label lblLogin;
+        private TextBox txtLogin;
+        private TextBox txtNivelAcesso;
+        private Label lblNivelAcesso;
         private Button btnAdicionar;
         private TextBox txtSenha;
         private Label lblSenha;

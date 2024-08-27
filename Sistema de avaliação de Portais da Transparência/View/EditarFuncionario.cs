@@ -1,4 +1,5 @@
-﻿using SAPT.Model;
+﻿using SAPT.DTO;
+using SAPT.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,10 @@ namespace SAPT.View
 {
     public partial class EditarFuncionario : Form
     {
-        public string FuncionarioNome { get; private set; }
-        public string FuncionarioCargo { get; private set; }
-        public decimal FuncionarioSalario { get; private set; }
-
+        public string FuncionarioLogin { get; private set; }
         public string FuncionarioSenha { get; private set; }
+        public int NivelAcesso { get; private set; }
+
         public EditarFuncionario()
         {
             InitializeComponent();
@@ -26,29 +26,27 @@ namespace SAPT.View
             ShowIcon = false;
         }
 
-        public void adicionarInformacoes(Funcionario funcionario)
+        public void adicionarInformacoes(FuncionarioDTO funcionario)
         {
-            txtNome.Text = funcionario.Nome;
-            txtCargo.Text = funcionario.Cargo;
-            txtSalario.Text = funcionario.Salario.ToString();
-            txtSenha.Text = funcionario.Senha.ToString();
+            txtLogin.Text = funcionario.Login;
+            txtSenha.Text = funcionario.Senha;
+            txtNivelAcesso.Text = funcionario.Nivel_Acesso.ToString();
         }
 
         private void btnConfirmarEdicao_Click(object sender, EventArgs e)
         {
-            if(!String.IsNullOrEmpty(txtNome.Text) && !String.IsNullOrEmpty(txtCargo.Text))
+            if(!String.IsNullOrEmpty(txtLogin.Text) && !String.IsNullOrEmpty(txtSenha.Text))
             {
-                if (decimal.TryParse(txtSalario.Text, out decimal salario))
+                if (decimal.TryParse(txtNivelAcesso.Text, out decimal salario))
                 {
-                    FuncionarioNome = txtNome.Text;
-                    FuncionarioCargo = txtCargo.Text;
-                    FuncionarioSalario = salario;
+                    FuncionarioLogin = txtLogin.Text;
                     FuncionarioSenha = txtSenha.Text;
+                    NivelAcesso = int.Parse(txtNivelAcesso.Text);
+
                     DialogResult resultado = MessageBox.Show("Funcionario Alterado\n" +
-                        "Nome: " + FuncionarioNome + "\n" +
-                        "Cargo: " + FuncionarioCargo + "\n" +
-                        "Salário: R$" + FuncionarioSalario + "\n" +
-                        "Senha: " + FuncionarioSenha, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        "Login: " + FuncionarioLogin + "\n" +
+                        "Senha: " + FuncionarioSenha + "\n" +
+                        "Nível de acesso: " + NivelAcesso , "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (resultado == DialogResult.OK)
                     {
                         this.DialogResult = DialogResult.OK;
@@ -58,12 +56,12 @@ namespace SAPT.View
                 }
                 else
                 {
-                    MessageBox.Show("O campo de salário aceita apenas números e não pode estar vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("O campo de nível de acesso aceita apenas números e não pode estar vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("\"Salário deve ser um valor numérico.\", \"Erro\"");
+                MessageBox.Show("\"Preencha todos os campos\", \"Erro\"");
             }
         }
     }

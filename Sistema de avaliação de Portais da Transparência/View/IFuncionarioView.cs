@@ -1,4 +1,5 @@
 ﻿using SAPT.Controller;
+using SAPT.DTO;
 using SAPT.Model;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace SAPT.View
 {
     public interface IFuncionarioView
     {
-            void DisplayFuncionarios(List<Funcionario> funcionarios);
+            void DisplayFuncionarios(List<FuncionarioDTO> funcionarios);
             void SetController(FuncionarioController controller);
     }
 }

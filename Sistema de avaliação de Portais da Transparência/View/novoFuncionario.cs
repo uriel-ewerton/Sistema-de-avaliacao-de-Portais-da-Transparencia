@@ -13,10 +13,9 @@ namespace SAPT.View
 
     public partial class novoFuncionario : Form
     {
-        public string FuncionarioNome { get; private set; }
-        public string FuncionarioCargo { get; private set; }
-        public decimal FuncionarioSalario { get; private set; }
-        public string FuncionarioSenha {  get; private set; }
+        public string FuncionarioLogin { get; private set; }
+        public string FuncionarioSenha { get; private set; }
+        public int FuncionarioNivelAcesso { get; private set; }
 
         public novoFuncionario()
         {
@@ -28,19 +27,17 @@ namespace SAPT.View
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
 
-            if (!String.IsNullOrEmpty(txtNome.Text) && !String.IsNullOrEmpty(txtCargo.Text) && !String.IsNullOrEmpty(txtSenha.Text))
+            if (!String.IsNullOrEmpty(txtLogin.Text) && !String.IsNullOrEmpty(txtSenha.Text))
             {
-                if (decimal.TryParse(txtSalario.Text, out decimal salario))
+                if (int.TryParse(txtNivelAcesso.Text, out int nivelAcesso))
                 {
-                    FuncionarioNome = txtNome.Text;
-                    FuncionarioCargo = txtCargo.Text;
-                    FuncionarioSalario = salario;
+                    FuncionarioLogin = txtLogin.Text;
+                    FuncionarioNivelAcesso = int.Parse(txtNivelAcesso.Text);
                     FuncionarioSenha = txtSenha.Text;
 
                     DialogResult resultado = MessageBox.Show("Funcionario novo\n" +
-                        "Nome: " + FuncionarioNome + "\n" +
-                        "Cargo: " + FuncionarioCargo + "\n" +
-                        "Salário: R$" + FuncionarioSalario + "\n" +
+                        "Login: " + FuncionarioLogin + "\n" +
+                        "Nível de acesso: " + FuncionarioNivelAcesso + "\n" +
                         "Senha: " + FuncionarioSenha, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
                     if (resultado == DialogResult.OK)
@@ -51,7 +48,7 @@ namespace SAPT.View
                 }
                 else
                 {
-                    MessageBox.Show("O campo de salário aceita somente números e não pode estar vazio.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("O campo de nível de acesso aceita somente números e não pode estar vazio.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }

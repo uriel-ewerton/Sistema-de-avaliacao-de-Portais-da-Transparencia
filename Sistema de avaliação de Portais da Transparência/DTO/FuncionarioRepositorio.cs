@@ -29,9 +29,9 @@ namespace SAPT.DTO
             //Se o funcionário for encontrado através de "firstOrDefault", suas informações são atualizadas
             if (existingFuncionario != null)
             {
-                existingFuncionario.Nome = funcionario.Nome;
-                existingFuncionario.Cargo = funcionario.Cargo;
-                existingFuncionario.Salario = funcionario.Salario;
+                //existingFuncionario.Nome = funcionario.Nome;
+                //existingFuncionario.Cargo = funcionario.Cargo;
+                //existingFuncionario.Salario = funcionario.Salario;
             }
         }
 

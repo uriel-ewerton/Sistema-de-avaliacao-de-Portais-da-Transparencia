@@ -5,15 +5,10 @@ namespace SAPT
 {
     public partial class HomePage : Form
     {
-        //Repositório de funcionários
-        private FuncionarioRepositorio funcionarioRepository = new();
           
-        public HomePage(FuncionarioRepositorio funcionarioRepository)
+        public HomePage()
         {
             InitializeComponent();
-            //Lista de funcionários
-            this.funcionarioRepository = funcionarioRepository;
-
             ShowIcon = false;
 
             //resolve cor cinza da home
@@ -69,9 +64,6 @@ namespace SAPT
 
             // Inicializa o gerenciador de usuários
             var gerenciadorUsuarios = new GerenciadorUsuarios();
-            var controller = new FuncionarioController(funcionarioRepository, gerenciadorUsuarios);
-            gerenciadorUsuarios.SetController(controller);
-            controller.carregarFuncionarios();
             gerenciadorUsuarios.MdiParent = this;
 
             // Adiciona o evento FormClosing para restaurar a visibilidade dos controles

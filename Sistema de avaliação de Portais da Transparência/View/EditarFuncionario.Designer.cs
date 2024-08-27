@@ -28,71 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtSalario = new TextBox();
-            lblSalario = new Label();
-            txtCargo = new TextBox();
-            lblCargo = new Label();
-            txtNome = new TextBox();
-            lblNome = new Label();
+            txtNivelAcesso = new TextBox();
+            lblNivelAcesso = new Label();
+            txtLogin = new TextBox();
+            lblLogin = new Label();
             lblFuncionarioExistente = new Label();
             btnConfirmarEdicao = new Button();
             txtSenha = new TextBox();
             lblSenha = new Label();
             SuspendLayout();
             // 
-            // txtSalario
+            // txtNivelAcesso
             // 
-            txtSalario.Location = new Point(93, 196);
-            txtSalario.Name = "txtSalario";
-            txtSalario.Size = new Size(126, 23);
-            txtSalario.TabIndex = 14;
+            txtNivelAcesso.Location = new Point(465, 149);
+            txtNivelAcesso.Name = "txtNivelAcesso";
+            txtNivelAcesso.Size = new Size(75, 23);
+            txtNivelAcesso.TabIndex = 12;
             // 
-            // lblSalario
+            // lblNivelAcesso
             // 
-            lblSalario.AutoSize = true;
-            lblSalario.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSalario.Location = new Point(26, 199);
-            lblSalario.Name = "lblSalario";
-            lblSalario.Size = new Size(48, 17);
-            lblSalario.TabIndex = 13;
-            lblSalario.Tag = "";
-            lblSalario.Text = "Salário";
+            lblNivelAcesso.AutoSize = true;
+            lblNivelAcesso.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNivelAcesso.Location = new Point(359, 150);
+            lblNivelAcesso.Name = "lblNivelAcesso";
+            lblNivelAcesso.Size = new Size(100, 17);
+            lblNivelAcesso.TabIndex = 11;
+            lblNivelAcesso.Tag = "";
+            lblNivelAcesso.Text = "Nível de acesso";
             // 
-            // txtCargo
+            // txtLogin
             // 
-            txtCargo.Location = new Point(93, 114);
-            txtCargo.Name = "txtCargo";
-            txtCargo.Size = new Size(447, 23);
-            txtCargo.TabIndex = 12;
+            txtLogin.Location = new Point(93, 69);
+            txtLogin.Name = "txtLogin";
+            txtLogin.Size = new Size(447, 23);
+            txtLogin.TabIndex = 10;
             // 
-            // lblCargo
+            // lblLogin
             // 
-            lblCargo.AutoSize = true;
-            lblCargo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCargo.Location = new Point(26, 117);
-            lblCargo.Name = "lblCargo";
-            lblCargo.Size = new Size(44, 17);
-            lblCargo.TabIndex = 11;
-            lblCargo.Tag = "";
-            lblCargo.Text = "Cargo";
-            // 
-            // txtNome
-            // 
-            txtNome.Location = new Point(93, 69);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(447, 23);
-            txtNome.TabIndex = 10;
-            // 
-            // lblNome
-            // 
-            lblNome.AutoSize = true;
-            lblNome.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNome.Location = new Point(26, 72);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(44, 17);
-            lblNome.TabIndex = 9;
-            lblNome.Tag = "";
-            lblNome.Text = "Nome";
+            lblLogin.AutoSize = true;
+            lblLogin.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblLogin.Location = new Point(26, 72);
+            lblLogin.Name = "lblLogin";
+            lblLogin.Size = new Size(40, 17);
+            lblLogin.TabIndex = 9;
+            lblLogin.Tag = "";
+            lblLogin.Text = "Login";
             // 
             // lblFuncionarioExistente
             // 
@@ -116,7 +96,7 @@
             // 
             // txtSenha
             // 
-            txtSenha.Location = new Point(93, 155);
+            txtSenha.Location = new Point(93, 109);
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(447, 23);
             txtSenha.TabIndex = 17;
@@ -125,7 +105,7 @@
             // 
             lblSenha.AutoSize = true;
             lblSenha.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSenha.Location = new Point(26, 158);
+            lblSenha.Location = new Point(26, 112);
             lblSenha.Name = "lblSenha";
             lblSenha.Size = new Size(43, 17);
             lblSenha.TabIndex = 16;
@@ -140,12 +120,10 @@
             Controls.Add(txtSenha);
             Controls.Add(lblSenha);
             Controls.Add(btnConfirmarEdicao);
-            Controls.Add(txtSalario);
-            Controls.Add(lblSalario);
-            Controls.Add(txtCargo);
-            Controls.Add(lblCargo);
-            Controls.Add(txtNome);
-            Controls.Add(lblNome);
+            Controls.Add(txtNivelAcesso);
+            Controls.Add(lblNivelAcesso);
+            Controls.Add(txtLogin);
+            Controls.Add(lblLogin);
             Controls.Add(lblFuncionarioExistente);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -158,12 +136,10 @@
         #endregion
 
         private Button btnAdicionar;
-        private TextBox txtSalario;
-        private Label lblSalario;
-        private TextBox txtCargo;
-        private Label lblCargo;
-        private TextBox txtNome;
-        private Label lblNome;
+        private TextBox txtNivelAcesso;
+        private Label lblNivelAcesso;
+        private TextBox txtLogin;
+        private Label lblLogin;
         private Label lblFuncionarioExistente;
         private Button btnConfirmarEdicao;
         private TextBox txtSenha;

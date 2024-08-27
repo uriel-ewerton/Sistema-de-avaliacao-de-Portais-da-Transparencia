@@ -1,4 +1,5 @@
 ﻿using SAPT.Controller;
+using SAPT.DTO;
 using SAPT.Model;
 using SAPT.View;
 using System;
@@ -7,17 +8,19 @@ using System.Windows.Forms;
 
 namespace SAPT
 {
-    public partial class GerenciadorUsuarios : Form, IFuncionarioView
+    public partial class GerenciadorUsuarios : Form
     {
-        private FuncionarioController controller;
 
         public GerenciadorUsuarios()
         {
             InitializeComponent();
+            renderizaFuncionarios();
+
             //Fixa a janela no canto superior direito da tela em relação ao elemento pai
             this.WindowState = FormWindowState.Maximized;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, 0);
+
             //Adiciona o evento de click em uma célula específica
             dataGridViewFuncionarios.CellClick += dataGridViewFuncionarios_CellContentClick;
             tsbExcluir.Enabled = false;
@@ -25,17 +28,18 @@ namespace SAPT
             ShowIcon = false;
         }
 
-        public void SetController(FuncionarioController controller)
+        public void renderizaFuncionarios()
         {
-            this.controller = controller ?? throw new ArgumentNullException(nameof(controller));
+            FuncionarioController controller = new FuncionarioController();
+            List<FuncionarioDTO> funcionarios = controller.carregarFuncionarios();
+            DisplayFuncionarios(funcionarios);
         }
 
-        public void DisplayFuncionarios(List<Funcionario> funcionarios)
+        public void DisplayFuncionarios(List<FuncionarioDTO> funcionarios)
         {
             if (funcionarios == null || funcionarios.Count == 0)
             {
                 lblnoDataMessage.Visible = true;
-                // Pode adicionar uma mensagem de "Nenhum funcionário encontrado" aqui se desejar
                 dataGridViewFuncionarios.DataSource = null;
             }
             else
@@ -55,34 +59,35 @@ namespace SAPT
             if (dataGridViewFuncionarios.Columns.Count > 0)
             {
                 dataGridViewFuncionarios.Columns["Id"].Width = 50;
-                dataGridViewFuncionarios.Columns["Nome"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridViewFuncionarios.Columns["Cargo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridViewFuncionarios.Columns["Salario"].Width = 100;
+                dataGridViewFuncionarios.Columns["Login"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewFuncionarios.Columns["Senha"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewFuncionarios.Columns["Nivel_Acesso"].Width = 100;
             }
+        }
+        private void dataGridViewFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tsbEditarFuncionario.Enabled = true;
+            tsbExcluir.Enabled = true;
         }
 
         private void tsbAdicionar_Click(object sender, EventArgs e)
         {
             using (novoFuncionario addFuncionarioForm = new novoFuncionario())
             {
+                FuncionarioController controller = new FuncionarioController();
                 if (addFuncionarioForm.ShowDialog() == DialogResult.OK)
                 {
-                    var funcionario = new Funcionario
-                    {
-                        Nome = addFuncionarioForm.FuncionarioNome,
-                        Cargo = addFuncionarioForm.FuncionarioCargo,
-                        Salario = addFuncionarioForm.FuncionarioSalario,
-                        Senha = addFuncionarioForm.FuncionarioSenha
-                    };
-                    controller.AddFuncionario(funcionario);
+                    var funcionario = new FuncionarioDTO(
+                     addFuncionarioForm.FuncionarioLogin,
+                     addFuncionarioForm.FuncionarioSenha,
+                     addFuncionarioForm.FuncionarioNivelAcesso
+                    );
+                    controller.AddFuncionario(funcionario.Login,funcionario.Senha,funcionario.Nivel_Acesso);
+                    renderizaFuncionarios();
+                    tsbEditarFuncionario.Enabled = false;
+                    tsbExcluir.Enabled = false;
                 }
             }
-        }
-
-        private void dataGridViewFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tsbEditarFuncionario.Enabled = true;
-            tsbExcluir.Enabled = true;
         }
 
         private void tsbEditarFuncionario_Click(object sender, EventArgs e)
@@ -90,20 +95,21 @@ namespace SAPT
             if (dataGridViewFuncionarios.SelectedRows.Count > 0)
             {
                 var selectedRow = dataGridViewFuncionarios.SelectedRows[0];
-                var funcionario = (Funcionario)selectedRow.DataBoundItem;
+                var funcionario = (FuncionarioDTO)selectedRow.DataBoundItem;
 
                 using (EditarFuncionario funcionarioForm = new EditarFuncionario())
                 {
                     funcionarioForm.adicionarInformacoes(funcionario);
+                    FuncionarioController controller = new FuncionarioController();
 
                     if (funcionarioForm.ShowDialog() == DialogResult.OK)
                     {
-                        funcionario.Nome = funcionarioForm.FuncionarioNome;
-                        funcionario.Cargo = funcionarioForm.FuncionarioCargo;
-                        funcionario.Salario = funcionarioForm.FuncionarioSalario;
+                        funcionario.Login = funcionarioForm.FuncionarioLogin;
+                        funcionario.Senha = funcionarioForm.FuncionarioSenha;
+                        funcionario.Nivel_Acesso = funcionarioForm.NivelAcesso;
 
-                        controller.UpdateFuncionario(funcionario);
-                        controller.carregarFuncionarios();
+                        controller.UpdateFuncionario(funcionario.Id, funcionario.Login, funcionario.Senha, funcionario.Nivel_Acesso);
+                        renderizaFuncionarios();
                         tsbEditarFuncionario.Enabled = false;
                         tsbExcluir.Enabled = false;
                     }
@@ -114,24 +120,27 @@ namespace SAPT
         private void tsbExcluir_Click(object sender, EventArgs e)
         {
             var selectedRow = dataGridViewFuncionarios.SelectedRows[0];
-            var funcionario = (Funcionario)selectedRow.DataBoundItem;
+            var funcionario = (FuncionarioDTO)selectedRow.DataBoundItem;
+            FuncionarioController controller = new FuncionarioController();
+
             DialogResult resultado = MessageBox.Show("Deseja excluir o funcionário a seguir?\n" +
             "Id: " + funcionario.Id + "\n" +
-            "Nome: " + funcionario.Nome + "\n" +
-            "Cargo: " + funcionario.Cargo + "\n" +
-            "Salário: " + funcionario.Salario, "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            "Login: " + funcionario.Login + "\n" +
+            "Senha: " + funcionario.Senha + "\n" +
+            "Nível de acesso : " + funcionario.Nivel_Acesso, "ATENÇÃO", 
+            MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
             if (resultado == DialogResult.Yes)
             {
                 DialogResult resultadoDef = MessageBox.Show("Tem Certeza?", "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultadoDef == DialogResult.Yes)
                 {
                     controller.DeleteFuncionario(funcionario.Id);
-                    controller.carregarFuncionarios();
+                    renderizaFuncionarios();
                     tsbExcluir.Enabled = false;
                     tsbEditarFuncionario.Enabled = false;
                 }
             }
-
 
         }
 
