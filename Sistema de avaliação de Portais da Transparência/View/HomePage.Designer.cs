@@ -31,10 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             menuStrip1 = new MenuStrip();
             GerenciadoresTSMI = new ToolStripMenuItem();
+            GerenciadorDeUsuáriosTSMI = new ToolStripMenuItem();
             GerenciadorDeFormuláriosTSMI = new ToolStripMenuItem();
             AvaliaçõesTSMI = new ToolStripMenuItem();
             FazerAvaliaçãoTSMI = new ToolStripMenuItem();
             ListarAvaliaçãoTSMI = new ToolStripMenuItem();
+            logoutTSMI = new ToolStripMenuItem();
             lblTitulo = new Label();
             grpbSobre = new GroupBox();
             rtbSobre = new RichTextBox();
@@ -42,7 +44,6 @@
             rtbFuncoes = new RichTextBox();
             grpbCriterios = new GroupBox();
             rtbCriterios = new RichTextBox();
-            GerenciadorDeUsuáriosTSMI = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             grpbSobre.SuspendLayout();
             grpbFuncoes.SuspendLayout();
@@ -52,7 +53,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { GerenciadoresTSMI, AvaliaçõesTSMI });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { GerenciadoresTSMI, AvaliaçõesTSMI, logoutTSMI });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(5, 2, 0, 2);
@@ -66,6 +67,13 @@
             GerenciadoresTSMI.Name = "GerenciadoresTSMI";
             GerenciadoresTSMI.Size = new Size(97, 20);
             GerenciadoresTSMI.Text = "Gerenciadores ";
+            // 
+            // GerenciadorDeUsuáriosTSMI
+            // 
+            GerenciadorDeUsuáriosTSMI.Name = "GerenciadorDeUsuáriosTSMI";
+            GerenciadorDeUsuáriosTSMI.Size = new Size(220, 22);
+            GerenciadorDeUsuáriosTSMI.Text = "Gerenciador de usuários";
+            GerenciadorDeUsuáriosTSMI.Click += GerenciadorDeUsuáriosTSMI_Click_1;
             // 
             // GerenciadorDeFormuláriosTSMI
             // 
@@ -84,16 +92,23 @@
             // FazerAvaliaçãoTSMI
             // 
             FazerAvaliaçãoTSMI.Name = "FazerAvaliaçãoTSMI";
-            FazerAvaliaçãoTSMI.Size = new Size(161, 22);
+            FazerAvaliaçãoTSMI.Size = new Size(180, 22);
             FazerAvaliaçãoTSMI.Text = "Fazer Avaliação";
             FazerAvaliaçãoTSMI.Click += FazerAvaliaçãoTSMI_Click;
             // 
             // ListarAvaliaçãoTSMI
             // 
             ListarAvaliaçãoTSMI.Name = "ListarAvaliaçãoTSMI";
-            ListarAvaliaçãoTSMI.Size = new Size(161, 22);
+            ListarAvaliaçãoTSMI.Size = new Size(180, 22);
             ListarAvaliaçãoTSMI.Text = "Listar Avaliações";
             ListarAvaliaçãoTSMI.Click += ListarAvaliaçãoTSMI_Click;
+            // 
+            // logoutTSMI
+            // 
+            logoutTSMI.Name = "logoutTSMI";
+            logoutTSMI.Size = new Size(57, 20);
+            logoutTSMI.Text = "Logout";
+            logoutTSMI.Click += logoutToolStripMenuItem_Click;
             // 
             // lblTitulo
             // 
@@ -182,13 +197,6 @@
             rtbCriterios.TabIndex = 0;
             rtbCriterios.Text = resources.GetString("rtbCriterios.Text");
             // 
-            // GerenciadorDeUsuáriosTSMI
-            // 
-            GerenciadorDeUsuáriosTSMI.Name = "GerenciadorDeUsuáriosTSMI";
-            GerenciadorDeUsuáriosTSMI.Size = new Size(220, 22);
-            GerenciadorDeUsuáriosTSMI.Text = "Gerenciador de usuários";
-            GerenciadorDeUsuáriosTSMI.Click += GerenciadorDeUsuáriosTSMI_Click_1;
-            // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -239,5 +247,6 @@
         private GroupBox grpbCriterios;
         private RichTextBox rtbCriterios;
         private ToolStripMenuItem GerenciadorDeUsuáriosTSMI;
+        private ToolStripMenuItem logoutTSMI;
     }
 }

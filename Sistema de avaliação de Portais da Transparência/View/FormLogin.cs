@@ -23,12 +23,14 @@ namespace SAPT
 
             string login = txtUsuario.Text;
             string senha = txtSenha.Text;
+            int id = 0;
 
             foreach (var funcionario in funcionarios)
             {
                 if (funcionario.Login.Equals(login) && funcionario.Senha.Equals(senha))
                 {
                     funcionarioValido = funcionario;
+                    id = funcionario.Id;
                     break; // Encontrou as credenciais corretas, então para a busca
                 }
             }
@@ -37,7 +39,7 @@ namespace SAPT
             {
                 MessageBox.Show("Login efetuado com sucesso", "Sucesso");
                 this.Hide();
-                HomePage home = new HomePage();
+                HomePage home = new HomePage(id);
                 home.Show();
             }
             else

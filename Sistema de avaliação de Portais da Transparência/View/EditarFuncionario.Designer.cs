@@ -28,33 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtNivelAcesso = new TextBox();
-            lblNivelAcesso = new Label();
             txtLogin = new TextBox();
             lblLogin = new Label();
             lblFuncionarioExistente = new Label();
             btnConfirmarEdicao = new Button();
             txtSenha = new TextBox();
             lblSenha = new Label();
+            grpbNivelAcesso = new GroupBox();
+            rdb1 = new RadioButton();
+            rdb2 = new RadioButton();
+            grpbNivelAcesso.SuspendLayout();
             SuspendLayout();
-            // 
-            // txtNivelAcesso
-            // 
-            txtNivelAcesso.Location = new Point(465, 149);
-            txtNivelAcesso.Name = "txtNivelAcesso";
-            txtNivelAcesso.Size = new Size(75, 23);
-            txtNivelAcesso.TabIndex = 12;
-            // 
-            // lblNivelAcesso
-            // 
-            lblNivelAcesso.AutoSize = true;
-            lblNivelAcesso.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNivelAcesso.Location = new Point(359, 150);
-            lblNivelAcesso.Name = "lblNivelAcesso";
-            lblNivelAcesso.Size = new Size(100, 17);
-            lblNivelAcesso.TabIndex = 11;
-            lblNivelAcesso.Tag = "";
-            lblNivelAcesso.Text = "Nível de acesso";
             // 
             // txtLogin
             // 
@@ -86,7 +70,7 @@
             // 
             // btnConfirmarEdicao
             // 
-            btnConfirmarEdicao.Location = new Point(465, 193);
+            btnConfirmarEdicao.Location = new Point(465, 179);
             btnConfirmarEdicao.Name = "btnConfirmarEdicao";
             btnConfirmarEdicao.Size = new Size(75, 23);
             btnConfirmarEdicao.TabIndex = 15;
@@ -112,16 +96,48 @@
             lblSenha.Tag = "";
             lblSenha.Text = "Senha";
             // 
+            // grpbNivelAcesso
+            // 
+            grpbNivelAcesso.Controls.Add(rdb1);
+            grpbNivelAcesso.Controls.Add(rdb2);
+            grpbNivelAcesso.Location = new Point(93, 149);
+            grpbNivelAcesso.Name = "grpbNivelAcesso";
+            grpbNivelAcesso.Size = new Size(132, 62);
+            grpbNivelAcesso.TabIndex = 18;
+            grpbNivelAcesso.TabStop = false;
+            grpbNivelAcesso.Text = "Nível de acesso";
+            // 
+            // rdb1
+            // 
+            rdb1.AutoSize = true;
+            rdb1.Location = new Point(18, 30);
+            rdb1.Name = "rdb1";
+            rdb1.Size = new Size(31, 19);
+            rdb1.TabIndex = 11;
+            rdb1.TabStop = true;
+            rdb1.Text = "1";
+            rdb1.UseVisualStyleBackColor = true;
+            // 
+            // rdb2
+            // 
+            rdb2.AutoSize = true;
+            rdb2.Location = new Point(77, 30);
+            rdb2.Name = "rdb2";
+            rdb2.Size = new Size(31, 19);
+            rdb2.TabIndex = 10;
+            rdb2.TabStop = true;
+            rdb2.Text = "2";
+            rdb2.UseVisualStyleBackColor = true;
+            // 
             // EditarFuncionario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(655, 259);
+            Controls.Add(grpbNivelAcesso);
             Controls.Add(txtSenha);
             Controls.Add(lblSenha);
             Controls.Add(btnConfirmarEdicao);
-            Controls.Add(txtNivelAcesso);
-            Controls.Add(lblNivelAcesso);
             Controls.Add(txtLogin);
             Controls.Add(lblLogin);
             Controls.Add(lblFuncionarioExistente);
@@ -129,6 +145,8 @@
             MinimizeBox = false;
             Name = "EditarFuncionario";
             Text = "Editar funcionario";
+            grpbNivelAcesso.ResumeLayout(false);
+            grpbNivelAcesso.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,13 +154,14 @@
         #endregion
 
         private Button btnAdicionar;
-        private TextBox txtNivelAcesso;
-        private Label lblNivelAcesso;
         private TextBox txtLogin;
         private Label lblLogin;
         private Label lblFuncionarioExistente;
         private Button btnConfirmarEdicao;
         private TextBox txtSenha;
         private Label lblSenha;
+        private GroupBox grpbNivelAcesso;
+        private RadioButton rdb1;
+        private RadioButton rdb2;
     }
 }

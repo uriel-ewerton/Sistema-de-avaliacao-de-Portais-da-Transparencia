@@ -5,12 +5,22 @@ namespace SAPT
 {
     public partial class HomePage : Form
     {
-          
-        public HomePage()
+
+        public HomePage(int id)
         {
             InitializeComponent();
             ShowIcon = false;
-
+            //Verifica o nível de acesso do usuário atual
+            if (id != 2)
+            {
+                GerenciadorDeUsuáriosTSMI.Enabled = false;
+                GerenciadorDeFormuláriosTSMI.Enabled = false;
+            }
+            else
+            {
+                FazerAvaliaçãoTSMI.Enabled = false;
+                ListarAvaliaçãoTSMI.Enabled = false;
+            }
             //resolve cor cinza da home
             foreach (Control ctrl in this.Controls)
             {
@@ -83,7 +93,16 @@ namespace SAPT
         // Fecha a aplicação ao fechar a home
         private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit(); 
+            Application.Exit();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("Deseja sair?", "ATENÇÃO",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(resultado == DialogResult.Yes)
+                Application.Restart();
         }
     }
 }

@@ -30,18 +30,30 @@ namespace SAPT.View
         {
             txtLogin.Text = funcionario.Login;
             txtSenha.Text = funcionario.Senha;
-            txtNivelAcesso.Text = funcionario.Nivel_Acesso.ToString();
+            if (funcionario.Nivel_Acesso.Equals("1"))
+            {
+                rdb1.Checked = true;
+            }
+            else
+                rdb1.Checked = true;
         }
 
         private void btnConfirmarEdicao_Click(object sender, EventArgs e)
         {
+            string novoNivelAcesso = "";
+
             if(!String.IsNullOrEmpty(txtLogin.Text) && !String.IsNullOrEmpty(txtSenha.Text))
             {
-                if (decimal.TryParse(txtNivelAcesso.Text, out decimal salario))
+                if (rdb1.Checked || rdb2.Checked)
                 {
+                    if (rdb1.Checked)
+                        novoNivelAcesso = rdb1.Text;
+                    else
+                        novoNivelAcesso = rdb2.Text;
+
                     FuncionarioLogin = txtLogin.Text;
                     FuncionarioSenha = txtSenha.Text;
-                    NivelAcesso = int.Parse(txtNivelAcesso.Text);
+                    NivelAcesso = int.Parse(novoNivelAcesso);
 
                     DialogResult resultado = MessageBox.Show("Funcionario Alterado\n" +
                         "Login: " + FuncionarioLogin + "\n" +
@@ -56,12 +68,12 @@ namespace SAPT.View
                 }
                 else
                 {
-                    MessageBox.Show("O campo de nível de acesso aceita apenas números e não pode estar vazio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Escolha um nível de acesso", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("\"Preencha todos os campos\", \"Erro\"");
+                MessageBox.Show("Preencha todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

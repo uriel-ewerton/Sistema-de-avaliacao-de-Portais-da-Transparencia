@@ -31,11 +31,13 @@
             lblNovoFuncionario = new Label();
             lblLogin = new Label();
             txtLogin = new TextBox();
-            txtNivelAcesso = new TextBox();
-            lblNivelAcesso = new Label();
             btnAdicionar = new Button();
             txtSenha = new TextBox();
             lblSenha = new Label();
+            rdb2 = new RadioButton();
+            rdb1 = new RadioButton();
+            grpbNivelAcesso = new GroupBox();
+            grpbNivelAcesso.SuspendLayout();
             SuspendLayout();
             // 
             // lblNovoFuncionario
@@ -66,28 +68,9 @@
             txtLogin.Size = new Size(447, 25);
             txtLogin.TabIndex = 2;
             // 
-            // txtNivelAcesso
-            // 
-            txtNivelAcesso.Location = new Point(432, 158);
-            txtNivelAcesso.Name = "txtNivelAcesso";
-            txtNivelAcesso.Size = new Size(108, 25);
-            txtNivelAcesso.TabIndex = 4;
-            // 
-            // lblNivelAcesso
-            // 
-            lblNivelAcesso.AutoSize = true;
-            lblNivelAcesso.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNivelAcesso.Location = new Point(326, 161);
-            lblNivelAcesso.Name = "lblNivelAcesso";
-            lblNivelAcesso.Size = new Size(100, 17);
-            lblNivelAcesso.TabIndex = 3;
-            lblNivelAcesso.Tag = "";
-            lblNivelAcesso.Text = "Nivel de acesso";
-            lblNivelAcesso.Click += lblCargo_Click;
-            // 
             // btnAdicionar
             // 
-            btnAdicionar.Location = new Point(465, 201);
+            btnAdicionar.Location = new Point(465, 179);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(75, 28);
             btnAdicionar.TabIndex = 7;
@@ -113,16 +96,48 @@
             lblSenha.Tag = "";
             lblSenha.Text = "Senha";
             // 
+            // rdb2
+            // 
+            rdb2.AutoSize = true;
+            rdb2.Location = new Point(77, 30);
+            rdb2.Name = "rdb2";
+            rdb2.Size = new Size(33, 21);
+            rdb2.TabIndex = 10;
+            rdb2.TabStop = true;
+            rdb2.Text = "2";
+            rdb2.UseVisualStyleBackColor = true;
+            // 
+            // rdb1
+            // 
+            rdb1.AutoSize = true;
+            rdb1.Location = new Point(18, 30);
+            rdb1.Name = "rdb1";
+            rdb1.Size = new Size(33, 21);
+            rdb1.TabIndex = 11;
+            rdb1.TabStop = true;
+            rdb1.Text = "1";
+            rdb1.UseVisualStyleBackColor = true;
+            // 
+            // grpbNivelAcesso
+            // 
+            grpbNivelAcesso.Controls.Add(rdb1);
+            grpbNivelAcesso.Controls.Add(rdb2);
+            grpbNivelAcesso.Location = new Point(93, 149);
+            grpbNivelAcesso.Name = "grpbNivelAcesso";
+            grpbNivelAcesso.Size = new Size(132, 62);
+            grpbNivelAcesso.TabIndex = 12;
+            grpbNivelAcesso.TabStop = false;
+            grpbNivelAcesso.Text = "Nível de acesso";
+            // 
             // novoFuncionario
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(645, 258);
+            Controls.Add(grpbNivelAcesso);
             Controls.Add(txtSenha);
             Controls.Add(lblSenha);
             Controls.Add(btnAdicionar);
-            Controls.Add(txtNivelAcesso);
-            Controls.Add(lblNivelAcesso);
             Controls.Add(txtLogin);
             Controls.Add(lblLogin);
             Controls.Add(lblNovoFuncionario);
@@ -131,6 +146,8 @@
             MinimizeBox = false;
             Name = "novoFuncionario";
             Text = "Novo funcionario";
+            grpbNivelAcesso.ResumeLayout(false);
+            grpbNivelAcesso.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -140,10 +157,11 @@
         private Label lblNovoFuncionario;
         private Label lblLogin;
         private TextBox txtLogin;
-        private TextBox txtNivelAcesso;
-        private Label lblNivelAcesso;
         private Button btnAdicionar;
         private TextBox txtSenha;
         private Label lblSenha;
+        private RadioButton rdb2;
+        private RadioButton rdb1;
+        private GroupBox grpbNivelAcesso;
     }
 }

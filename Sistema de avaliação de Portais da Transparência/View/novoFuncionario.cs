@@ -26,20 +26,26 @@ namespace SAPT.View
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
+            string rdbSelecionado = "";
 
             if (!String.IsNullOrEmpty(txtLogin.Text) && !String.IsNullOrEmpty(txtSenha.Text))
             {
-                if (int.TryParse(txtNivelAcesso.Text, out int nivelAcesso))
+                if (rdb1.Checked || rdb2.Checked)
                 {
+                    if (rdb1.Checked)
+                        rdbSelecionado = rdb1.Text;
+                    else
+                        rdbSelecionado = rdb2.Text;
+
                     FuncionarioLogin = txtLogin.Text;
-                    FuncionarioNivelAcesso = int.Parse(txtNivelAcesso.Text);
+                    FuncionarioNivelAcesso = int.Parse(rdbSelecionado);
                     FuncionarioSenha = txtSenha.Text;
-
-                    DialogResult resultado = MessageBox.Show("Funcionario novo\n" +
-                        "Login: " + FuncionarioLogin + "\n" +
-                        "Nível de acesso: " + FuncionarioNivelAcesso + "\n" +
-                        "Senha: " + FuncionarioSenha, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-
+                    DialogResult resultado = MessageBox.Show(
+                       "Funcionario novo\n" +
+                       "Login: " + FuncionarioLogin + "\n" + 
+                       "Senha: " + FuncionarioSenha + "\n" +
+                       "Nível de acesso: " + FuncionarioNivelAcesso, "ATENÇÃO", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Information);
                     if (resultado == DialogResult.OK)
                     {
                         this.DialogResult = DialogResult.OK; // Configure DialogResult antes de fechar
@@ -47,15 +53,10 @@ namespace SAPT.View
                     }
                 }
                 else
-                {
-                    MessageBox.Show("O campo de nível de acesso aceita somente números e não pode estar vazio.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+                   MessageBox.Show("Preencha o nível de acesso", "ATENÇÃO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            {
                 MessageBox.Show("Preencha todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void lblCargo_Click(object sender, EventArgs e)
