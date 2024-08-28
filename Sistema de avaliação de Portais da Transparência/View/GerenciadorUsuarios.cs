@@ -31,7 +31,7 @@ namespace SAPT
         public void renderizaFuncionarios()
         {
             FuncionarioController controller = new FuncionarioController();
-            List<FuncionarioDTO> funcionarios = controller.carregarFuncionarios();
+            List<FuncionarioDTO> funcionarios = controller.CarregarFuncionarios();
             DisplayFuncionarios(funcionarios);
         }
 
@@ -82,7 +82,7 @@ namespace SAPT
                      addFuncionarioForm.FuncionarioSenha,
                      addFuncionarioForm.FuncionarioNivelAcesso
                     );
-                    controller.AddFuncionario(funcionario.Login,funcionario.Senha,funcionario.Nivel_Acesso);
+                    controller.AddFuncionario(funcionario.Login, funcionario.Senha, funcionario.Nivel_Acesso);
                     renderizaFuncionarios();
                     tsbEditarFuncionario.Enabled = false;
                     tsbExcluir.Enabled = false;
@@ -127,7 +127,7 @@ namespace SAPT
             "Id: " + funcionario.Id + "\n" +
             "Login: " + funcionario.Login + "\n" +
             "Senha: " + funcionario.Senha + "\n" +
-            "Nível de acesso : " + funcionario.Nivel_Acesso, "ATENÇÃO", 
+            "Nível de acesso : " + funcionario.Nivel_Acesso, "ATENÇÃO",
             MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (resultado == DialogResult.Yes)

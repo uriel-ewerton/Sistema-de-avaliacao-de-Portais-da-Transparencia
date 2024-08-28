@@ -18,8 +18,8 @@ namespace SAPT
         private void btnLogin_Click(object sender, EventArgs e)
         {
             FuncionarioController controller = new FuncionarioController();
-            List<FuncionarioDTO> funcionarios = controller.carregarFuncionarios();
-            FuncionarioDTO funcionarioValido = null;
+            List<FuncionarioDTO> funcionarios = controller.CarregarFuncionarios();
+            FuncionarioDTO funcionarioValido = new();
 
             string login = txtUsuario.Text;
             string senha = txtSenha.Text;
@@ -39,7 +39,7 @@ namespace SAPT
             {
                 MessageBox.Show("Login efetuado com sucesso", "Sucesso");
                 this.Hide();
-                HomePage home = new HomePage(id);
+                HomePage home = new HomePage(funcionarioValido);
                 home.Show();
             }
             else

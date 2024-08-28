@@ -11,7 +11,7 @@ namespace SAPT.View
 {
     public interface IFuncionarioView
     {
-            void DisplayFuncionarios(List<FuncionarioDTO> funcionarios);
-            void SetController(FuncionarioController controller);
+        void DisplayFuncionarios(List<FuncionarioDTO> funcionarios);
+        void SetController(FuncionarioController controller);
     }
 }

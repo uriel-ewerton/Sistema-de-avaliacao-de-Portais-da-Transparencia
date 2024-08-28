@@ -12,11 +12,17 @@ namespace SAPT.Controller
 {
     public class FuncionarioController
     {
-        public List<FuncionarioDTO> carregarFuncionarios()
+        public List<FuncionarioDTO> CarregarFuncionarios()
         {
-            FuncionarioDAO funcionario = new FuncionarioDAO();
+            FuncionarioDAO funcionario = new();
             List<FuncionarioDTO> funcionarios = funcionario.ListarTodos();
             return funcionarios;
+        }
+        public FuncionarioDTO BuscarPorId(int id)
+        {
+            FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+            FuncionarioDTO funcionarioDTO = funcionarioDAO.PorId(id);
+            return funcionarioDTO;
         }
         public int AddFuncionario(string login, string senha, int nivelAcesso)
         {

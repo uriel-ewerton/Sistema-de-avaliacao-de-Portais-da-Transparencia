@@ -13,8 +13,8 @@ namespace SAPT.View
 
     public partial class novoFuncionario : Form
     {
-        public string FuncionarioLogin { get; private set; }
-        public string FuncionarioSenha { get; private set; }
+        public string FuncionarioLogin { get; private set; } = string.Empty;
+        public string FuncionarioSenha { get; private set; } = string.Empty;
         public int FuncionarioNivelAcesso { get; private set; }
 
         public novoFuncionario()

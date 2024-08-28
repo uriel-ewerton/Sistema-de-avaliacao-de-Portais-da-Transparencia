@@ -24,6 +24,7 @@ namespace SAPT
 
         private void MontarFormulario()
         {
+            FuncionarioController funcionarioController = new();
             var avaliacoes = avaliacaoController.ListarAvaliacoes();
             int y = 10;
 
@@ -52,7 +53,7 @@ namespace SAPT
                            $"Tipo de avaliação: {avaliacao.TipoAvaliacao}\r\n" +
                            $"Segmento: {avaliacao.Segmento}\r\n" +
                            $"Município: {avaliacao.Municipio}\r\n" +
-                           $"Usuário: x", //SUBSTITUIR QUANDO HOUVER CONTROLER DE USUÁRIOS
+                           $"Usuário: {funcionarioController.BuscarPorId(avaliacao.IdUsuario).Login}", //SUBSTITUIR QUANDO HOUVER CONTROLER DE USUÁRIOS
                 };
 
                 Button btnMostrarAvaliacao = new()

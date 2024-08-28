@@ -42,7 +42,7 @@ namespace SAPT.View
         {
             string novoNivelAcesso = "";
 
-            if(!String.IsNullOrEmpty(txtLogin.Text) && !String.IsNullOrEmpty(txtSenha.Text))
+            if (!String.IsNullOrEmpty(txtLogin.Text) && !String.IsNullOrEmpty(txtSenha.Text))
             {
                 if (rdb1.Checked || rdb2.Checked)
                 {
@@ -58,7 +58,7 @@ namespace SAPT.View
                     DialogResult resultado = MessageBox.Show("Funcionario Alterado\n" +
                         "Login: " + FuncionarioLogin + "\n" +
                         "Senha: " + FuncionarioSenha + "\n" +
-                        "Nível de acesso: " + NivelAcesso , "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                        "Nível de acesso: " + NivelAcesso, "ATENÇÃO", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (resultado == DialogResult.OK)
                     {
                         this.DialogResult = DialogResult.OK;

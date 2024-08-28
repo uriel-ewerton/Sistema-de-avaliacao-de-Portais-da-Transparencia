@@ -38,7 +38,7 @@ namespace SAPT.DAO
                 envelope.Parameters.AddWithValue("@tipo_avaliacao", avaliacaoDTO.TipoAvaliacao);
                 envelope.Parameters.AddWithValue("@segmento", avaliacaoDTO.Segmento);
                 envelope.Parameters.AddWithValue("@municipio", avaliacaoDTO.Municipio);
-                envelope.Parameters.AddWithValue("@Usuarios_id", 1); //alterar quando o crud de usuário estiver pronto
+                envelope.Parameters.AddWithValue("@Usuarios_id", avaliacaoDTO.IdUsuario); //alterar quando o crud de usuário estiver pronto
                 envelope.ExecuteNonQuery();
 
                 // Retorna id (auto-increment) da avaliação

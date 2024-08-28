@@ -72,7 +72,7 @@
             // 
             GerenciadorDeUsuáriosTSMI.Name = "GerenciadorDeUsuáriosTSMI";
             GerenciadorDeUsuáriosTSMI.Size = new Size(220, 22);
-            GerenciadorDeUsuáriosTSMI.Text = "Gerenciador de usuários";
+            GerenciadorDeUsuáriosTSMI.Text = "Gerenciador de Usuários";
             GerenciadorDeUsuáriosTSMI.Click += GerenciadorDeUsuáriosTSMI_Click_1;
             // 
             // GerenciadorDeFormuláriosTSMI
@@ -92,14 +92,14 @@
             // FazerAvaliaçãoTSMI
             // 
             FazerAvaliaçãoTSMI.Name = "FazerAvaliaçãoTSMI";
-            FazerAvaliaçãoTSMI.Size = new Size(180, 22);
+            FazerAvaliaçãoTSMI.Size = new Size(161, 22);
             FazerAvaliaçãoTSMI.Text = "Fazer Avaliação";
             FazerAvaliaçãoTSMI.Click += FazerAvaliaçãoTSMI_Click;
             // 
             // ListarAvaliaçãoTSMI
             // 
             ListarAvaliaçãoTSMI.Name = "ListarAvaliaçãoTSMI";
-            ListarAvaliaçãoTSMI.Size = new Size(180, 22);
+            ListarAvaliaçãoTSMI.Size = new Size(161, 22);
             ListarAvaliaçãoTSMI.Text = "Listar Avaliações";
             ListarAvaliaçãoTSMI.Click += ListarAvaliaçãoTSMI_Click;
             // 

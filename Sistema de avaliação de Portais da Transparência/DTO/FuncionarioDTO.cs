@@ -9,8 +9,8 @@ namespace SAPT.DTO
     public class FuncionarioDTO
     {
         public int Id { get; set; }
-        public string Login { get; set; }
-        public string Senha { get; set; }
+        public string Login { get; set; } = string.Empty;
+        public string Senha { get; set; } = string.Empty;
         public int Nivel_Acesso { get; set; }
 
         // Construtor que envia ao banco (id auto-increment)
@@ -28,6 +28,10 @@ namespace SAPT.DTO
             Login = login ?? throw new ArgumentNullException(nameof(login));
             Senha = senha ?? throw new ArgumentNullException(nameof(senha));
             Nivel_Acesso = nivel_acesso;
+        }
+
+        public FuncionarioDTO()
+        {
         }
     }
 }

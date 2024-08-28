@@ -1,5 +1,6 @@
 ﻿using SAPT.DAO;
 using SAPT.DTO;
+using System.Diagnostics;
 
 namespace SAPT.Controller
 {
@@ -9,7 +10,7 @@ namespace SAPT.Controller
         public DTO.AvaliacaoDTO? AvaliacaoCache { get; set; }
 
         // Usa as informações contidas nos controles para gerar uma instancia de avaliação
-        public string ValidarAvaliacao(Panel pnlFormulario, List<string> selecoesIniciais)
+        public string ValidarAvaliacao(Panel pnlFormulario, List<string> selecoesIniciais, FuncionarioDTO funcionario)
         {
             DTO.AvaliacaoDTO avaliacao = new();
             string resposta = "";
@@ -64,6 +65,7 @@ namespace SAPT.Controller
                 }
             }
             avaliacao.DataAvaliacao = DateTime.Now;
+            avaliacao.IdUsuario = funcionario.Id;
             AvaliacaoCache = avaliacao;
 
             return "Validado";
@@ -81,12 +83,13 @@ namespace SAPT.Controller
 
                 // recupera os criterios respondidos na avaliação
                 CriterioController criterioController = new();
+                FuncionarioController funcionarioController = new();
                 if (AvaliacaoCache == null)
                 {
                     return "Erro: avaliação vazia.";
                 }
                 List<CriterioDTO> criterios = criterioController.ListarCriteriosJoinRespostas(AvaliacaoCache);
-
+               
                 // Usa HashSet para verificar presença de matrizes e dimensões de maneira mais eficiente
                 HashSet<string> matrizes = [];
                 HashSet<string> dimensoes = [];
@@ -104,6 +107,7 @@ namespace SAPT.Controller
                 avaliacaoString.Add($"Segmento: {AvaliacaoCache.Segmento}");
                 avaliacaoString.Add($"Tipo de avaliação: {AvaliacaoCache.TipoAvaliacao}");
                 avaliacaoString.Add($"Data da avaliação: {AvaliacaoCache.DataAvaliacao}");
+                avaliacaoString.Add($"Avaliador: {funcionarioController.BuscarPorId(AvaliacaoCache.IdUsuario).Login}");
                 int index = 0;
 
                 // prepara perguntas e respostas
@@ -165,6 +169,7 @@ namespace SAPT.Controller
             AvaliacaoCache = null;
             return avaliacao;
         }
+
         // Retorna lista com todas as avaliações registradas no banco. 
         // Obs: Somente propriedades de AvaliacaoDTO
         public List<AvaliacaoDTO> ListarAvaliacoes()

@@ -42,5 +42,10 @@ namespace SAPT.DTO
             IdUsuario = idUsuario;
             Respostas = respostas ?? throw new ArgumentNullException(nameof(respostas));
         }
+
+        public override string ToString()
+        {
+            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(DataAvaliacao)}={DataAvaliacao.ToString()}, {nameof(TipoAvaliacao)}={TipoAvaliacao}, {nameof(Segmento)}={Segmento}, {nameof(Municipio)}={Municipio}, {nameof(IdUsuario)}={IdUsuario.ToString()}, {nameof(Respostas)}={Respostas}}}";
+        }
     }
 }

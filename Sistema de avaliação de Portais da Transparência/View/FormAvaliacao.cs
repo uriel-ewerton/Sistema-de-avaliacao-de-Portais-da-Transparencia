@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,10 +17,12 @@ namespace SAPT
     {
 
         private readonly List<string> _selecoesIniciais = [];
-        public FormAvaliacao(List<string> selecoesIniciais)
+        private readonly FuncionarioDTO _funcionario;
+        public FormAvaliacao(List<string> selecoesIniciais, FuncionarioDTO Funcionario)
         {
             InitializeComponent();
             _selecoesIniciais = selecoesIniciais;
+            _funcionario = Funcionario;
             MontarFormulario();
 
             // limpa o foco, que estava indo para o final do formulário
@@ -169,7 +172,7 @@ namespace SAPT
             AvaliacaoController avaliacaoController = new();
 
             // Testa a avaliação e guarda cópia temporária dos dados
-            string respostaValidacao = avaliacaoController.ValidarAvaliacao(pnlFormulario, _selecoesIniciais);
+            string respostaValidacao = avaliacaoController.ValidarAvaliacao(pnlFormulario, _selecoesIniciais, _funcionario);
 
             if (!respostaValidacao.Equals("Validado"))
             {

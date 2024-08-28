@@ -76,6 +76,26 @@ namespace SAPT.DAO
             return listaFuncionarios;
         }
 
+        public FuncionarioDTO PorId(int id)
+        {
+            FuncionarioDTO funcionario = new();
+            con.Open();
+            string comandoSql = "SELECT * FROM usuarios WHERE id = @id";
+            using MySqlCommand envelope = new(comandoSql, con);
+            envelope.Parameters.AddWithValue("@id", id);
+            using MySqlDataReader cursor = envelope.ExecuteReader();
+            if (cursor.Read())
+            {
+                funcionario = new(
+                    cursor.GetInt32("id"),
+                    cursor.GetString("login"),
+                    cursor.GetString("senha"),
+                    cursor.GetInt32("nivel_acesso"));
+            }
+            con.Close();
+            return funcionario;
+
+        }
         public int Atualizar(FuncionarioDTO funcionarioDTO)
         {
             con.Open();

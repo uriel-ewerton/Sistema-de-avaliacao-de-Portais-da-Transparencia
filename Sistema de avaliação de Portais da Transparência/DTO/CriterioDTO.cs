@@ -33,7 +33,9 @@ namespace SAPT.DTO
             Classificacao = classificacao ?? throw new ArgumentNullException(nameof(classificacao));
         }
 
-        
-
+        public override string ToString()
+        {
+            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(Matriz)}={Matriz}, {nameof(Dimensao)}={Dimensao}, {nameof(Pergunta)}={Pergunta}, {nameof(Classificacao)}={Classificacao}}}";
+        }
     }
 }

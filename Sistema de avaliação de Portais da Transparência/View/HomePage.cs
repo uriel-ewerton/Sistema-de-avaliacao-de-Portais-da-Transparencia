@@ -1,17 +1,19 @@
 using SAPT.Controller;
+using SAPT.DTO;
 using SAPT.Model;
 
 namespace SAPT
 {
     public partial class HomePage : Form
     {
-
-        public HomePage(int id)
+        FuncionarioDTO FuncionarioLogado {  get; set; }
+        public HomePage(FuncionarioDTO funcionarioLogado)
         {
             InitializeComponent();
             ShowIcon = false;
+            this.FuncionarioLogado = funcionarioLogado;
             //Verifica o nível de acesso do usuário atual
-            if (id != 2)
+            if (funcionarioLogado.Id != 2)
             {
                 GerenciadorDeUsuáriosTSMI.Enabled = false;
                 GerenciadorDeFormuláriosTSMI.Enabled = false;
@@ -47,7 +49,7 @@ namespace SAPT
             using var selecaoForm = new SelecaoInicial();
             if (selecaoForm.ShowDialog() == DialogResult.OK)
             {
-                var fazerAvaliacaoForm = new FormAvaliacao(selecaoForm.SelecoesIniciais);
+                var fazerAvaliacaoForm = new FormAvaliacao(selecaoForm.SelecoesIniciais, FuncionarioLogado);
                 fazerAvaliacaoForm.FormClosing += (s, args) => ToggleInfoControlsVisibility(true);
                 fazerAvaliacaoForm.Show();
             }
