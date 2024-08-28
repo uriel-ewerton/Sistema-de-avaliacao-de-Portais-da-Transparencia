@@ -8,9 +8,6 @@ namespace SAPT.DTO
 {
     public class RespostaDTO
     {
-        // Chaves primárias
-        //public readonly CriterioDTO criterioDTO;
-        //public readonly AvaliacaoDTO avaliacaoDTO;
         public int CriterioId { get; set; }
         public int AvaliacaoId { get; set; }
         public bool Resposta { get; set; }

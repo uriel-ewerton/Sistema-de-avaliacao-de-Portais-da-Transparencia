@@ -170,6 +170,13 @@ namespace SAPT.Controller
             return avaliacao;
         }
 
+        public AvaliacaoDTO AvaliacaoPorId(int id)
+        {
+            AvaliacaoDAO avaliacaoDAO = new();
+            AvaliacaoDTO avaliacao = avaliacaoDAO.BuscarPorId(id);
+            return avaliacao;
+        }
+
         // Retorna lista com todas as avaliações registradas no banco. 
         // Obs: Somente propriedades de AvaliacaoDTO
         public List<AvaliacaoDTO> ListarAvaliacoes()

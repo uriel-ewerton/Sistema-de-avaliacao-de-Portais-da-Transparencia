@@ -1,5 +1,8 @@
-﻿using SAPT.Controller;
+﻿using QuestPDF.Fluent;
+using QuestPDF.Previewer;
+using SAPT.Controller;
 using SAPT.DTO;
+using SAPT.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,28 +56,43 @@ namespace SAPT
                            $"Tipo de avaliação: {avaliacao.TipoAvaliacao}\r\n" +
                            $"Segmento: {avaliacao.Segmento}\r\n" +
                            $"Município: {avaliacao.Municipio}\r\n" +
-                           $"Usuário: {funcionarioController.BuscarPorId(avaliacao.IdUsuario).Login}", //SUBSTITUIR QUANDO HOUVER CONTROLER DE USUÁRIOS
+                           $"Usuário: {funcionarioController.BuscarPorId(avaliacao.IdUsuario).Login}", 
                 };
 
                 Button btnMostrarAvaliacao = new()
                 {
                     Name = "btnMostarAvaliacao",
                     BackColor = Color.White,
-                    Text = "Mostrar Avaliação",
+                    Text = "Pré-visualizar",
                     Font = new Font("Quicksand SemiBold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
                     Location = new Point(557, y + 60),
                     Size = new Size(140, 38),
                     Tag = avaliacao.Id
                 };
 
+                Button btnGerarPDF = new()
+                {
+                    Name = "btnGerarPDF",
+                    BackColor = Color.White,
+                    Text = "Gerar PDF",
+                    Font = new Font("Quicksand SemiBold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0),
+                    Location = new Point(400, y + 60),
+                    Size = new Size(140, 38),
+                    Tag = avaliacao.Id
+                };
+
                 btnMostrarAvaliacao.Click += btnMostrarAvaliacao_Click;
+                btnGerarPDF.Click += btnGerarPDF_Click;
 
                 pnlAvaliacoes.Controls.Add(lblNomeAvaliacao);
                 pnlAvaliacoes.Controls.Add(lblResumoAvaliacao);
                 pnlAvaliacoes.Controls.Add(btnMostrarAvaliacao);
+                pnlAvaliacoes.Controls.Add(btnGerarPDF);
 
                 btnMostrarAvaliacao.BringToFront();
+                btnGerarPDF.BringToFront();
 
+                
                 y += 150;
             }
 
@@ -83,10 +101,27 @@ namespace SAPT
         {
             if (sender is Button btn && btn.Tag is int id)
             {
-                string avaliacaoString = avaliacaoController.AvaliacaoToStringPorId(id);
-                MessageBox.Show(avaliacaoString, "Avaliação Selecionada", MessageBoxButtons.OK);
+                //string avaliacaoString = avaliacaoController.AvaliacaoToStringPorId(id);
+                //MessageBox.Show(avaliacaoString, "Avaliação Selecionada", MessageBoxButtons.OK);
+                AvaliacaoDTO avaliacao = avaliacaoController.AvaliacaoPorId(id);
+                var documento = new RelatorioAvaliacao(avaliacao);
+                documento.ShowInPreviewerAsync();
+
             }
 
+        }
+        private void btnGerarPDF_Click(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is int id)
+            {
+                AvaliacaoDTO avaliacao = avaliacaoController.AvaliacaoPorId(id);
+                var documento = new RelatorioAvaliacao(avaliacao);
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string path = $"C:\\Users\\uriel\\source\\repos\\Sistema de avaliação de Portais da Transparência\\Sistema de avaliação de Portais da Transparência\\RelatoriosPDF\\relatorio_avaliacao{avaliacao.Id}-v{timestamp}.pdf";
+
+                documento.GeneratePdf(path);
+               
+            }
 
         }
 
