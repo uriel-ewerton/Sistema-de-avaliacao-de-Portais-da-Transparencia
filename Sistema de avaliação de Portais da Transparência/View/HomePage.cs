@@ -1,6 +1,8 @@
 using SAPT.Controller;
 using SAPT.DTO;
 using SAPT.Model;
+using SAPT.Utilities.Log;
+using System.Diagnostics;
 
 namespace SAPT
 {
@@ -23,6 +25,9 @@ namespace SAPT
                 FazerAvaliaçãoTSMI.Enabled = false;
                 ListarAvaliaçãoTSMI.Enabled = false;
             }
+
+            LogController logController = new LogController();
+            logController.RegistrarEntrada(funcionarioLogado.Login, funcionarioLogado.Id);
             //resolve cor cinza da home
             foreach (Control ctrl in this.Controls)
             {
@@ -95,6 +100,8 @@ namespace SAPT
         // Fecha a aplicação ao fechar a home
         private void HomePage_FormClosed(object sender, FormClosedEventArgs e)
         {
+            LogController logController = new LogController();
+            logController.RegistrarSaida(FuncionarioLogado.Id);
             Application.Exit();
         }
 
@@ -104,7 +111,13 @@ namespace SAPT
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if(resultado == DialogResult.Yes)
+            {
+                LogController logController = new LogController();
+                bool a = logController.RegistrarSaida(FuncionarioLogado.Id);
+                Debug.WriteLine(a);
                 Application.Restart();
+            }
+               
         }
     }
 }
