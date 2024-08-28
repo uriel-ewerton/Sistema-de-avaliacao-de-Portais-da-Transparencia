@@ -102,9 +102,10 @@ namespace SAPT
             if (sender is Button btn && btn.Tag is int id)
             {
                 //string avaliacaoString = avaliacaoController.AvaliacaoToStringPorId(id);
-                //MessageBox.Show(avaliacaoString, "Avaliação Selecionada", MessageBoxButtons.OK);
                 AvaliacaoDTO avaliacao = avaliacaoController.AvaliacaoPorId(id);
                 var documento = new RelatorioAvaliacao(avaliacao);
+                MessageBox.Show("Aguarde a tela de preview aparecer.\nEsse processo" +
+                    " pode demorar um pouco.","Processando", MessageBoxButtons.OK);
                 documento.ShowInPreviewerAsync();
 
             }
@@ -116,11 +117,23 @@ namespace SAPT
             {
                 AvaliacaoDTO avaliacao = avaliacaoController.AvaliacaoPorId(id);
                 var documento = new RelatorioAvaliacao(avaliacao);
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                /*string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string path = $"C:\\Users\\uriel\\source\\repos\\Sistema de avaliação de Portais da Transparência\\Sistema de avaliação de Portais da Transparência\\RelatoriosPDF\\relatorio_avaliacao{avaliacao.Id}-v{timestamp}.pdf";
 
                 documento.GeneratePdf(path);
-               
+                MessageBox.Show("Arquivo PDF gerado localmente", "Sucesso", MessageBoxButtons.OK);*/
+                using (SaveFileDialog saveFileDialog = new())
+                {
+                    saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                    saveFileDialog.FileName = $"relatorio_avaliacao{avaliacao.Id}-v{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        documento.GeneratePdf(saveFileDialog.FileName);
+                        MessageBox.Show("Arquivo PDF gerado localmente", "Sucesso", MessageBoxButtons.OK);
+                    }
+                }
             }
 
         }
