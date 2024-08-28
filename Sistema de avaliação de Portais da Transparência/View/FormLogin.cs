@@ -19,7 +19,7 @@ namespace SAPT
         {
             FuncionarioController controller = new FuncionarioController();
             List<FuncionarioDTO> funcionarios = controller.CarregarFuncionarios();
-            FuncionarioDTO funcionarioValido = new();
+            FuncionarioDTO funcionarioValido = null;
 
             string login = txtUsuario.Text;
             string senha = txtSenha.Text;
